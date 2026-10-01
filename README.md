@@ -1,4 +1,8 @@
-# busbar
+<p align="center">
+  <img src="docs/images/busbar.png" alt="Busbar logo" width="240">
+</p>
+
+<h1 align="center">Busbar</h1>
 
 Busbar is an open-source catalogue of open datasets about the UK electricity grid. It records where datasets come from, what they describe, their geographic and temporal coverage, and their publication history, using established metadata standards to organise this information.
 
