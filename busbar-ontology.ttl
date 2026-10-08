@@ -1,0 +1,1345 @@
+# Busbar ontology
+#
+# Vocabulary for describing open data about the GB electricity grid.
+#
+#   1. Catalogue terms   — Busbar's additions to DCAT 3 for describing datasets
+#   2. Dataset types     — SKOS concept scheme used to compare datasets across publishers
+#   3. Network domain    — what the datasets describe: operators, areas, substations, projects…
+#   4. Reference data    — organisations, licence and transmission areas, standards
+#
+# Datasets themselves are described in catalogue.ttl with DCAT 3 and Dublin Core.
+
+@prefix busbar:   <https://busbar.example/ns#> .
+@prefix id:       <https://busbar.example/id/> .
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcat:     <http://www.w3.org/ns/dcat#> .
+@prefix dct:      <http://purl.org/dc/terms/> .
+@prefix foaf:     <http://xmlns.com/foaf/0.1/> .
+@prefix freq:     <http://publications.europa.eu/resource/authority/frequency/> .
+
+<https://busbar.example/ns>
+    a owl:Ontology ;
+    dct:title "Busbar ontology"@en ;
+    owl:versionInfo "0.3" ;
+    dct:created "2026-10-07"^^xsd:date ;
+    dct:description """Vocabulary of Busbar, an open catalogue of open datasets about the GB electricity grid.
+Datasets are described with DCAT 3: a dcat:DatasetSeries per dataset as a publisher releases it over time,
+a dcat:Dataset per edition (dct:issued, dcat:prev, dct:temporal), a dcat:Distribution per file.
+Series carry dct:publisher, dct:spatial (distribution areas, transmission areas or GB), dcat:theme (a dataset type below),
+dct:conformsTo, dct:accrualPeriodicity, and busbar:describes, which points to the network classes the dataset lists.
+Attributes of network classes are the fields that publishers release."""@en .
+
+busbar:unit
+    a owl:AnnotationProperty ;
+    rdfs:label "unit"@en ;
+    rdfs:comment "Unit of the values of a numeric property."@en .
+
+
+#################################################################
+# 1. Catalogue terms
+#################################################################
+
+busbar:describes
+    a owl:ObjectProperty ;
+    rdfs:label "describes"@en ;
+    rdfs:comment "A network class whose instances the dataset lists, e.g. busbar:GridSupplyPoint."@en ;
+    rdfs:domain dcat:DatasetSeries .
+
+busbar:TemporalNature
+    a owl:Class ;
+    rdfs:label "Temporal nature"@en ;
+    rdfs:comment "What the time dimension of a dataset means."@en ;
+    owl:oneOf ( busbar:snapshot busbar:timeSeries busbar:forecast ) .
+
+busbar:snapshot
+    a busbar:TemporalNature ;
+    rdfs:label "snapshot"@en ;
+    rdfs:comment "The state of the network or of a register on the publication date."@en .
+
+busbar:timeSeries
+    a busbar:TemporalNature ;
+    rdfs:label "time series"@en ;
+    rdfs:comment "Measurements over a past period, given by dct:temporal."@en .
+
+busbar:forecast
+    a busbar:TemporalNature ;
+    rdfs:label "forecast"@en ;
+    rdfs:comment "Values for future years."@en .
+
+busbar:temporalNature
+    a owl:ObjectProperty ;
+    rdfs:label "temporal nature"@en ;
+    rdfs:domain [ owl:unionOf ( dcat:DatasetSeries skos:Concept ) ] ;
+    rdfs:range busbar:TemporalNature .
+
+busbar:localPath
+    a owl:DatatypeProperty ;
+    rdfs:label "local path"@en ;
+    rdfs:comment "Path of the copy of the file in the Busbar repository."@en ;
+    rdfs:domain dcat:Distribution ;
+    rdfs:range xsd:string .
+
+
+#################################################################
+# 2. Dataset types
+#################################################################
+
+id:dataset-types
+    a skos:ConceptScheme ;
+    skos:prefLabel "Busbar dataset types"@en ;
+    skos:definition "Kinds of dataset that several publishers release. Series of the same type are comparable. Top concepts group types by what users do with them."@en ;
+    skos:hasTopConcept id:network-model , id:connections , id:capacity , id:geography , id:measurements .
+
+# Top concepts
+
+id:network-model a skos:Concept ; skos:inScheme id:dataset-types ; skos:topConceptOf id:dataset-types ;
+    skos:prefLabel "Network model"@en ;
+    skos:definition "Assets and topology of the network: substations, nodes, circuits, transformers."@en .
+
+id:connections a skos:Concept ; skos:inScheme id:dataset-types ; skos:topConceptOf id:dataset-types ;
+    skos:prefLabel "Connections"@en ;
+    skos:definition "Projects connected, or contracted or planned to connect, to the network."@en .
+
+id:capacity a skos:Concept ; skos:inScheme id:dataset-types ; skos:topConceptOf id:dataset-types ;
+    skos:prefLabel "Capacity and forecasts"@en ;
+    skos:definition "Headroom, firm capacity, utilisation and forecast demand or generation."@en .
+
+id:geography a skos:Concept ; skos:inScheme id:dataset-types ; skos:topConceptOf id:dataset-types ;
+    skos:prefLabel "Geography"@en ;
+    skos:definition "Locations and boundaries: substation coordinates, service areas, distribution areas."@en .
+
+id:measurements a skos:Concept ; skos:inScheme id:dataset-types ; skos:topConceptOf id:dataset-types ;
+    skos:prefLabel "Measurements"@en ;
+    skos:definition "Metered values over time."@en .
+
+# Network model
+
+id:ltds a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "LTDS"@en ;
+    skos:altLabel "Long Term Development Statement"@en ;
+    skos:definition "The DNO's tables describing its network and forecast loads, published each November and updated each May."@en ;
+    skos:broader id:network-model , id:capacity ;
+    dct:conformsTo id:ofgem-ltds ;
+    busbar:temporalNature busbar:snapshot ;
+    dct:accrualPeriodicity freq:ANNUAL_2 .
+
+id:ltds-circuits a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "LTDS Table 1 – circuit data"@en ;
+    skos:definition "Circuits between nodes with impedances and ratings."@en ;
+    skos:broader id:ltds ;
+    dct:conformsTo id:ofgem-ltds ;
+    busbar:temporalNature busbar:snapshot ;
+    dct:accrualPeriodicity freq:ANNUAL_2 .
+
+id:ltds-transformers a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "LTDS Table 2 – transformer data"@en ;
+    skos:definition "Transformers with voltages, ratings and impedances."@en ;
+    skos:broader id:ltds ;
+    dct:conformsTo id:ofgem-ltds ;
+    busbar:temporalNature busbar:snapshot ;
+    dct:accrualPeriodicity freq:ANNUAL_2 .
+
+id:ltds-loads a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "LTDS Table 3 – load data"@en ;
+    skos:definition "Observed peak demand, 5-year forecast and firm capacity per substation."@en ;
+    skos:broader id:ltds , id:capacity ;
+    dct:conformsTo id:ofgem-ltds ;
+    busbar:temporalNature busbar:forecast ;
+    dct:accrualPeriodicity freq:ANNUAL_2 .
+
+id:cim a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "CIM network model"@en ;
+    skos:definition "Machine-readable network model published in the IEC Common Information Model format."@en ;
+    skos:broader id:network-model ;
+    dct:conformsTo id:iec-61970-cim ;
+    busbar:temporalNature busbar:snapshot .
+
+id:etys-appendix-b a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "ETYS Appendix B"@en ;
+    skos:definition "Transmission network data (substations, circuits, transformers) published with the Electricity Ten Year Statement."@en ;
+    skos:broader id:network-model ;
+    busbar:temporalNature busbar:snapshot .
+
+# Connections
+
+id:ecr a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "Embedded Capacity Register"@en ;
+    skos:altLabel "ECR"@en ;
+    skos:definition "Generation and storage of 1 MW and above connected or accepted to connect to a distribution network."@en ;
+    skos:broader id:connections ;
+    dct:conformsTo id:ena-ecr ;
+    busbar:temporalNature busbar:snapshot ;
+    dct:accrualPeriodicity freq:MONTHLY .
+
+id:tec-register a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "TEC register"@en ;
+    skos:definition "Projects holding a Transmission Entry Capacity agreement with the system operator."@en ;
+    skos:broader id:connections ;
+    dct:conformsTo id:cusc ;
+    busbar:temporalNature busbar:snapshot .
+
+id:repd a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "Renewable Energy Planning Database"@en ;
+    skos:altLabel "REPD"@en ;
+    skos:definition "Renewable projects going through the planning system."@en ;
+    skos:broader id:connections ;
+    busbar:temporalNature busbar:snapshot ;
+    dct:accrualPeriodicity freq:QUARTERLY .
+
+# Capacity and forecasts
+
+id:capacity-data a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "Capacity data"@en ;
+    skos:definition "Heat maps, headroom, firm capacity and utilisation figures per substation."@en ;
+    skos:broader id:capacity ;
+    busbar:temporalNature busbar:snapshot .
+
+id:dfes a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "DFES"@en ;
+    skos:altLabel "Distribution Future Energy Scenarios"@en ;
+    skos:definition "Scenario forecasts of demand, generation and headroom."@en ;
+    skos:broader id:capacity ;
+    busbar:temporalNature busbar:forecast .
+
+# Measurements
+
+id:network-flows a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "Network flows"@en ;
+    skos:definition "Time-stamped power, current or generation measurements at substations or network groups."@en ;
+    skos:broader id:measurements ;
+    busbar:temporalNature busbar:timeSeries .
+
+# Geography
+
+id:service-areas a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "Service areas"@en ;
+    skos:definition "Polygons of the area supplied by each substation."@en ;
+    skos:broader id:geography ;
+    busbar:temporalNature busbar:snapshot .
+
+id:substation-register a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "Substation register"@en ;
+    skos:definition "List of substations with names, identifiers and coordinates."@en ;
+    skos:broader id:geography ;
+    busbar:temporalNature busbar:snapshot .
+
+id:licence-area-boundaries a skos:Concept ; skos:inScheme id:dataset-types ;
+    skos:prefLabel "Licence area boundaries"@en ;
+    skos:definition "Polygons of the DNO licence areas, i.e. the distribution areas."@en ;
+    skos:broader id:geography ;
+    busbar:temporalNature busbar:snapshot .
+
+
+#################################################################
+# 3. Network domain — classes
+#################################################################
+
+# Organisations and areas
+
+busbar:Organisation
+    a owl:Class ;
+    rdfs:subClassOf foaf:Organization ;
+    rdfs:label "Organisation"@en ;
+    rdfs:comment "A body that runs part of the network, publishes data about it or issues a standard, e.g. a network operator, a government department or a regulator."@en .
+
+busbar:NetworkOperator
+    a owl:Class ;
+    rdfs:subClassOf busbar:Organisation ;
+    rdfs:label "Network operator"@en ;
+    rdfs:comment "An organisation that holds an Ofgem licence for part of the UK electricity system."@en .
+
+busbar:DistributionNetworkOperator
+    a owl:Class ;
+    rdfs:subClassOf busbar:NetworkOperator ;
+    rdfs:label "Distribution network operator"@en ;
+    skos:altLabel "DNO"@en ;
+    rdfs:comment "Owns and operates the distribution network in one or more distribution areas."@en .
+
+busbar:SystemOperator
+    a owl:Class ;
+    rdfs:subClassOf busbar:NetworkOperator ;
+    rdfs:label "System operator"@en ;
+    skos:altLabel "ESO"@en , "NESO"@en ;
+    rdfs:comment "Plans the UK transmission system and balances supply and demand in real time. Owns no network assets. Manages transmission connections and publishes the TEC register and ETYS."@en .
+
+busbar:TransmissionOwner
+    a owl:Class ;
+    rdfs:subClassOf busbar:NetworkOperator ,
+        [ a owl:Restriction ; owl:onProperty busbar:owns ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Transmission owner"@en ;
+    skos:altLabel "TO"@en ;
+    rdfs:comment "Owns and maintains the onshore transmission network in one transmission area. Operates it on the system operator's instructions."@en .
+
+busbar:Country
+    a owl:Class ;
+    rdfs:subClassOf dct:Location ;
+    rdfs:label "Country"@en ;
+    rdfs:comment "The country covered by national datasets: Great Britain, the scope of the catalogue."@en .
+
+busbar:TransmissionArea
+    a owl:Class ;
+    rdfs:subClassOf dct:Location ,
+        [ a owl:Restriction ; owl:onProperty busbar:ownedBy ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Transmission area"@en ;
+    rdfs:comment "A region in which one transmission owner holds the onshore transmission licence."@en .
+
+busbar:DistributionArea
+    a owl:Class ;
+    rdfs:subClassOf dct:Location ,
+        [ a owl:Restriction ; owl:onProperty busbar:operatedBy ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Distribution area"@en ;
+    skos:altLabel "Licence area"@en , "DNO licence area"@en ;
+    rdfs:comment "The region in which one DNO holds its distribution licence (a DNO licence area)."@en .
+
+# Sites and substations
+
+busbar:Site
+    a owl:Class ;
+    rdfs:label "Site"@en ;
+    rdfs:comment "A physical location where network equipment is installed. One site can host several substation roles, such as a BSP and a primary."@en .
+
+busbar:Substation
+    a owl:Class ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty busbar:inTransmissionArea ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ owl:unionOf (
+            [ a owl:Restriction ; owl:onProperty busbar:inDistributionArea ; owl:minCardinality "1"^^xsd:nonNegativeInteger ]
+            [ a owl:Restriction ; owl:onProperty busbar:inTransmissionArea ; owl:minCardinality "1"^^xsd:nonNegativeInteger ]
+        ) ] ,
+        [ a owl:Restriction ; owl:onProperty busbar:servesArea ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Substation"@en ;
+    rdfs:comment "The equipment at a site that performs one function in the network: a GSP, BSP or primary, or a switching station. A site with several functions has one substation per function."@en .
+
+busbar:TransformerSubstation
+    a owl:Class ;
+    rdfs:subClassOf busbar:Substation ;
+    rdfs:label "Transformer substation"@en ;
+    rdfs:comment "A substation with one or more transformers that step voltage up or down between two or more voltage levels."@en .
+
+busbar:SwitchingStation
+    a owl:Class ;
+    rdfs:subClassOf busbar:Substation ;
+    owl:disjointWith busbar:TransformerSubstation ;
+    rdfs:label "Switching station"@en ;
+    rdfs:comment "A substation without transformers: it connects, splits or reconfigures circuits at a single voltage."@en .
+
+busbar:GridSupplyPoint
+    a owl:Class ;
+    rdfs:subClassOf busbar:TransformerSubstation ,
+        [ a owl:Restriction ; owl:onProperty busbar:inTransmissionArea ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty busbar:inDistributionArea ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Grid supply point"@en ;
+    skos:altLabel "GSP"@en , "Transmission substation"@en ;
+    rdfs:comment "Where the distribution network takes power from the transmission network. It sits in one transmission area and in one or more distribution areas. Its transmission side (400 kV or 275 kV, plus 132 kV in Scotland) is owned by a transmission owner, and large projects in the TEC register connect there."@en .
+
+busbar:BulkSupplyPoint
+    a owl:Class ;
+    rdfs:subClassOf busbar:TransformerSubstation ,
+        [ a owl:Restriction ; owl:onProperty busbar:inDistributionArea ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Bulk supply point"@en ;
+    skos:altLabel "BSP"@en ;
+    rdfs:comment "Steps 132 kV down to the sub-transmission voltage feeding primaries."@en .
+
+busbar:PrimarySubstation
+    a owl:Class ;
+    rdfs:subClassOf busbar:TransformerSubstation ,
+        [ a owl:Restriction ; owl:onProperty busbar:inDistributionArea ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Primary substation"@en ;
+    skos:altLabel "Primary"@en ;
+    rdfs:comment "Steps down to the high-voltage (HV) network that feeds local secondary substations and large customers."@en .
+
+busbar:TypicalVoltages
+    a owl:Class ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty busbar:substationType ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty busbar:side ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Typical voltages"@en ;
+    rdfs:comment "The voltage levels that one type of transformer substation uses on one side, in a group of distribution areas."@en .
+
+# Equipment
+
+busbar:Transformer
+    a owl:Class ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty busbar:end1Node ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty busbar:end2Node ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty busbar:end3Node ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty busbar:inSubstation ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Transformer"@en ;
+    rdfs:comment "Transforms voltage between an HV node and an LV node."@en .
+
+busbar:Node
+    a owl:Class ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty busbar:inSubstation ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Node"@en ;
+    skos:altLabel "Connectivity node"@en ;
+    rdfs:comment "An electrical connection point within a substation, identified by an LTDS node code. Tees and project ends belong to no substation."@en .
+
+busbar:Circuit
+    a owl:Class ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty busbar:node1 ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty busbar:node2 ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Circuit"@en ;
+    rdfs:comment "A line, cable or switch between two nodes."@en .
+
+busbar:SeasonalRating
+    a owl:Class ;
+    rdfs:label "Seasonal rating"@en ;
+    rdfs:comment "The rating of a circuit in one season."@en .
+
+busbar:ServiceArea
+    a owl:Class ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty busbar:servedBy ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty busbar:inDistributionArea ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Service area"@en ;
+    skos:altLabel "ESA"@en , "Substation group"@en , "Substation polygon"@en ;
+    rdfs:comment "The polygon of the area supplied by a substation."@en .
+
+# Projects
+
+busbar:Project
+    a owl:Class ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty busbar:connectedToCircuit ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Project"@en ;
+    rdfs:comment "A generation, storage or demand project connected (or contracted to connect) to the network, at a substation or directly onto a circuit."@en .
+
+busbar:DistributionProject
+    a owl:Class ;
+    rdfs:subClassOf busbar:Project ,
+        [ a owl:Restriction ; owl:onProperty busbar:inDistributionArea ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty busbar:gspSubstation ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty busbar:bspSubstation ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty busbar:primarySubstation ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Distribution project"@en ;
+    skos:altLabel "ECR project"@en ;
+    rdfs:comment "A project connected to a distribution network; one row of a DNO's Embedded Capacity Register."@en .
+
+busbar:TransmissionProject
+    a owl:Class ;
+    rdfs:subClassOf busbar:Project ,
+        [ a owl:Restriction ; owl:onProperty busbar:connectionSite ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty busbar:hostTransmissionOwner ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Transmission project"@en ;
+    skos:altLabel "TEC project"@en ;
+    rdfs:comment "A project holding a Transmission Entry Capacity (TEC) agreement with the system operator; listed in the TEC register."@en .
+
+busbar:REPDProject
+    a owl:Class ;
+    rdfs:label "REPD project"@en ;
+    rdfs:comment "A project in the government's Renewable Energy Planning Database: the planning side (status, dates, operator)."@en .
+
+# Capacity, load and measurements
+
+busbar:CapacityAssessment
+    a owl:Class ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty busbar:atSubstation ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Capacity assessment"@en ;
+    rdfs:comment "Headroom / capacity figures for a substation from a heat map or DFES report."@en .
+
+busbar:SubstationLoad
+    a owl:Class ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty busbar:atSubstation ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Substation load"@en ;
+    rdfs:comment "Observed peak demand at a BSP or primary substation for one year, with the DNO's 5-year forecast and the firm capacity it is compared against (LTDS Table 3)."@en .
+
+busbar:DemandForecast
+    a owl:Class ;
+    rdfs:label "Demand forecast"@en ;
+    rdfs:comment "Forecast peak demand at a substation for one future year."@en .
+
+busbar:FlowObservation
+    a owl:Class ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty busbar:atSubstation ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:label "Flow observation"@en ;
+    rdfs:comment "A time-stamped power-flow measurement at a substation or network group."@en .
+
+
+#################################################################
+# 3. Network domain — relations between classes
+#################################################################
+
+busbar:operates
+    a owl:ObjectProperty ;
+    rdfs:label "operates"@en ;
+    rdfs:domain busbar:DistributionNetworkOperator ;
+    rdfs:range busbar:DistributionArea .
+
+busbar:operatedBy
+    a owl:ObjectProperty ;
+    rdfs:label "operated by"@en ;
+    owl:inverseOf busbar:operates ;
+    rdfs:domain busbar:DistributionArea ;
+    rdfs:range busbar:DistributionNetworkOperator .
+
+busbar:owns
+    a owl:ObjectProperty ;
+    rdfs:label "owns"@en ;
+    rdfs:domain busbar:TransmissionOwner ;
+    rdfs:range busbar:TransmissionArea .
+
+busbar:ownedBy
+    a owl:ObjectProperty ;
+    rdfs:label "owned by"@en ;
+    owl:inverseOf busbar:owns ;
+    rdfs:domain busbar:TransmissionArea ;
+    rdfs:range busbar:TransmissionOwner .
+
+busbar:hasRole
+    a owl:ObjectProperty ;
+    rdfs:label "has role"@en ;
+    rdfs:comment "A substation function performed at the site."@en ;
+    rdfs:domain busbar:Site ;
+    rdfs:range busbar:Substation .
+
+busbar:inDistributionArea
+    a owl:ObjectProperty ;
+    rdfs:label "in distribution area"@en ;
+    rdfs:comment "Empty for ENW substations, as ENW has a single distribution area."@en ;
+    rdfs:domain [ owl:unionOf ( busbar:Substation busbar:ServiceArea busbar:DistributionProject busbar:TypicalVoltages ) ] ;
+    rdfs:range busbar:DistributionArea .
+
+busbar:inTransmissionArea
+    a owl:ObjectProperty ;
+    rdfs:label "in transmission area"@en ;
+    rdfs:comment "The transmission area the substation sits in. Required for GSPs."@en ;
+    rdfs:domain busbar:Substation ;
+    rdfs:range busbar:TransmissionArea .
+
+busbar:suppliedBy
+    a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:label "supplied by"@en ;
+    rdfs:comment "Next substation upstream (primary -> BSP -> GSP)."@en ;
+    rdfs:domain busbar:Substation ;
+    rdfs:range busbar:Substation .
+
+busbar:hasNode
+    a owl:ObjectProperty ;
+    rdfs:label "has node"@en ;
+    rdfs:domain busbar:Substation ;
+    rdfs:range busbar:Node .
+
+busbar:servesArea
+    a owl:ObjectProperty ;
+    rdfs:label "serves area"@en ;
+    rdfs:domain busbar:Substation ;
+    rdfs:range busbar:ServiceArea .
+
+busbar:servedBy
+    a owl:ObjectProperty ;
+    rdfs:label "served by"@en ;
+    owl:inverseOf busbar:servesArea ;
+    rdfs:domain busbar:ServiceArea ;
+    rdfs:range busbar:Substation .
+
+busbar:hasTransformer
+    a owl:ObjectProperty ;
+    rdfs:label "has transformer"@en ;
+    rdfs:domain busbar:TransformerSubstation ;
+    rdfs:range busbar:Transformer .
+
+busbar:inSubstation
+    a owl:ObjectProperty ;
+    rdfs:label "in substation"@en ;
+    rdfs:domain [ owl:unionOf ( busbar:Transformer busbar:Node ) ] ;
+    rdfs:range busbar:Substation .
+
+busbar:substationType
+    a owl:ObjectProperty ;
+    rdfs:label "substation type"@en ;
+    rdfs:comment "The class of transformer substation the voltages apply to, e.g. busbar:GridSupplyPoint."@en ;
+    rdfs:domain busbar:TypicalVoltages .
+
+busbar:end1Node
+    a owl:ObjectProperty ;
+    rdfs:label "end 1 node"@en ;
+    rdfs:comment "Node on end 1 (HV side)."@en ;
+    rdfs:domain busbar:Transformer ;
+    rdfs:range busbar:Node .
+
+busbar:end2Node
+    a owl:ObjectProperty ;
+    rdfs:label "end 2 node"@en ;
+    rdfs:comment "Node on end 2 (LV side)."@en ;
+    rdfs:domain busbar:Transformer ;
+    rdfs:range busbar:Node .
+
+busbar:end3Node
+    a owl:ObjectProperty ;
+    rdfs:label "end 3 node"@en ;
+    rdfs:comment "Node on end 3, three-winding transformers only."@en ;
+    rdfs:domain busbar:Transformer ;
+    rdfs:range busbar:Node .
+
+busbar:node1
+    a owl:ObjectProperty ;
+    rdfs:label "node 1"@en ;
+    rdfs:domain busbar:Circuit ;
+    rdfs:range busbar:Node .
+
+busbar:node2
+    a owl:ObjectProperty ;
+    rdfs:label "node 2"@en ;
+    rdfs:domain busbar:Circuit ;
+    rdfs:range busbar:Node .
+
+busbar:seasonalRating
+    a owl:ObjectProperty ;
+    rdfs:label "seasonal rating"@en ;
+    rdfs:domain busbar:Circuit ;
+    rdfs:range busbar:SeasonalRating .
+
+busbar:connectedToCircuit
+    a owl:ObjectProperty ;
+    rdfs:label "connected to circuit"@en ;
+    rdfs:comment "Circuit the project connects onto directly."@en ;
+    rdfs:domain busbar:Project ;
+    rdfs:range busbar:Circuit .
+
+busbar:gspSubstation
+    a owl:ObjectProperty ;
+    rdfs:label "GSP substation"@en ;
+    rdfs:domain busbar:DistributionProject ;
+    rdfs:range busbar:GridSupplyPoint .
+
+busbar:bspSubstation
+    a owl:ObjectProperty ;
+    rdfs:label "BSP substation"@en ;
+    rdfs:domain busbar:DistributionProject ;
+    rdfs:range busbar:BulkSupplyPoint .
+
+busbar:primarySubstation
+    a owl:ObjectProperty ;
+    rdfs:label "primary substation"@en ;
+    rdfs:domain busbar:DistributionProject ;
+    rdfs:range busbar:PrimarySubstation .
+
+busbar:connectionSite
+    a owl:ObjectProperty ;
+    rdfs:label "connection site"@en ;
+    rdfs:comment "Where the project connects."@en ;
+    rdfs:domain busbar:TransmissionProject ;
+    rdfs:range busbar:Substation .
+
+busbar:hostTransmissionOwner
+    a owl:ObjectProperty ;
+    rdfs:label "host transmission owner"@en ;
+    rdfs:comment "The transmission equivalent of a distribution area: the TO whose network the project connects to."@en ;
+    rdfs:domain busbar:TransmissionProject ;
+    rdfs:range busbar:TransmissionOwner .
+
+busbar:atSubstation
+    a owl:ObjectProperty ;
+    rdfs:label "at substation"@en ;
+    rdfs:domain [ owl:unionOf ( busbar:CapacityAssessment busbar:SubstationLoad busbar:FlowObservation ) ] ;
+    rdfs:range busbar:Substation .
+
+busbar:demandForecast
+    a owl:ObjectProperty ;
+    rdfs:label "demand forecast"@en ;
+    rdfs:comment "Forecast peak demand for each of the next 5 years."@en ;
+    rdfs:domain busbar:SubstationLoad ;
+    rdfs:range busbar:DemandForecast .
+
+
+#################################################################
+# 3. Network domain — attributes
+#################################################################
+
+# Shared
+
+busbar:name
+    a owl:DatatypeProperty ;
+    rdfs:subPropertyOf rdfs:label ;
+    rdfs:label "name"@en ;
+    rdfs:domain [ owl:unionOf ( dct:Location busbar:Site busbar:Substation busbar:ServiceArea busbar:Project ) ] ;
+    rdfs:range xsd:string .
+
+busbar:latitude
+    a owl:DatatypeProperty ;
+    rdfs:label "latitude"@en ;
+    rdfs:domain [ owl:unionOf ( busbar:Site busbar:Project ) ] ;
+    rdfs:range xsd:decimal .
+
+busbar:longitude
+    a owl:DatatypeProperty ;
+    rdfs:label "longitude"@en ;
+    rdfs:domain [ owl:unionOf ( busbar:Site busbar:Project ) ] ;
+    rdfs:range xsd:decimal .
+
+busbar:voltageKV
+    a owl:DatatypeProperty ;
+    rdfs:label "voltage"@en ;
+    rdfs:comment "On a substation load: voltage of the busbar the load is measured at. On typical voltages: one value per voltage level."@en ;
+    rdfs:domain [ owl:unionOf ( busbar:Node busbar:Circuit busbar:Project busbar:SubstationLoad busbar:TypicalVoltages ) ] ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "kV" .
+
+# Organisations and areas
+
+busbar:parentCompany
+    a owl:DatatypeProperty ;
+    rdfs:label "parent company"@en ;
+    rdfs:comment "Company that owns the licence holder."@en ;
+    rdfs:domain busbar:NetworkOperator ;
+    rdfs:range xsd:string .
+
+busbar:code
+    a owl:DatatypeProperty ;
+    rdfs:label "code"@en ;
+    rdfs:domain busbar:DistributionArea ;
+    rdfs:range xsd:string .
+
+# Substations
+
+busbar:voltagesKV
+    a owl:DatatypeProperty ;
+    rdfs:label "voltages"@en ;
+    rdfs:comment "Voltage levels at the substation; one value per level."@en ;
+    rdfs:domain busbar:Substation ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "kV" .
+
+busbar:side
+    a owl:DatatypeProperty ;
+    rdfs:label "side"@en ;
+    rdfs:comment "input: upstream, higher-voltage side; power can flow back out of it when local generation exceeds demand. output: downstream, lower-voltage side."@en ;
+    rdfs:domain busbar:TypicalVoltages ;
+    rdfs:range [ a rdfs:Datatype ; owl:oneOf ( "input" "output" ) ] .
+
+# Equipment
+
+busbar:voltage1KV
+    a owl:DatatypeProperty ;
+    rdfs:label "voltage end 1"@en ;
+    rdfs:comment "End 1 (HV side)."@en ;
+    rdfs:domain busbar:Transformer ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "kV" .
+
+busbar:voltage2KV
+    a owl:DatatypeProperty ;
+    rdfs:label "voltage end 2"@en ;
+    rdfs:comment "End 2 (LV side)."@en ;
+    rdfs:domain busbar:Transformer ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "kV" .
+
+busbar:voltage3KV
+    a owl:DatatypeProperty ;
+    rdfs:label "voltage end 3"@en ;
+    rdfs:comment "End 3, three-winding transformers only."@en ;
+    rdfs:domain busbar:Transformer ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "kV" .
+
+busbar:nominalRatingMVA
+    a owl:DatatypeProperty ;
+    rdfs:label "nominal rating"@en ;
+    rdfs:domain busbar:Transformer ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MVA" .
+
+busbar:emergencyRatingMVA
+    a owl:DatatypeProperty ;
+    rdfs:label "emergency rating"@en ;
+    rdfs:domain busbar:Transformer ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MVA" .
+
+busbar:vectorGroup
+    a owl:DatatypeProperty ;
+    rdfs:label "vector group"@en ;
+    rdfs:domain busbar:Transformer ;
+    rdfs:range xsd:string .
+
+busbar:nodeCode
+    a owl:DatatypeProperty ;
+    rdfs:label "node code"@en ;
+    rdfs:domain busbar:Node ;
+    rdfs:range xsd:string .
+
+busbar:lineName
+    a owl:DatatypeProperty ;
+    rdfs:label "line name"@en ;
+    rdfs:domain busbar:Circuit ;
+    rdfs:range xsd:string .
+
+busbar:equipmentType
+    a owl:DatatypeProperty ;
+    rdfs:label "equipment type"@en ;
+    rdfs:domain busbar:Circuit ;
+    rdfs:range [ a rdfs:Datatype ; owl:oneOf ( "ACLineSegment" "Breaker" "LoadBreakSwitch" "Disconnector" "DisconnectingCircuitBreaker" ) ] .
+
+busbar:normallyOpen
+    a owl:DatatypeProperty ;
+    rdfs:label "normally open"@en ;
+    rdfs:comment "Open in normal operation: carries no current and is treated as a break."@en ;
+    rdfs:domain busbar:Circuit ;
+    rdfs:range xsd:boolean .
+
+busbar:lengthKm
+    a owl:DatatypeProperty ;
+    rdfs:label "length"@en ;
+    rdfs:domain busbar:Circuit ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "km" .
+
+busbar:season
+    a owl:DatatypeProperty ;
+    rdfs:label "season"@en ;
+    rdfs:comment "e.g. winter, summer. Only some DNOs split substation loads by season."@en ;
+    rdfs:domain [ owl:unionOf ( busbar:SeasonalRating busbar:SubstationLoad ) ] ;
+    rdfs:range xsd:string .
+
+busbar:ratingMVA
+    a owl:DatatypeProperty ;
+    rdfs:label "rating"@en ;
+    rdfs:domain busbar:SeasonalRating ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MVA" .
+
+busbar:geometryWKT
+    a owl:DatatypeProperty ;
+    rdfs:label "geometry (WKT)"@en ;
+    rdfs:domain busbar:ServiceArea ;
+    rdfs:range xsd:string .
+
+# Projects
+
+busbar:registeredCapacityMW
+    a owl:DatatypeProperty ;
+    rdfs:label "registered capacity"@en ;
+    rdfs:domain busbar:Project ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MW" .
+
+busbar:storageCapacityMWh
+    a owl:DatatypeProperty ;
+    rdfs:label "storage capacity"@en ;
+    rdfs:domain busbar:Project ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MWh" .
+
+busbar:energySource
+    a owl:DatatypeProperty ;
+    rdfs:label "energy source"@en ;
+    rdfs:comment "e.g. Solar, Wind, Biofuel - Landfill Gas."@en ;
+    rdfs:domain busbar:Project ;
+    rdfs:range xsd:string .
+
+busbar:technology
+    a owl:DatatypeProperty ;
+    rdfs:label "technology"@en ;
+    rdfs:comment "e.g. Photovoltaic, Battery, Engine (combustion / reciprocating)."@en ;
+    rdfs:domain busbar:Project ;
+    rdfs:range xsd:string .
+
+busbar:postcode
+    a owl:DatatypeProperty ;
+    rdfs:label "postcode"@en ;
+    rdfs:domain busbar:Project ;
+    rdfs:range xsd:string .
+
+busbar:ecrProjectId
+    a owl:DatatypeProperty ;
+    rdfs:label "ECR project ID"@en ;
+    rdfs:comment "The publisher's project ID, where the ECR has one (NPG)."@en ;
+    rdfs:domain busbar:DistributionProject ;
+    rdfs:range xsd:string .
+
+busbar:mpan
+    a owl:DatatypeProperty ;
+    rdfs:label "MPAN"@en ;
+    rdfs:domain busbar:DistributionProject ;
+    rdfs:range xsd:string .
+
+busbar:customerSite
+    a owl:DatatypeProperty ;
+    rdfs:label "customer site"@en ;
+    rdfs:domain busbar:DistributionProject ;
+    rdfs:range xsd:string .
+
+busbar:connectionStatus
+    a owl:DatatypeProperty ;
+    rdfs:label "connection status"@en ;
+    rdfs:domain busbar:DistributionProject ;
+    rdfs:range [ a rdfs:Datatype ; owl:oneOf ( "Connected" "Accepted to connect" ) ] .
+
+busbar:acceptedExportMW
+    a owl:DatatypeProperty ;
+    rdfs:label "accepted export capacity"@en ;
+    rdfs:domain busbar:DistributionProject ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MW" .
+
+busbar:acceptedImportMW
+    a owl:DatatypeProperty ;
+    rdfs:label "accepted import capacity"@en ;
+    rdfs:domain busbar:DistributionProject ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MW" .
+
+busbar:connectedExportMW
+    a owl:DatatypeProperty ;
+    rdfs:label "connected export capacity"@en ;
+    rdfs:domain busbar:DistributionProject ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MW" .
+
+busbar:projectId
+    a owl:DatatypeProperty ;
+    rdfs:label "project ID"@en ;
+    rdfs:domain busbar:TransmissionProject ;
+    rdfs:range xsd:string .
+
+busbar:customerName
+    a owl:DatatypeProperty ;
+    rdfs:label "customer name"@en ;
+    rdfs:domain busbar:TransmissionProject ;
+    rdfs:range xsd:string .
+
+busbar:plantType
+    a owl:DatatypeProperty ;
+    rdfs:label "plant type"@en ;
+    rdfs:domain busbar:TransmissionProject ;
+    rdfs:range xsd:string .
+
+busbar:mwConnected
+    a owl:DatatypeProperty ;
+    rdfs:label "MW connected"@en ;
+    rdfs:domain busbar:TransmissionProject ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MW" .
+
+busbar:mwChange
+    a owl:DatatypeProperty ;
+    rdfs:label "MW change"@en ;
+    rdfs:domain busbar:TransmissionProject ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MW" .
+
+busbar:totalCapacityMW
+    a owl:DatatypeProperty ;
+    rdfs:label "total capacity"@en ;
+    rdfs:domain busbar:TransmissionProject ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MW" .
+
+busbar:effectiveFrom
+    a owl:DatatypeProperty ;
+    rdfs:label "effective from"@en ;
+    rdfs:domain busbar:TransmissionProject ;
+    rdfs:range xsd:date .
+
+busbar:projectStatus
+    a owl:DatatypeProperty ;
+    rdfs:label "project status"@en ;
+    rdfs:domain busbar:TransmissionProject ;
+    rdfs:range xsd:string .
+
+busbar:agreementType
+    a owl:DatatypeProperty ;
+    rdfs:label "agreement type"@en ;
+    rdfs:domain busbar:TransmissionProject ;
+    rdfs:range xsd:string .
+
+busbar:gate
+    a owl:DatatypeProperty ;
+    rdfs:label "gate"@en ;
+    rdfs:comment "Connections-reform queue gate."@en ;
+    rdfs:domain busbar:TransmissionProject ;
+    rdfs:range xsd:string .
+
+busbar:refId
+    a owl:DatatypeProperty ;
+    rdfs:label "REPD Ref ID"@en ;
+    rdfs:comment "Stable across releases."@en ;
+    rdfs:domain busbar:REPDProject ;
+    rdfs:range xsd:string .
+
+busbar:siteName
+    a owl:DatatypeProperty ;
+    rdfs:label "site name"@en ;
+    rdfs:domain busbar:REPDProject ;
+    rdfs:range xsd:string .
+
+busbar:operator
+    a owl:DatatypeProperty ;
+    rdfs:label "operator"@en ;
+    rdfs:domain busbar:REPDProject ;
+    rdfs:range xsd:string .
+
+busbar:technologyType
+    a owl:DatatypeProperty ;
+    rdfs:label "technology type"@en ;
+    rdfs:domain busbar:REPDProject ;
+    rdfs:range xsd:string .
+
+busbar:developmentStatus
+    a owl:DatatypeProperty ;
+    rdfs:label "development status"@en ;
+    rdfs:domain busbar:REPDProject ;
+    rdfs:range xsd:string .
+
+busbar:applicationDate
+    a owl:DatatypeProperty ;
+    rdfs:label "application date"@en ;
+    rdfs:domain busbar:REPDProject ;
+    rdfs:range xsd:date .
+
+busbar:decisionDate
+    a owl:DatatypeProperty ;
+    rdfs:label "decision date"@en ;
+    rdfs:domain busbar:REPDProject ;
+    rdfs:range xsd:date .
+
+# Capacity, load and measurements
+
+busbar:category
+    a owl:DatatypeProperty ;
+    rdfs:label "category"@en ;
+    rdfs:comment "e.g. Gen inverter headroom."@en ;
+    rdfs:domain busbar:CapacityAssessment ;
+    rdfs:range xsd:string .
+
+busbar:headroomMW
+    a owl:DatatypeProperty ;
+    rdfs:label "headroom"@en ;
+    rdfs:domain busbar:CapacityAssessment ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MW" .
+
+busbar:scenario
+    a owl:DatatypeProperty ;
+    rdfs:label "scenario"@en ;
+    rdfs:domain busbar:CapacityAssessment ;
+    rdfs:range xsd:string .
+
+busbar:year
+    a owl:DatatypeProperty ;
+    rdfs:label "year"@en ;
+    rdfs:domain busbar:CapacityAssessment ;
+    rdfs:range xsd:integer .
+
+busbar:ragStatus
+    a owl:DatatypeProperty ;
+    rdfs:label "RAG status"@en ;
+    rdfs:domain busbar:CapacityAssessment ;
+    rdfs:range [ a rdfs:Datatype ; owl:oneOf ( "RED" "AMBER" "GREEN" ) ] .
+
+busbar:observedYear
+    a owl:DatatypeProperty ;
+    rdfs:label "observed year"@en ;
+    rdfs:comment "Year of the observed peak, e.g. 2024/25."@en ;
+    rdfs:domain busbar:SubstationLoad ;
+    rdfs:range xsd:string .
+
+busbar:loadUnit
+    a owl:DatatypeProperty ;
+    rdfs:label "load unit"@en ;
+    rdfs:comment "Unit of maxDemand, demand forecasts and firmCapacity; DNOs publish either."@en ;
+    rdfs:domain busbar:SubstationLoad ;
+    rdfs:range [ a rdfs:Datatype ; owl:oneOf ( "MW" "MVA" ) ] .
+
+busbar:maxDemand
+    a owl:DatatypeProperty ;
+    rdfs:label "maximum demand"@en ;
+    rdfs:comment "Observed peak demand, in loadUnit."@en ;
+    rdfs:domain busbar:SubstationLoad ;
+    rdfs:range xsd:decimal .
+
+busbar:powerFactor
+    a owl:DatatypeProperty ;
+    rdfs:label "power factor"@en ;
+    rdfs:comment "Power factor at the observed peak."@en ;
+    rdfs:domain busbar:SubstationLoad ;
+    rdfs:range xsd:decimal .
+
+busbar:firmCapacity
+    a owl:DatatypeProperty ;
+    rdfs:label "firm capacity"@en ;
+    rdfs:comment "Demand the substation can carry with its largest transformer or circuit out of service (N-1), in loadUnit."@en ;
+    rdfs:domain busbar:SubstationLoad ;
+    rdfs:range xsd:decimal .
+
+busbar:minimumLoadScalingFactorPercent
+    a owl:DatatypeProperty ;
+    rdfs:label "minimum load scaling factor"@en ;
+    rdfs:comment "Minimum demand as a share of maximum demand."@en ;
+    rdfs:domain busbar:SubstationLoad ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "%" .
+
+busbar:forecastYear
+    a owl:DatatypeProperty ;
+    rdfs:label "forecast year"@en ;
+    rdfs:domain busbar:DemandForecast ;
+    rdfs:range xsd:string .
+
+busbar:forecastValue
+    a owl:DatatypeProperty ;
+    rdfs:label "forecast value"@en ;
+    rdfs:comment "Forecast peak demand, in the loadUnit of the substation load."@en ;
+    rdfs:domain busbar:DemandForecast ;
+    rdfs:range xsd:decimal .
+
+busbar:timestamp
+    a owl:DatatypeProperty ;
+    rdfs:label "timestamp"@en ;
+    rdfs:domain busbar:FlowObservation ;
+    rdfs:range xsd:dateTime .
+
+busbar:activePowerMW
+    a owl:DatatypeProperty ;
+    rdfs:label "active power"@en ;
+    rdfs:domain busbar:FlowObservation ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MW" .
+
+busbar:reactivePowerMVAr
+    a owl:DatatypeProperty ;
+    rdfs:label "reactive power"@en ;
+    rdfs:domain busbar:FlowObservation ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MVAr" .
+
+busbar:currentAmps
+    a owl:DatatypeProperty ;
+    rdfs:label "current"@en ;
+    rdfs:domain busbar:FlowObservation ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "A" .
+
+busbar:generationMW
+    a owl:DatatypeProperty ;
+    rdfs:label "generation"@en ;
+    rdfs:domain busbar:FlowObservation ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MW" .
+
+busbar:demandMW
+    a owl:DatatypeProperty ;
+    rdfs:label "demand"@en ;
+    rdfs:domain busbar:FlowObservation ;
+    rdfs:range xsd:decimal ;
+    busbar:unit "MW" .
+
+
+#################################################################
+# 4. Reference data
+#################################################################
+
+# Distribution network operators
+
+id:UKPN a busbar:DistributionNetworkOperator ;
+    foaf:name "UK Power Networks" ;
+    busbar:parentCompany "CK Infrastructure Holdings" ;
+    busbar:operates id:EPN , id:LPN , id:SPN .
+
+id:SPEN a busbar:DistributionNetworkOperator ;
+    foaf:name "SP Energy Networks" ;
+    busbar:parentCompany "ScottishPower" ;
+    busbar:operates id:SPD , id:SPM .
+
+id:SSEN a busbar:DistributionNetworkOperator ;
+    foaf:name "Scottish and Southern Electricity Networks" ;
+    busbar:parentCompany "SSE plc" ;
+    busbar:operates id:SHEPD , id:SEPD .
+
+id:NGED a busbar:DistributionNetworkOperator ;
+    foaf:name "National Grid Electricity Distribution" ;
+    busbar:parentCompany "National Grid plc" ;
+    busbar:operates id:EMids , id:WMids , id:SWales , id:SWest .
+
+id:NPG a busbar:DistributionNetworkOperator ;
+    foaf:name "Northern Powergrid" ;
+    busbar:parentCompany "Berkshire Hathaway Energy" ;
+    busbar:operates id:Northeast , id:Yorkshire .
+
+id:ENWL a busbar:DistributionNetworkOperator ;
+    foaf:name "Electricity North West" ;
+    busbar:parentCompany "ScottishPower" ;
+    busbar:operates id:NorthWest .
+
+# Distribution areas (DNO licence areas)
+
+id:EPN       a busbar:DistributionArea ; busbar:name "Eastern Power Networks" ; busbar:operatedBy id:UKPN .
+id:LPN       a busbar:DistributionArea ; busbar:name "London Power Networks" ; busbar:operatedBy id:UKPN .
+id:SPN       a busbar:DistributionArea ; busbar:name "South Eastern Power Networks" ; busbar:operatedBy id:UKPN .
+id:SPD       a busbar:DistributionArea ; busbar:name "SP Distribution" ; busbar:operatedBy id:SPEN .
+id:SPM       a busbar:DistributionArea ; busbar:name "SP Manweb" ; busbar:operatedBy id:SPEN .
+id:SHEPD     a busbar:DistributionArea ; busbar:name "Scottish Hydro Electric Power Distribution" ; busbar:operatedBy id:SSEN .
+id:SEPD      a busbar:DistributionArea ; busbar:name "Southern Electric Power Distribution" ; busbar:operatedBy id:SSEN .
+id:EMids     a busbar:DistributionArea ; busbar:name "East Midlands" ; busbar:operatedBy id:NGED .
+id:WMids     a busbar:DistributionArea ; busbar:name "West Midlands" ; busbar:operatedBy id:NGED .
+id:SWales    a busbar:DistributionArea ; busbar:name "South Wales" ; busbar:operatedBy id:NGED .
+id:SWest     a busbar:DistributionArea ; busbar:name "South West" ; busbar:operatedBy id:NGED .
+id:Northeast a busbar:DistributionArea ; busbar:name "Northeast" ; busbar:operatedBy id:NPG .
+id:Yorkshire a busbar:DistributionArea ; busbar:name "Yorkshire" ; busbar:operatedBy id:NPG .
+id:NorthWest a busbar:DistributionArea ; busbar:name "North West" ; busbar:operatedBy id:ENWL .
+
+# System operator, transmission owners and areas
+
+id:NESO a busbar:SystemOperator ;
+    foaf:name "National Energy System Operator" .
+
+id:NGET a busbar:TransmissionOwner ;
+    foaf:name "National Grid Electricity Transmission" ;
+    busbar:parentCompany "National Grid plc" ;
+    busbar:owns id:EnglandWales .
+
+id:SPT a busbar:TransmissionOwner ;
+    foaf:name "SP Transmission" ;
+    busbar:parentCompany "ScottishPower" ;
+    busbar:owns id:SouthScotland .
+
+id:SHET a busbar:TransmissionOwner ;
+    foaf:name "Scottish Hydro Electric Transmission" ;
+    busbar:parentCompany "SSE plc" ;
+    busbar:owns id:NorthScotland .
+
+id:EnglandWales  a busbar:TransmissionArea ; busbar:name "England and Wales" ; busbar:ownedBy id:NGET .
+id:SouthScotland a busbar:TransmissionArea ; busbar:name "Southern Scotland" ; busbar:ownedBy id:SPT .
+id:NorthScotland a busbar:TransmissionArea ; busbar:name "Northern Scotland" ; busbar:ownedBy id:SHET .
+
+# Country
+
+id:GB a busbar:Country ; busbar:name "Great Britain" .
+
+# Other organisations
+
+id:DESNZ a busbar:Organisation ; foaf:name "Department for Energy Security and Net Zero" .
+id:Ofgem a busbar:Organisation ; foaf:name "Office of Gas and Electricity Markets" .
+id:ENA   a busbar:Organisation ; foaf:name "Energy Networks Association" .
+id:IEC   a busbar:Organisation ; foaf:name "International Electrotechnical Commission" .
+
+# Standards that dataset types conform to
+
+id:ofgem-ltds a dct:Standard ;
+    dct:title "Long Term Development Statement – Standard Licence Condition 25 of the electricity distribution licence"@en ;
+    dct:publisher id:Ofgem .
+
+id:ena-ecr a dct:Standard ;
+    dct:title "Embedded Capacity Register guidance"@en ;
+    dct:publisher id:ENA .
+
+id:iec-61970-cim a dct:Standard ;
+    dct:title "IEC 61970 Common Information Model (CIM)"@en ;
+    dct:publisher id:IEC .
+
+id:cusc a dct:Standard ;
+    dct:title "Connection and Use of System Code (CUSC)"@en ;
+    dct:publisher id:NESO .
+
+# Typical voltages by substation type and distribution area
+
+id:gsp-input-all a busbar:TypicalVoltages ;
+    busbar:substationType busbar:GridSupplyPoint ; busbar:side "input" ;
+    busbar:inDistributionArea id:EPN , id:LPN , id:SPN , id:SPD , id:SPM , id:SHEPD , id:SEPD , id:EMids , id:WMids , id:SWales , id:SWest , id:Northeast , id:Yorkshire , id:NorthWest ;
+    busbar:voltageKV 400 , 275 .
+
+id:gsp-output-1 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:GridSupplyPoint ; busbar:side "output" ;
+    busbar:inDistributionArea id:EPN , id:LPN , id:SPN , id:SPM , id:SEPD , id:EMids , id:WMids , id:SWales , id:SWest , id:Northeast , id:Yorkshire , id:NorthWest ;
+    busbar:voltageKV 132 , 66 , 33 .
+
+id:gsp-output-2 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:GridSupplyPoint ; busbar:side "output" ;
+    busbar:inDistributionArea id:SPD , id:SHEPD ;
+    busbar:voltageKV 132 .
+
+id:bsp-input-1 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:BulkSupplyPoint ; busbar:side "input" ;
+    busbar:inDistributionArea id:EPN , id:LPN , id:SPN , id:SPM , id:SEPD , id:EMids , id:WMids , id:SWales , id:SWest , id:Northeast , id:Yorkshire , id:NorthWest ;
+    busbar:voltageKV 132 .
+
+id:bsp-input-2 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:BulkSupplyPoint ; busbar:side "input" ;
+    busbar:inDistributionArea id:SPD , id:SHEPD ;
+    busbar:voltageKV 275 , 132 .
+
+id:bsp-output-1 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:BulkSupplyPoint ; busbar:side "output" ;
+    busbar:inDistributionArea id:EPN , id:SPN , id:SPD , id:SHEPD , id:EMids , id:SWest , id:NorthWest ;
+    busbar:voltageKV 33 , 11 .
+
+id:bsp-output-2 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:BulkSupplyPoint ; busbar:side "output" ;
+    busbar:inDistributionArea id:LPN ;
+    busbar:voltageKV 66 , 33 , 22 , 11 .
+
+id:bsp-output-3 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:BulkSupplyPoint ; busbar:side "output" ;
+    busbar:inDistributionArea id:SPM ;
+    busbar:voltageKV 33 .
+
+id:bsp-output-4 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:BulkSupplyPoint ; busbar:side "output" ;
+    busbar:inDistributionArea id:SEPD ;
+    busbar:voltageKV 33 , 22 , 11 .
+
+id:bsp-output-5 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:BulkSupplyPoint ; busbar:side "output" ;
+    busbar:inDistributionArea id:WMids , id:SWales , id:Northeast , id:Yorkshire ;
+    busbar:voltageKV 66 , 33 , 11 .
+
+id:primary-input-1 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:PrimarySubstation ; busbar:side "input" ;
+    busbar:inDistributionArea id:EPN , id:SPN , id:SPD , id:SPM , id:SHEPD , id:EMids , id:SWest , id:NorthWest ;
+    busbar:voltageKV 33 .
+
+id:primary-input-2 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:PrimarySubstation ; busbar:side "input" ;
+    busbar:inDistributionArea id:LPN ;
+    busbar:voltageKV 66 , 33 , 22 , 20 .
+
+id:primary-input-3 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:PrimarySubstation ; busbar:side "input" ;
+    busbar:inDistributionArea id:SEPD ;
+    busbar:voltageKV 66 , 33 , 22 .
+
+id:primary-input-4 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:PrimarySubstation ; busbar:side "input" ;
+    busbar:inDistributionArea id:WMids , id:SWales , id:Northeast , id:Yorkshire ;
+    busbar:voltageKV 66 , 33 .
+
+id:primary-output-1 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:PrimarySubstation ; busbar:side "output" ;
+    busbar:inDistributionArea id:EPN , id:SPN , id:SPD , id:SPM , id:EMids , id:SWest , id:NorthWest ;
+    busbar:voltageKV 11 , 6.6 .
+
+id:primary-output-2 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:PrimarySubstation ; busbar:side "output" ;
+    busbar:inDistributionArea id:LPN , id:SEPD ;
+    busbar:voltageKV 33 , 22 , 11 , 6.6 .
+
+id:primary-output-3 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:PrimarySubstation ; busbar:side "output" ;
+    busbar:inDistributionArea id:SHEPD ;
+    busbar:voltageKV 11 , 3.3 .
+
+id:primary-output-4 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:PrimarySubstation ; busbar:side "output" ;
+    busbar:inDistributionArea id:WMids ;
+    busbar:voltageKV 33 , 11 .
+
+id:primary-output-5 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:PrimarySubstation ; busbar:side "output" ;
+    busbar:inDistributionArea id:SWales , id:Yorkshire ;
+    busbar:voltageKV 11 .
+
+id:primary-output-6 a busbar:TypicalVoltages ;
+    busbar:substationType busbar:PrimarySubstation ; busbar:side "output" ;
+    busbar:inDistributionArea id:Northeast ;
+    busbar:voltageKV 33 , 22 , 20 , 11 .
