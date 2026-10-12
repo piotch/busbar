@@ -1,0 +1,3282 @@
+# Busbar catalogue
+#
+# Open datasets about the GB electricity grid, described with DCAT 3 and Dublin Core.
+#   dcat:DatasetSeries  one dataset as a publisher releases it over time
+#   dcat:Dataset        one edition of a series (dct:issued, dcat:prev to the previous edition)
+#   dcat:Distribution   one file of an edition
+# Terms prefixed busbar: and the resources prefixed id: (publishers, areas, dataset types, standards)
+# are defined in busbar-ontology.ttl.
+
+@prefix busbar: <https://busbar.example/ns#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix filetype: <http://publications.europa.eu/resource/authority/file-type/> .
+@prefix freq: <http://publications.europa.eu/resource/authority/frequency/> .
+@prefix id: <https://busbar.example/id/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+id:busbar a dcat:Catalog ;
+    dct:description "Open catalogue of open datasets about the GB electricity grid: where each dataset comes from, what it describes, its geographic and temporal coverage and its publication history. Terms are defined in busbar-ontology.json." ;
+    dct:title "Busbar" ;
+    dcat:dataset id:enwl.boundary-flow.enwl-boundary-flow-gsp-xy,
+        id:enwl.boundary-flow.enwl-boundary-flow-merge,
+        id:enwl.boundary-flow.gsp-boundary-flow,
+        id:enwl.cim,
+        id:enwl.ecr,
+        id:enwl.ltds.table-1---circuit-data,
+        id:enwl.ltds.table-2---transformer-data,
+        id:enwl.ltds.table-3---load-data,
+        id:enwl.ltds.table-8a-distribution-substation-asset-data,
+        id:enwl.polygons.enwl-substation-bsp-polygons,
+        id:enwl.polygons.enwl-substation-gsp-polygons,
+        id:enwl.substation-numbers.substation-numbers,
+        id:eso.appendix-b,
+        id:eso.tec,
+        id:gov_uk.repd,
+        id:nged.cim.emids,
+        id:nged.cim.swales,
+        id:nged.cim.swest,
+        id:nged.cim.wmids,
+        id:nged.ecr,
+        id:nged.esa.east-midlands-bsp,
+        id:nged.esa.east-midlands-distribution,
+        id:nged.esa.east-midlands-gsp,
+        id:nged.esa.south-wales-bsp,
+        id:nged.esa.south-wales-distribution,
+        id:nged.esa.south-wales-gsp,
+        id:nged.esa.south-west-bsp,
+        id:nged.esa.south-west-distribution,
+        id:nged.esa.south-west-gsp,
+        id:nged.esa.west-midlands-bsp,
+        id:nged.esa.west-midlands-distribution,
+        id:nged.esa.west-midlands-gsp,
+        id:nged.ltds.attachment-8,
+        id:nged.ltds.table-1,
+        id:nged.ltds.table-2a,
+        id:nged.ltds.table-3,
+        id:npg.cim.northeast,
+        id:npg.cim.yorkshire,
+        id:npg.dno-boundaries.all_dno_boundaries,
+        id:npg.ecr,
+        id:npg.esa.substation-combined-service-areas,
+        id:npg.heatmap.heatmapgenerationdata,
+        id:npg.heatmap.heatmapsubstationareas,
+        id:npg.ltds.Appendix-4-Table-2-Northeast,
+        id:npg.ltds.Appendix-4-Table-2-Yorkshire,
+        id:npg.ltds.ltds-appendix-1-northeast,
+        id:npg.ltds.ltds-appendix-1-yorkshire,
+        id:npg.ltds.ltds-appendix-3,
+        id:npg.ltds.ltds-appendix-5,
+        id:spen.cim.spd,
+        id:spen.cim.spm,
+        id:spen.ecr,
+        id:spen.firm_capacity.historic_substation_utilisation_spd,
+        id:spen.firm_capacity.historic_substation_utilisation_spm,
+        id:spen.firm_capacity.spd-dg-connections-network-info,
+        id:spen.firm_capacity.spm-technical-limits,
+        id:spen.flows.network-flow-dataset-power-current-and-embedded-generation,
+        id:spen.groups.ndp-spm-grid-group-polygons,
+        id:spen.groups.spd-dfes-substation-polygons-gsp,
+        id:spen.groups.spm-dfes-substation-polygons-gsp,
+        id:spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-grid-substations,
+        id:spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-primary-substations,
+        id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-grid-substations,
+        id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-primary-substations,
+        id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-super-grid-substations,
+        id:spen.ltds.spd-ltds-appendix-1-circuit-data-table-1,
+        id:spen.ltds.spd-ltds-appendix-2-transformer-data-table-2,
+        id:spen.ltds.spd-ltds-appendix-3-system-loads-table-3,
+        id:spen.ltds.spm-ltds-appendix-1-circuit-data-table-1,
+        id:spen.ltds.spm-ltds-appendix-2-transformer-data-table-2,
+        id:spen.ltds.spm-ltds-appendix-2-transformer-data-table-2-33-to-11kv,
+        id:spen.ltds.spm-ltds-appendix-3-system-loads-table-3-ehv-forecast,
+        id:spen.ltds.spm-ltds-appendix-3-system-loads-table-3-hv-forecast,
+        id:spen.ltds.spm-ltds-appendix-9-system-schematics,
+        id:sse.cim.scottish,
+        id:sse.cim.southern,
+        id:sse.ecr,
+        id:sse.groups.sepd_bulksupplypoint_esa,
+        id:sse.groups.sepd_gridsupplypoint_esa,
+        id:sse.groups.shepd_gridsupplypoint_esa,
+        id:sse.heatmap.demand-heat-map-update-feb-24,
+        id:sse.heatmap.headroom-dashboard-data,
+        id:sse.heatmap.scotland-demand-heat-map-august,
+        id:sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables,
+        id:sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables,
+        id:ukpn.cim.epn,
+        id:ukpn.cim.lpn,
+        id:ukpn.cim.spn,
+        id:ukpn.dfes.dfes-network-headroom-report,
+        id:ukpn.ecr,
+        id:ukpn.groups.ukpn-grid-postcode-area,
+        id:ukpn.gsp.ukpn-grid-supply-points-overview,
+        id:ukpn.ltds.ltds-table-1-circuit-data,
+        id:ukpn.ltds.ltds-table-2a-transformer-2w,
+        id:ukpn.ltds.ltds-table-3a-load-data-observed,
+        id:ukpn.substations.ukpn-grid-supply-points .
+
+<https://busbar.example/id/enwl.ecr/2025-01-15> a dcat:Dataset ;
+    dct:issued "2025-01-15" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "enwl/ecr/enwl-embedded-capacity-register-2-1mw-and-above-2025-01-15.csv" ] ;
+    dcat:inSeries id:enwl.ecr ;
+    dcat:prev <https://busbar.example/id/enwl.ecr/2024-06-14> .
+
+<https://busbar.example/id/enwl.ecr/2026-01-15> a dcat:Dataset ;
+    dct:issued "2026-01-15" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "enwl/ecr/enwl-embedded-capacity-register-2-1mw-and-above-2026-01-15.csv" ] ;
+    dcat:inSeries id:enwl.ecr ;
+    dcat:prev <https://busbar.example/id/enwl.ecr/2025-01-15> .
+
+<https://busbar.example/id/enwl.ecr/2026-03-01> a dcat:Dataset ;
+    dct:issued "2026-03-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "enwl/ecr/enwl-embedded-capacity-register-2-1mw-and-above-2026-03-01.csv" ] ;
+    dcat:inSeries id:enwl.ecr ;
+    dcat:prev <https://busbar.example/id/enwl.ecr/2026-01-15> .
+
+<https://busbar.example/id/enwl.ecr/2026-04-17> a dcat:Dataset ;
+    dct:issued "2026-04-17" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "enwl/ecr/enwl-embedded-capacity-register-2-1mw-and-above-2026-04-17.csv" ] ;
+    dcat:inSeries id:enwl.ecr ;
+    dcat:prev <https://busbar.example/id/enwl.ecr/2026-03-01> .
+
+<https://busbar.example/id/enwl.ecr/2026-06-23> a dcat:Dataset ;
+    dct:issued "2026-06-23" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "enwl/ecr/enwl-embedded-capacity-register-2-1mw-and-above-2026-06-23.csv" ] ;
+    dcat:inSeries id:enwl.ecr ;
+    dcat:prev <https://busbar.example/id/enwl.ecr/2026-04-17> .
+
+<https://busbar.example/id/enwl.ecr/2026-07-13> a dcat:Dataset ;
+    dct:issued "2026-07-13" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "enwl/ecr/enwl-embedded-capacity-register-2-1mw-and-above-2026-07-13.csv" ] ;
+    dcat:inSeries id:enwl.ecr ;
+    dcat:prev <https://busbar.example/id/enwl.ecr/2026-06-23> .
+
+<https://busbar.example/id/enwl.substation-numbers.substation-numbers/2026-07-23> a dcat:Dataset ;
+    dct:issued "2026-07-23" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "enwl/substation-numbers/substation-numbers-2026-07-23.csv" ] ;
+    dcat:inSeries id:enwl.substation-numbers.substation-numbers ;
+    dcat:prev <https://busbar.example/id/enwl.substation-numbers.substation-numbers/2026-03-19> .
+
+<https://busbar.example/id/eso.appendix-b/2025> a dcat:Dataset ;
+    dct:issued "2025" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "eso/appendix-b/2025 ETYS Appendix B V2.xlsx" ] ;
+    dcat:inSeries id:eso.appendix-b ;
+    dcat:prev <https://busbar.example/id/eso.appendix-b/2023> .
+
+<https://busbar.example/id/eso.tec/2025-01-21> a dcat:Dataset ;
+    dct:issued "2025-01-21" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "eso/tec/tec-register-2025-01-21.csv" ] ;
+    dcat:inSeries id:eso.tec ;
+    dcat:prev <https://busbar.example/id/eso.tec/2024-06-25> .
+
+<https://busbar.example/id/eso.tec/2025-04-08> a dcat:Dataset ;
+    dct:issued "2025-04-08" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "eso/tec/tec-register-2025-04-08.csv" ] ;
+    dcat:inSeries id:eso.tec ;
+    dcat:prev <https://busbar.example/id/eso.tec/2025-01-21> .
+
+<https://busbar.example/id/eso.tec/2025-04-25> a dcat:Dataset ;
+    dct:issued "2025-04-25" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "eso/tec/tec-register-2025-04-25.csv" ] ;
+    dcat:inSeries id:eso.tec ;
+    dcat:prev <https://busbar.example/id/eso.tec/2025-04-08> .
+
+<https://busbar.example/id/eso.tec/2026-04-10> a dcat:Dataset ;
+    dct:issued "2026-04-10" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "eso/tec/tec-register-2026-04-10.csv" ] ;
+    dcat:inSeries id:eso.tec ;
+    dcat:prev <https://busbar.example/id/eso.tec/2025-04-25> .
+
+<https://busbar.example/id/eso.tec/2026-05-26> a dcat:Dataset ;
+    dct:issued "2026-05-26" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "eso/tec/tec-register-2026-05-26.csv" ] ;
+    dcat:inSeries id:eso.tec ;
+    dcat:prev <https://busbar.example/id/eso.tec/2026-04-10> .
+
+<https://busbar.example/id/eso.tec/2026-05-29> a dcat:Dataset ;
+    dct:issued "2026-05-29" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "eso/tec/tec-register-2026-05-29.csv" ] ;
+    dcat:inSeries id:eso.tec ;
+    dcat:prev <https://busbar.example/id/eso.tec/2026-05-26> .
+
+<https://busbar.example/id/eso.tec/2026-06-02> a dcat:Dataset ;
+    dct:issued "2026-06-02" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "eso/tec/tec-register-2026-06-02.csv" ] ;
+    dcat:inSeries id:eso.tec ;
+    dcat:prev <https://busbar.example/id/eso.tec/2026-05-29> .
+
+<https://busbar.example/id/eso.tec/2026-06-09> a dcat:Dataset ;
+    dct:issued "2026-06-09" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "eso/tec/tec-register-2026-06-09.csv" ] ;
+    dcat:inSeries id:eso.tec ;
+    dcat:prev <https://busbar.example/id/eso.tec/2026-06-02> .
+
+<https://busbar.example/id/eso.tec/2026-06-15> a dcat:Dataset ;
+    dct:issued "2026-06-15" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "eso/tec/tec-register-2026-06-15.csv" ] ;
+    dcat:inSeries id:eso.tec ;
+    dcat:prev <https://busbar.example/id/eso.tec/2026-06-09> .
+
+<https://busbar.example/id/eso.tec/2026-06-16> a dcat:Dataset ;
+    dct:issued "2026-06-16" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "eso/tec/tec-register-2026-06-16.csv" ] ;
+    dcat:inSeries id:eso.tec ;
+    dcat:prev <https://busbar.example/id/eso.tec/2026-06-15> .
+
+<https://busbar.example/id/eso.tec/2026-06-23> a dcat:Dataset ;
+    dct:issued "2026-06-23" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "eso/tec/tec-register-2026-06-23.csv" ] ;
+    dcat:inSeries id:eso.tec ;
+    dcat:prev <https://busbar.example/id/eso.tec/2026-06-16> .
+
+<https://busbar.example/id/eso.tec/2026-07-14> a dcat:Dataset ;
+    dct:issued "2026-07-14" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "eso/tec/tec-register-2026-07-14.csv" ] ;
+    dcat:inSeries id:eso.tec ;
+    dcat:prev <https://busbar.example/id/eso.tec/2026-06-23> .
+
+<https://busbar.example/id/gov_uk.repd/2025-Q2> a dcat:Dataset ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "gov_uk/repd/REPD_Publication_Q2_2025.xlsx" ] ;
+    dcat:inSeries id:gov_uk.repd ;
+    dcat:prev <https://busbar.example/id/gov_uk.repd/2025-Q1> ;
+    dcat:version "2025-Q2" .
+
+<https://busbar.example/id/gov_uk.repd/2025-Q3> a dcat:Dataset ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "gov_uk/repd/REPD_Publication_Q3_2025.csv" ] ;
+    dcat:inSeries id:gov_uk.repd ;
+    dcat:prev <https://busbar.example/id/gov_uk.repd/2025-Q2> ;
+    dcat:version "2025-Q3" .
+
+<https://busbar.example/id/gov_uk.repd/2025-Q4> a dcat:Dataset ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "gov_uk/repd/REPD_Publication_Q4_2025.csv" ] ;
+    dcat:inSeries id:gov_uk.repd ;
+    dcat:prev <https://busbar.example/id/gov_uk.repd/2025-Q3> ;
+    dcat:version "2025-Q4" .
+
+<https://busbar.example/id/gov_uk.repd/2026-Q1> a dcat:Dataset ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "gov_uk/repd/REPD_Publication_Q1_2026.xlsx" ] ;
+    dcat:inSeries id:gov_uk.repd ;
+    dcat:prev <https://busbar.example/id/gov_uk.repd/2025-Q4> ;
+    dcat:version "2026-Q1" .
+
+<https://busbar.example/id/nged.cim.emids/2026-05-28> a dcat:Dataset ;
+    dct:issued "2026-05-28" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "nged/cim/emids/emids-cim-2026-05-28.zip" ] ;
+    dcat:inSeries id:nged.cim.emids ;
+    dcat:prev <https://busbar.example/id/nged.cim.emids/2025-09-18> .
+
+<https://busbar.example/id/nged.cim.swales/2026-05-28> a dcat:Dataset ;
+    dct:issued "2026-05-28" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "nged/cim/swales/swales-cim-2026-05-28.zip" ] ;
+    dcat:inSeries id:nged.cim.swales ;
+    dcat:prev <https://busbar.example/id/nged.cim.swales/2025-09-19> .
+
+<https://busbar.example/id/nged.cim.swest/2026-05-28> a dcat:Dataset ;
+    dct:issued "2026-05-28" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "nged/cim/swest/swest-cim-2026-05-28.zip" ] ;
+    dcat:inSeries id:nged.cim.swest ;
+    dcat:prev <https://busbar.example/id/nged.cim.swest/2025-09-19> .
+
+<https://busbar.example/id/nged.cim.wmids/2026-05-28> a dcat:Dataset ;
+    dct:issued "2026-05-28" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "nged/cim/wmids/wmids-cim-2026-05-28.zip" ] ;
+    dcat:inSeries id:nged.cim.wmids ;
+    dcat:prev <https://busbar.example/id/nged.cim.wmids/2025-09-18> .
+
+<https://busbar.example/id/nged.ecr/2025-01-01> a dcat:Dataset ;
+    dct:issued "2025-01-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "nged/ecr/embedded-capacity-register-2025-01-01.csv" ] ;
+    dcat:inSeries id:nged.ecr ;
+    dcat:prev <https://busbar.example/id/nged.ecr/2024-06-01> .
+
+<https://busbar.example/id/nged.ecr/2025-09-01> a dcat:Dataset ;
+    dct:issued "2025-09-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "nged/ecr/embedded-capacity-register-2025-09-01.xlsx" ] ;
+    dcat:inSeries id:nged.ecr ;
+    dcat:prev <https://busbar.example/id/nged.ecr/2025-01-01> .
+
+<https://busbar.example/id/nged.ecr/2025-10-01> a dcat:Dataset ;
+    dct:issued "2025-10-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "nged/ecr/embedded-capacity-register-2025-10-01.xlsx" ] ;
+    dcat:inSeries id:nged.ecr ;
+    dcat:prev <https://busbar.example/id/nged.ecr/2025-09-01> .
+
+<https://busbar.example/id/nged.ecr/2026-01-01> a dcat:Dataset ;
+    dct:issued "2026-01-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "nged/ecr/embedded-capacity-register-2026-01-01.csv" ] ;
+    dcat:inSeries id:nged.ecr ;
+    dcat:prev <https://busbar.example/id/nged.ecr/2025-10-01> .
+
+<https://busbar.example/id/nged.ecr/2026-02-01> a dcat:Dataset ;
+    dct:issued "2026-02-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "nged/ecr/embedded-capacity-register-2026-02-01.csv" ] ;
+    dcat:inSeries id:nged.ecr ;
+    dcat:prev <https://busbar.example/id/nged.ecr/2026-01-01> .
+
+<https://busbar.example/id/nged.ecr/2026-03-01> a dcat:Dataset ;
+    dct:issued "2026-03-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "nged/ecr/embedded-capacity-register-2026-03-01.csv" ] ;
+    dcat:inSeries id:nged.ecr ;
+    dcat:prev <https://busbar.example/id/nged.ecr/2026-02-01> .
+
+<https://busbar.example/id/nged.ecr/2026-04-01> a dcat:Dataset ;
+    dct:issued "2026-04-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "nged/ecr/embedded-capacity-register-2026-04-01.csv" ] ;
+    dcat:inSeries id:nged.ecr ;
+    dcat:prev <https://busbar.example/id/nged.ecr/2026-03-01> .
+
+<https://busbar.example/id/nged.ltds.table-3/2025-12-03> a dcat:Dataset ;
+    dct:issued "2025-12-03" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "nged/ltds/table-3-2025-12-03.csv" ] ;
+    dcat:inSeries id:nged.ltds.table-3 ;
+    dcat:prev <https://busbar.example/id/nged.ltds.table-3/2023-11-01> .
+
+<https://busbar.example/id/nged.ltds.table-3/2026-06-19> a dcat:Dataset ;
+    dct:issued "2026-06-19" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "nged/ltds/table-3-2026-06-19.csv" ] ;
+    dcat:inSeries id:nged.ltds.table-3 ;
+    dcat:prev <https://busbar.example/id/nged.ltds.table-3/2025-12-03> .
+
+<https://busbar.example/id/npg.cim.northeast/2026-05-28> a dcat:Dataset ;
+    dct:issued "2026-05-28" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "npg/cim/northeast/northeast-cim-2026-05-28.zip" ] ;
+    dcat:inSeries id:npg.cim.northeast ;
+    dcat:prev <https://busbar.example/id/npg.cim.northeast/2025-12-28> .
+
+<https://busbar.example/id/npg.cim.yorkshire/2026-05-28> a dcat:Dataset ;
+    dct:issued "2026-05-28" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "npg/cim/yorkshire/yorkshire-cim-2026-05-28.zip" ] ;
+    dcat:inSeries id:npg.cim.yorkshire ;
+    dcat:prev <https://busbar.example/id/npg.cim.yorkshire/2025-12-28> .
+
+<https://busbar.example/id/npg.dno-boundaries.all_dno_boundaries/2025-05-06> a dcat:Dataset ;
+    dct:issued "2025-05-06" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/dno-boundaries/all_dno_boundaries-2025-05-06.csv" ] ;
+    dcat:inSeries id:npg.dno-boundaries.all_dno_boundaries ;
+    dcat:prev <https://busbar.example/id/npg.dno-boundaries.all_dno_boundaries/2024-01-04> .
+
+<https://busbar.example/id/npg.ecr/2024-12-09> a dcat:Dataset ;
+    dct:issued "2024-12-09" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ecr/embedded-capacity-register-2024-12-09.csv" ] ;
+    dcat:inSeries id:npg.ecr ;
+    dcat:prev <https://busbar.example/id/npg.ecr/2024-06-14> .
+
+<https://busbar.example/id/npg.ecr/2026-01-20> a dcat:Dataset ;
+    dct:issued "2026-01-20" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ecr/embedded-capacity-register-2026-01-20.csv" ] ;
+    dcat:inSeries id:npg.ecr ;
+    dcat:prev <https://busbar.example/id/npg.ecr/2024-12-09> .
+
+<https://busbar.example/id/npg.ecr/2026-02-01> a dcat:Dataset ;
+    dct:issued "2026-02-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ecr/embedded-capacity-register-2026-02-01.csv" ] ;
+    dcat:inSeries id:npg.ecr ;
+    dcat:prev <https://busbar.example/id/npg.ecr/2026-01-20> .
+
+<https://busbar.example/id/npg.ecr/2026-03-01> a dcat:Dataset ;
+    dct:issued "2026-03-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ecr/embedded-capacity-register-2026-03-01.csv" ] ;
+    dcat:inSeries id:npg.ecr ;
+    dcat:prev <https://busbar.example/id/npg.ecr/2026-02-01> .
+
+<https://busbar.example/id/npg.ecr/2026-04-01> a dcat:Dataset ;
+    dct:issued "2026-04-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ecr/embedded-capacity-register-2026-04-01.csv" ] ;
+    dcat:inSeries id:npg.ecr ;
+    dcat:prev <https://busbar.example/id/npg.ecr/2026-03-01> .
+
+<https://busbar.example/id/npg.ecr/2026-05-01> a dcat:Dataset ;
+    dct:issued "2026-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ecr/embedded-capacity-register-2026-05-01.csv" ] ;
+    dcat:inSeries id:npg.ecr ;
+    dcat:prev <https://busbar.example/id/npg.ecr/2026-04-01> .
+
+<https://busbar.example/id/npg.ecr/2026-06-01> a dcat:Dataset ;
+    dct:issued "2026-06-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ecr/embedded-capacity-register-2026-06-01.csv" ] ;
+    dcat:inSeries id:npg.ecr ;
+    dcat:prev <https://busbar.example/id/npg.ecr/2026-05-01> .
+
+<https://busbar.example/id/npg.ecr/2026-07-01> a dcat:Dataset ;
+    dct:issued "2026-07-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ecr/embedded-capacity-register-2026-07-01.csv" ] ;
+    dcat:inSeries id:npg.ecr ;
+    dcat:prev <https://busbar.example/id/npg.ecr/2026-06-01> .
+
+<https://busbar.example/id/npg.ecr/2026-08-01> a dcat:Dataset ;
+    dct:issued "2026-08-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ecr/embedded-capacity-register-2026-08-01.csv" ] ;
+    dcat:inSeries id:npg.ecr ;
+    dcat:prev <https://busbar.example/id/npg.ecr/2026-07-01> .
+
+<https://busbar.example/id/npg.ecr/2026-09-01> a dcat:Dataset ;
+    dct:issued "2026-09-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ecr/embedded-capacity-register-2026-09-01.csv" ] ;
+    dcat:inSeries id:npg.ecr ;
+    dcat:prev <https://busbar.example/id/npg.ecr/2026-08-01> .
+
+<https://busbar.example/id/npg.heatmap.heatmapsubstationareas/2026-03-01> a dcat:Dataset ;
+    dct:issued "2026-03-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/heatmap/heatmapsubstationareas-2026-03-01.csv" ] ;
+    dcat:inSeries id:npg.heatmap.heatmapsubstationareas ;
+    dcat:prev <https://busbar.example/id/npg.heatmap.heatmapsubstationareas/2026-01-29> .
+
+<https://busbar.example/id/npg.heatmap.heatmapsubstationareas/2026-06-03> a dcat:Dataset ;
+    dct:issued "2026-06-03" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/heatmap/heatmapsubstationareas-2026-06-03.csv" ] ;
+    dcat:inSeries id:npg.heatmap.heatmapsubstationareas ;
+    dcat:prev <https://busbar.example/id/npg.heatmap.heatmapsubstationareas/2026-03-01> .
+
+<https://busbar.example/id/npg.heatmap.heatmapsubstationareas/2026-07-27> a dcat:Dataset ;
+    dct:issued "2026-07-27" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/heatmap/heatmapsubstationareas-2026-07-27.csv" ] ;
+    dcat:inSeries id:npg.heatmap.heatmapsubstationareas ;
+    dcat:prev <https://busbar.example/id/npg.heatmap.heatmapsubstationareas/2026-06-03> .
+
+<https://busbar.example/id/spen.ecr/2024-12-23> a dcat:Dataset ;
+    dct:issued "2024-12-23" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/ecr/embedded-capacity-register-2024-12-23.csv" ] ;
+    dcat:inSeries id:spen.ecr ;
+    dcat:prev <https://busbar.example/id/spen.ecr/2024-06-27> .
+
+<https://busbar.example/id/spen.ecr/2025-01-30> a dcat:Dataset ;
+    dct:issued "2025-01-30" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/ecr/embedded-capacity-register-2025-01-30.csv" ] ;
+    dcat:inSeries id:spen.ecr ;
+    dcat:prev <https://busbar.example/id/spen.ecr/2024-12-23> .
+
+<https://busbar.example/id/spen.ecr/2026-04-29> a dcat:Dataset ;
+    dct:issued "2026-04-29" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "spen/ecr/embedded-capacity-register-2026-04-29.xlsx" ] ;
+    dcat:inSeries id:spen.ecr ;
+    dcat:prev <https://busbar.example/id/spen.ecr/2025-01-30> .
+
+<https://busbar.example/id/spen.ecr/2026-04-30> a dcat:Dataset ;
+    dct:issued "2026-04-30" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "spen/ecr/embedded-capacity-register-2026-04-30.xlsx" ] ;
+    dcat:inSeries id:spen.ecr ;
+    dcat:prev <https://busbar.example/id/spen.ecr/2026-04-29> .
+
+<https://busbar.example/id/spen.ecr/2026-05-29> a dcat:Dataset ;
+    dct:issued "2026-05-29" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "spen/ecr/embedded-capacity-register-2026-05-29.xlsx" ] ;
+    dcat:inSeries id:spen.ecr ;
+    dcat:prev <https://busbar.example/id/spen.ecr/2026-04-30> .
+
+<https://busbar.example/id/spen.ecr/2026-06-26> a dcat:Dataset ;
+    dct:issued "2026-06-26" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/ecr/embedded-capacity-register-2026-06-26.csv" ] ;
+    dcat:inSeries id:spen.ecr ;
+    dcat:prev <https://busbar.example/id/spen.ecr/2026-05-29> .
+
+<https://busbar.example/id/spen.ecr/2026-06-29> a dcat:Dataset ;
+    dct:issued "2026-06-29" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "spen/ecr/embedded-capacity-register-2026-06-29.xlsx" ] ;
+    dcat:inSeries id:spen.ecr ;
+    dcat:prev <https://busbar.example/id/spen.ecr/2026-06-26> .
+
+<https://busbar.example/id/spen.ecr/2026-07-29> a dcat:Dataset ;
+    dct:issued "2026-07-29" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "spen/ecr/embedded-capacity-register-2026-07-29.xlsx" ] ;
+    dcat:inSeries id:spen.ecr ;
+    dcat:prev <https://busbar.example/id/spen.ecr/2026-06-29> .
+
+<https://busbar.example/id/spen.ecr/2026-08-28> a dcat:Dataset ;
+    dct:issued "2026-08-28" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "spen/ecr/embedded-capacity-register-2026-08-28.xlsx" ] ;
+    dcat:inSeries id:spen.ecr ;
+    dcat:prev <https://busbar.example/id/spen.ecr/2026-07-29> .
+
+<https://busbar.example/id/spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-grid-substations/2025-10-08> a dcat:Dataset ;
+    dct:issued "2025-10-08" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/heatmap/distributed-generation-sp-distribution-heat-maps-spd-grid-substations-2025-10-08.csv" ] ;
+    dcat:inSeries id:spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-grid-substations ;
+    dcat:prev <https://busbar.example/id/spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-grid-substations/2024-06-17> .
+
+<https://busbar.example/id/sse.cim.scottish/2026-05-29> a dcat:Dataset ;
+    dct:issued "2026-05-29" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "sse/cim/scottish/scottish-cim-2026-05-29.zip" ] ;
+    dcat:inSeries id:sse.cim.scottish ;
+    dcat:prev <https://busbar.example/id/sse.cim.scottish/2025-11-22> .
+
+<https://busbar.example/id/sse.ecr/2023-09-01> a dcat:Dataset ;
+    dct:issued "2023-09-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2023-09-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2023-08-01> .
+
+<https://busbar.example/id/sse.ecr/2023-10-01> a dcat:Dataset ;
+    dct:issued "2023-10-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2023-10-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2023-09-01> .
+
+<https://busbar.example/id/sse.ecr/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2023-11-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2023-10-01> .
+
+<https://busbar.example/id/sse.ecr/2023-12-01> a dcat:Dataset ;
+    dct:issued "2023-12-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2023-12-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2023-11-01> .
+
+<https://busbar.example/id/sse.ecr/2024-01-01> a dcat:Dataset ;
+    dct:issued "2024-01-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2024-01-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2023-12-01> .
+
+<https://busbar.example/id/sse.ecr/2024-02-01> a dcat:Dataset ;
+    dct:issued "2024-02-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2024-02-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2024-01-01> .
+
+<https://busbar.example/id/sse.ecr/2024-03-01> a dcat:Dataset ;
+    dct:issued "2024-03-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2024-03-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2024-02-01> .
+
+<https://busbar.example/id/sse.ecr/2024-04-01> a dcat:Dataset ;
+    dct:issued "2024-04-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2024-04-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2024-03-01> .
+
+<https://busbar.example/id/sse.ecr/2024-05-01> a dcat:Dataset ;
+    dct:issued "2024-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2024-05-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2024-04-01> .
+
+<https://busbar.example/id/sse.ecr/2024-06-01> a dcat:Dataset ;
+    dct:issued "2024-06-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2024-06-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2024-05-01> .
+
+<https://busbar.example/id/sse.ecr/2024-07-01> a dcat:Dataset ;
+    dct:issued "2024-07-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2024-07-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2024-06-01> .
+
+<https://busbar.example/id/sse.ecr/2024-08-01> a dcat:Dataset ;
+    dct:issued "2024-08-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2024-08-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2024-07-01> .
+
+<https://busbar.example/id/sse.ecr/2024-09-01> a dcat:Dataset ;
+    dct:issued "2024-09-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2024-09-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2024-08-01> .
+
+<https://busbar.example/id/sse.ecr/2024-10-01> a dcat:Dataset ;
+    dct:issued "2024-10-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2024-10-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2024-09-01> .
+
+<https://busbar.example/id/sse.ecr/2024-11-01> a dcat:Dataset ;
+    dct:issued "2024-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2024-11-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2024-10-01> .
+
+<https://busbar.example/id/sse.ecr/2024-12-01> a dcat:Dataset ;
+    dct:issued "2024-12-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2024-12-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2024-11-01> .
+
+<https://busbar.example/id/sse.ecr/2025-01-01> a dcat:Dataset ;
+    dct:issued "2025-01-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2025-01-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2024-12-01> .
+
+<https://busbar.example/id/sse.ecr/2025-02-01> a dcat:Dataset ;
+    dct:issued "2025-02-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2025-02-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2025-01-01> .
+
+<https://busbar.example/id/sse.ecr/2025-03-01> a dcat:Dataset ;
+    dct:issued "2025-03-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2025-03-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2025-02-01> .
+
+<https://busbar.example/id/sse.ecr/2025-04-01> a dcat:Dataset ;
+    dct:issued "2025-04-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2025-04-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2025-03-01> .
+
+<https://busbar.example/id/sse.ecr/2025-05-01> a dcat:Dataset ;
+    dct:issued "2025-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2025-05-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2025-04-01> .
+
+<https://busbar.example/id/sse.ecr/2025-06-01> a dcat:Dataset ;
+    dct:issued "2025-06-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2025-06-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2025-05-01> .
+
+<https://busbar.example/id/sse.ecr/2025-07-01> a dcat:Dataset ;
+    dct:issued "2025-07-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2025-07-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2025-06-01> .
+
+<https://busbar.example/id/sse.ecr/2025-08-01> a dcat:Dataset ;
+    dct:issued "2025-08-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2025-08-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2025-07-01> .
+
+<https://busbar.example/id/sse.ecr/2025-09-01> a dcat:Dataset ;
+    dct:issued "2025-09-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2025-09-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2025-08-01> .
+
+<https://busbar.example/id/sse.ecr/2025-10-01> a dcat:Dataset ;
+    dct:issued "2025-10-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2025-10-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2025-09-01> .
+
+<https://busbar.example/id/sse.ecr/2025-11-01> a dcat:Dataset ;
+    dct:issued "2025-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2025-11-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2025-10-01> .
+
+<https://busbar.example/id/sse.ecr/2025-12-01> a dcat:Dataset ;
+    dct:issued "2025-12-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2025-12-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2025-11-01> .
+
+<https://busbar.example/id/sse.ecr/2026-01-01> a dcat:Dataset ;
+    dct:issued "2026-01-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2026-01-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2025-12-01> .
+
+<https://busbar.example/id/sse.ecr/2026-02-01> a dcat:Dataset ;
+    dct:issued "2026-02-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2026-02-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2026-01-01> .
+
+<https://busbar.example/id/sse.ecr/2026-04-01> a dcat:Dataset ;
+    dct:issued "2026-04-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2026-04-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2026-02-01> .
+
+<https://busbar.example/id/sse.ecr/2026-05-01> a dcat:Dataset ;
+    dct:issued "2026-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2026-05-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2026-04-01> .
+
+<https://busbar.example/id/sse.ecr/2026-06-01> a dcat:Dataset ;
+    dct:issued "2026-06-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2026-06-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2026-05-01> .
+
+<https://busbar.example/id/sse.ecr/2026-07-01> a dcat:Dataset ;
+    dct:issued "2026-07-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2026-07-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2026-06-01> .
+
+<https://busbar.example/id/sse.ecr/2026-08-01> a dcat:Dataset ;
+    dct:issued "2026-08-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2026-08-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2026-07-01> .
+
+<https://busbar.example/id/sse.ecr/2026-09-01> a dcat:Dataset ;
+    dct:issued "2026-09-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2026-09-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr ;
+    dcat:prev <https://busbar.example/id/sse.ecr/2026-08-01> .
+
+<https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/scottish-hydro-electric-power-distribution-long-term-development-statement-tables-2023-11-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables ;
+    dcat:prev <https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2023-05-01> .
+
+<https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2024-05-01> a dcat:Dataset ;
+    dct:issued "2024-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/scottish-hydro-electric-power-distribution-long-term-development-statement-tables-2024-05-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables ;
+    dcat:prev <https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2023-11-01> .
+
+<https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2024-11-01> a dcat:Dataset ;
+    dct:issued "2024-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/scottish-hydro-electric-power-distribution-long-term-development-statement-tables-2024-11-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables ;
+    dcat:prev <https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2024-05-01> .
+
+<https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2025-05-01> a dcat:Dataset ;
+    dct:issued "2025-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/scottish-hydro-electric-power-distribution-long-term-development-statement-tables-2025-05-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables ;
+    dcat:prev <https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2024-11-01> .
+
+<https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2025-11-01> a dcat:Dataset ;
+    dct:issued "2025-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/scottish-hydro-electric-power-distribution-long-term-development-statement-tables-2025-11-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables ;
+    dcat:prev <https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2025-05-01> .
+
+<https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2026-05-01> a dcat:Dataset ;
+    dct:issued "2026-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/scottish-hydro-electric-power-distribution-long-term-development-statement-tables-2026-05-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables ;
+    dcat:prev <https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2025-11-01> .
+
+<https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/southern-electric-power-distribution-long-term-development-statement-tables-2023-11-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables ;
+    dcat:prev <https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2023-05-01> .
+
+<https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2024-05-01> a dcat:Dataset ;
+    dct:issued "2024-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/southern-electric-power-distribution-long-term-development-statement-tables_may-2024-05-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables ;
+    dcat:prev <https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2023-11-01> .
+
+<https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2024-11-01> a dcat:Dataset ;
+    dct:issued "2024-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/southern-electric-power-distribution-long-term-development-statement-tables-2024-11-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables ;
+    dcat:prev <https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2024-05-01> .
+
+<https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2025-05-01> a dcat:Dataset ;
+    dct:issued "2025-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/southern-electric-power-distribution-long-term-development-statement-tables-2025-05-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables ;
+    dcat:prev <https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2024-11-01> .
+
+<https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2025-09-18> a dcat:Dataset ;
+    dct:issued "2025-09-18" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/southern-electric-power-distribution-long-term-development-statement-tables-2025-09-18.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables ;
+    dcat:prev <https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2025-05-01> .
+
+<https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2025-11-01> a dcat:Dataset ;
+    dct:issued "2025-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/southern-electric-power-distribution-long-term-development-statement-tables-2025-11-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables ;
+    dcat:prev <https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2025-09-18> .
+
+<https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2026-05-01> a dcat:Dataset ;
+    dct:issued "2026-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/southern-electric-power-distribution-long-term-development-statement-tables-2026-05-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables ;
+    dcat:prev <https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2025-11-01> .
+
+<https://busbar.example/id/ukpn.ecr/2025-01-20> a dcat:Dataset ;
+    dct:issued "2025-01-20" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/ecr/ukpn-embedded-capacity-register-2025-01-20.csv" ] ;
+    dcat:inSeries id:ukpn.ecr ;
+    dcat:prev <https://busbar.example/id/ukpn.ecr/2024-06-14> .
+
+<https://busbar.example/id/ukpn.ecr/2026-03-01> a dcat:Dataset ;
+    dct:issued "2026-03-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/ecr/ukpn-embedded-capacity-register-2026-03-01.csv" ] ;
+    dcat:inSeries id:ukpn.ecr ;
+    dcat:prev <https://busbar.example/id/ukpn.ecr/2025-01-20> .
+
+<https://busbar.example/id/ukpn.ecr/2026-04-16> a dcat:Dataset ;
+    dct:issued "2026-04-16" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/ecr/ukpn-embedded-capacity-register-2026-04-16.csv" ] ;
+    dcat:inSeries id:ukpn.ecr ;
+    dcat:prev <https://busbar.example/id/ukpn.ecr/2026-03-01> .
+
+<https://busbar.example/id/ukpn.ecr/2026-05-15> a dcat:Dataset ;
+    dct:issued "2026-05-15" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/ecr/ukpn-embedded-capacity-register-2026-05-15.csv" ] ;
+    dcat:inSeries id:ukpn.ecr ;
+    dcat:prev <https://busbar.example/id/ukpn.ecr/2026-04-16> .
+
+<https://busbar.example/id/ukpn.ecr/2026-06-12> a dcat:Dataset ;
+    dct:issued "2026-06-12" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/ecr/ukpn-embedded-capacity-register-2026-06-12.csv" ] ;
+    dcat:inSeries id:ukpn.ecr ;
+    dcat:prev <https://busbar.example/id/ukpn.ecr/2026-05-15> .
+
+<https://busbar.example/id/ukpn.ecr/2026-06-16> a dcat:Dataset ;
+    dct:issued "2026-06-16" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/ecr/ukpn-embedded-capacity-register-2026-06-16.csv" ] ;
+    dcat:inSeries id:ukpn.ecr ;
+    dcat:prev <https://busbar.example/id/ukpn.ecr/2026-06-12> .
+
+<https://busbar.example/id/ukpn.ecr/2026-07-14> a dcat:Dataset ;
+    dct:issued "2026-07-14" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/ecr/ukpn-embedded-capacity-register-2026-07-14.csv" ] ;
+    dcat:inSeries id:ukpn.ecr ;
+    dcat:prev <https://busbar.example/id/ukpn.ecr/2026-06-16> .
+
+<https://busbar.example/id/ukpn.gsp.ukpn-grid-supply-points-overview/2026-03-06> a dcat:Dataset ;
+    dct:issued "2026-03-06" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/gsp/ukpn-grid-supply-points-overview-2026-03-06.csv" ] ;
+    dcat:inSeries id:ukpn.gsp.ukpn-grid-supply-points-overview ;
+    dcat:prev <https://busbar.example/id/ukpn.gsp.ukpn-grid-supply-points-overview/2024-11-23> .
+
+<https://busbar.example/id/ukpn.ltds.ltds-table-3a-load-data-observed/2026-04-20> a dcat:Dataset ;
+    dct:issued "2026-04-20" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/ltds/ltds-table-3a-load-data-observed-2026-04-20.csv" ] ;
+    dcat:inSeries id:ukpn.ltds.ltds-table-3a-load-data-observed ;
+    dcat:prev <https://busbar.example/id/ukpn.ltds.ltds-table-3a-load-data-observed/2023-11-01> .
+
+<https://busbar.example/id/ukpn.ltds.ltds-table-3a-load-data-observed/2026-06-01> a dcat:Dataset ;
+    dct:issued "2026-06-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/ltds/ltds-table-3a-load-data-observed-2026-06-01.csv" ] ;
+    dcat:inSeries id:ukpn.ltds.ltds-table-3a-load-data-observed ;
+    dcat:prev <https://busbar.example/id/ukpn.ltds.ltds-table-3a-load-data-observed/2026-04-20> .
+
+<https://busbar.example/id/ukpn.substations.ukpn-grid-supply-points/2025-07-16> a dcat:Dataset ;
+    dct:issued "2025-07-16" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/substations/ukpn-grid-supply-points-2025-07-16.csv" ] ;
+    dcat:inSeries id:ukpn.substations.ukpn-grid-supply-points ;
+    dcat:prev <https://busbar.example/id/ukpn.substations.ukpn-grid-supply-points/2024-06-20> .
+
+id:enwl.boundary-flow.enwl-boundary-flow-gsp-xy a dcat:DatasetSeries ;
+    dct:publisher id:ENWL ;
+    dct:spatial id:NorthWest ;
+    dct:title "ENWL Substation register – enwl boundary flow gsp xy" ;
+    dcat:first <https://busbar.example/id/enwl.boundary-flow.enwl-boundary-flow-gsp-xy/2026-03-19> ;
+    dcat:last <https://busbar.example/id/enwl.boundary-flow.enwl-boundary-flow-gsp-xy/2026-03-19> ;
+    dcat:theme id:substation-register ;
+    busbar:describes busbar:Circuit,
+        busbar:GridSupplyPoint ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/enwl.boundary-flow.enwl-boundary-flow-gsp-xy/2026-03-19> a dcat:Dataset ;
+    dct:issued "2026-03-19" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "enwl/boundary-flow/enwl-boundary-flow-gsp-xy-2026-03-19.csv" ] ;
+    dcat:inSeries id:enwl.boundary-flow.enwl-boundary-flow-gsp-xy .
+
+id:enwl.boundary-flow.enwl-boundary-flow-merge a dcat:DatasetSeries ;
+    dct:publisher id:ENWL ;
+    dct:spatial id:NorthWest ;
+    dct:title "ENWL Network flows – enwl boundary flow merge" ;
+    dcat:first <https://busbar.example/id/enwl.boundary-flow.enwl-boundary-flow-merge/2026-03-19> ;
+    dcat:last <https://busbar.example/id/enwl.boundary-flow.enwl-boundary-flow-merge/2026-03-19> ;
+    dcat:theme id:network-flows ;
+    busbar:describes busbar:FlowObservation,
+        busbar:GridSupplyPoint ;
+    busbar:temporalNature busbar:timeSeries .
+
+<https://busbar.example/id/enwl.boundary-flow.enwl-boundary-flow-merge/2026-03-19> a dcat:Dataset ;
+    dct:issued "2026-03-19" ;
+    dct:temporal [ a dct:PeriodOfTime ;
+            dcat:endDate "2025-07-01" ;
+            dcat:startDate "2022-09-01" ] ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "enwl/boundary-flow/enwl-boundary-flow-merge-2026-03-19.csv" ] ;
+    dcat:inSeries id:enwl.boundary-flow.enwl-boundary-flow-merge .
+
+id:enwl.boundary-flow.gsp-boundary-flow a dcat:DatasetSeries ;
+    dct:publisher id:ENWL ;
+    dct:spatial id:NorthWest ;
+    dct:title "ENWL Network flows – gsp boundary flow" ;
+    dcat:first <https://busbar.example/id/enwl.boundary-flow.gsp-boundary-flow/2023-11-17> ;
+    dcat:last <https://busbar.example/id/enwl.boundary-flow.gsp-boundary-flow/2023-11-17> ;
+    dcat:theme id:network-flows ;
+    busbar:describes busbar:FlowObservation,
+        busbar:GridSupplyPoint ;
+    busbar:temporalNature busbar:timeSeries .
+
+<https://busbar.example/id/enwl.boundary-flow.gsp-boundary-flow/2023-11-17> a dcat:Dataset ;
+    dct:issued "2023-11-17" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "enwl/boundary-flow/gsp-boundary-flow-2023-11-17.xlsx" ] ;
+    dcat:inSeries id:enwl.boundary-flow.gsp-boundary-flow .
+
+id:enwl.cim a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:ENWL ;
+    dct:spatial id:NorthWest ;
+    dct:title "ENWL CIM network model" ;
+    dcat:first <https://busbar.example/id/enwl.cim/2025-09-09> ;
+    dcat:last <https://busbar.example/id/enwl.cim/2025-09-09> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/enwl.cim/2025-09-09> a dcat:Dataset ;
+    dct:issued "2025-09-09" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XML ;
+            dcat:mediaType "application/xml" ;
+            busbar:localPath "enwl/cim/ltds_spenw_2025-02_eq_2025-09-09_v1.xml" ] ;
+    dcat:inSeries id:enwl.cim .
+
+<https://busbar.example/id/enwl.ecr/2024-06-14> a dcat:Dataset ;
+    dct:issued "2024-06-14" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "enwl/ecr/enwl-embedded-capacity-register-2-1mw-and-above-2024-06-14.csv" ] ;
+    dcat:inSeries id:enwl.ecr .
+
+id:enwl.ltds.table-1---circuit-data a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:ENWL ;
+    dct:spatial id:NorthWest ;
+    dct:title "ENWL LTDS – table 1 circuit data" ;
+    dcat:first <https://busbar.example/id/enwl.ltds.table-1---circuit-data/2023-11-01> ;
+    dcat:last <https://busbar.example/id/enwl.ltds.table-1---circuit-data/2023-11-01> ;
+    dcat:theme id:ltds-circuits ;
+    busbar:describes busbar:Circuit,
+        busbar:Node ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/enwl.ltds.table-1---circuit-data/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "enwl/ltds/table-1---circuit-data-2023-11-01.xlsx" ] ;
+    dcat:inSeries id:enwl.ltds.table-1---circuit-data .
+
+id:enwl.ltds.table-2---transformer-data a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:ENWL ;
+    dct:spatial id:NorthWest ;
+    dct:title "ENWL LTDS – table 2 transformer data" ;
+    dcat:first <https://busbar.example/id/enwl.ltds.table-2---transformer-data/2023-11-01> ;
+    dcat:last <https://busbar.example/id/enwl.ltds.table-2---transformer-data/2023-11-01> ;
+    dcat:theme id:ltds-transformers ;
+    busbar:describes busbar:Node,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/enwl.ltds.table-2---transformer-data/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "enwl/ltds/table-2---transformer-data-2023-11-01.xlsx" ] ;
+    dcat:inSeries id:enwl.ltds.table-2---transformer-data .
+
+id:enwl.ltds.table-3---load-data a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:ENWL ;
+    dct:spatial id:NorthWest ;
+    dct:title "ENWL LTDS – table 3 load data" ;
+    dcat:first <https://busbar.example/id/enwl.ltds.table-3---load-data/2023-11-01> ;
+    dcat:last <https://busbar.example/id/enwl.ltds.table-3---load-data/2023-11-01> ;
+    dcat:theme id:ltds-loads ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:PrimarySubstation,
+        busbar:SubstationLoad ;
+    busbar:temporalNature busbar:forecast .
+
+<https://busbar.example/id/enwl.ltds.table-3---load-data/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "enwl/ltds/table-3---load-data-2023-11-01.xlsx" ] ;
+    dcat:inSeries id:enwl.ltds.table-3---load-data .
+
+id:enwl.ltds.table-8a-distribution-substation-asset-data a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:ENWL ;
+    dct:spatial id:NorthWest ;
+    dct:title "ENWL LTDS – table 8a distribution substation asset data" ;
+    dcat:first <https://busbar.example/id/enwl.ltds.table-8a-distribution-substation-asset-data/2025-11-01> ;
+    dcat:last <https://busbar.example/id/enwl.ltds.table-8a-distribution-substation-asset-data/2025-11-01> ;
+    dcat:theme id:ltds ;
+    busbar:describes busbar:Substation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/enwl.ltds.table-8a-distribution-substation-asset-data/2025-11-01> a dcat:Dataset ;
+    dct:issued "2025-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "enwl/ltds/table-8a-distribution-substation-asset-data-2025-11-01.xlsx" ] ;
+    dcat:inSeries id:enwl.ltds.table-8a-distribution-substation-asset-data .
+
+id:enwl.polygons.enwl-substation-bsp-polygons a dcat:DatasetSeries ;
+    dct:publisher id:ENWL ;
+    dct:spatial id:NorthWest ;
+    dct:title "ENWL Service areas – enwl substation bsp polygons" ;
+    dcat:first <https://busbar.example/id/enwl.polygons.enwl-substation-bsp-polygons/2026-03-19> ;
+    dcat:last <https://busbar.example/id/enwl.polygons.enwl-substation-bsp-polygons/2026-03-19> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/enwl.polygons.enwl-substation-bsp-polygons/2026-03-19> a dcat:Dataset ;
+    dct:issued "2026-03-19" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "enwl/polygons/enwl-substation-bsp-polygons.csv-2026-03-19.csv" ] ;
+    dcat:inSeries id:enwl.polygons.enwl-substation-bsp-polygons .
+
+id:enwl.polygons.enwl-substation-gsp-polygons a dcat:DatasetSeries ;
+    dct:publisher id:ENWL ;
+    dct:spatial id:NorthWest ;
+    dct:title "ENWL Service areas – enwl substation gsp polygons" ;
+    dcat:first <https://busbar.example/id/enwl.polygons.enwl-substation-gsp-polygons/2026-03-19> ;
+    dcat:last <https://busbar.example/id/enwl.polygons.enwl-substation-gsp-polygons/2026-03-19> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:GridSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/enwl.polygons.enwl-substation-gsp-polygons/2026-03-19> a dcat:Dataset ;
+    dct:issued "2026-03-19" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "enwl/polygons/enwl-substation-gsp-polygons-2026-03-19.csv" ] ;
+    dcat:inSeries id:enwl.polygons.enwl-substation-gsp-polygons .
+
+<https://busbar.example/id/enwl.substation-numbers.substation-numbers/2026-03-19> a dcat:Dataset ;
+    dct:issued "2026-03-19" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "enwl/substation-numbers/substation-numbers-2026-03-19.csv" ] ;
+    dcat:inSeries id:enwl.substation-numbers.substation-numbers .
+
+<https://busbar.example/id/eso.appendix-b/2023> a dcat:Dataset ;
+    dct:issued "2023" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "eso/appendix-b/Appendix B 2023-Final_Submission_2.7.xlsx" ] ;
+    dcat:inSeries id:eso.appendix-b .
+
+<https://busbar.example/id/eso.tec/2024-06-25> a dcat:Dataset ;
+    dct:issued "2024-06-25" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "eso/tec/tec-register-2024-06-25.csv" ] ;
+    dcat:inSeries id:eso.tec .
+
+<https://busbar.example/id/gov_uk.repd/2025-Q1> a dcat:Dataset ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "gov_uk/repd/REPD_Publication_Q1_2025.csv" ] ;
+    dcat:inSeries id:gov_uk.repd ;
+    dcat:version "2025-Q1" .
+
+<https://busbar.example/id/nged.cim.emids/2025-09-18> a dcat:Dataset ;
+    dct:issued "2025-09-18" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XML ;
+            dcat:mediaType "application/xml" ;
+            busbar:localPath "nged/cim/emids/LTDS_EMIDS_2025-02_EQ_2025-09-18_v1.0.xml" ] ;
+    dcat:inSeries id:nged.cim.emids .
+
+<https://busbar.example/id/nged.cim.swales/2025-09-19> a dcat:Dataset ;
+    dct:issued "2025-09-19" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XML ;
+            dcat:mediaType "application/xml" ;
+            busbar:localPath "nged/cim/swales/LTDS_SWALES_2025-02_EQ_2025-09-19_v1.0.xml" ] ;
+    dcat:inSeries id:nged.cim.swales .
+
+<https://busbar.example/id/nged.cim.swest/2025-09-19> a dcat:Dataset ;
+    dct:issued "2025-09-19" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XML ;
+            dcat:mediaType "application/xml" ;
+            busbar:localPath "nged/cim/swest/LTDS_SWEST_2025-02_EQ_2025-09-19_v1.0 3.xml" ] ;
+    dcat:inSeries id:nged.cim.swest .
+
+<https://busbar.example/id/nged.cim.wmids/2025-09-18> a dcat:Dataset ;
+    dct:issued "2025-09-18" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XML ;
+            dcat:mediaType "application/xml" ;
+            busbar:localPath "nged/cim/wmids/LTDS_WMIDS_2025-02_EQ_2025-09-18_v1.0.xml" ] ;
+    dcat:inSeries id:nged.cim.wmids .
+
+<https://busbar.example/id/nged.ecr/2024-06-01> a dcat:Dataset ;
+    dct:issued "2024-06-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "nged/ecr/embedded-capacity-register-2024-06-01.csv" ] ;
+    dcat:inSeries id:nged.ecr .
+
+id:nged.esa.east-midlands-bsp a dcat:DatasetSeries ;
+    dct:publisher id:NGED ;
+    dct:spatial id:EMids ;
+    dct:title "NGED Service areas – east midlands bsp" ;
+    dcat:first <https://busbar.example/id/nged.esa.east-midlands-bsp/2023-11-27> ;
+    dcat:last <https://busbar.example/id/nged.esa.east-midlands-bsp/2023-11-27> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.esa.east-midlands-bsp/2023-11-27> a dcat:Dataset ;
+    dct:issued "2023-11-27" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:GPKG ;
+            dcat:mediaType "application/geopackage+sqlite3" ;
+            busbar:localPath "nged/esa/east-midlands-bsp-2023-11-27.gpkg" ] ;
+    dcat:inSeries id:nged.esa.east-midlands-bsp .
+
+id:nged.esa.east-midlands-distribution a dcat:DatasetSeries ;
+    dct:publisher id:NGED ;
+    dct:spatial id:EMids ;
+    dct:title "NGED Service areas – east midlands distribution" ;
+    dcat:first <https://busbar.example/id/nged.esa.east-midlands-distribution/undated> ;
+    dcat:last <https://busbar.example/id/nged.esa.east-midlands-distribution/undated> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:ServiceArea,
+        busbar:Substation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.esa.east-midlands-distribution/undated> a dcat:Dataset ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:GPKG ;
+            dcat:mediaType "application/geopackage+sqlite3" ;
+            busbar:localPath "nged/esa/east-midlands-distribution.gpkg" ] ;
+    dcat:inSeries id:nged.esa.east-midlands-distribution .
+
+id:nged.esa.east-midlands-gsp a dcat:DatasetSeries ;
+    dct:publisher id:NGED ;
+    dct:spatial id:EMids ;
+    dct:title "NGED Service areas – east midlands gsp" ;
+    dcat:first <https://busbar.example/id/nged.esa.east-midlands-gsp/2023-11-27> ;
+    dcat:last <https://busbar.example/id/nged.esa.east-midlands-gsp/2023-11-27> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:GridSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.esa.east-midlands-gsp/2023-11-27> a dcat:Dataset ;
+    dct:issued "2023-11-27" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:GPKG ;
+            dcat:mediaType "application/geopackage+sqlite3" ;
+            busbar:localPath "nged/esa/east-midlands-gsp-2023-11-27.gpkg" ] ;
+    dcat:inSeries id:nged.esa.east-midlands-gsp .
+
+id:nged.esa.south-wales-bsp a dcat:DatasetSeries ;
+    dct:publisher id:NGED ;
+    dct:spatial id:SWales ;
+    dct:title "NGED Service areas – south wales bsp" ;
+    dcat:first <https://busbar.example/id/nged.esa.south-wales-bsp/2023-11-27> ;
+    dcat:last <https://busbar.example/id/nged.esa.south-wales-bsp/2023-11-27> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.esa.south-wales-bsp/2023-11-27> a dcat:Dataset ;
+    dct:issued "2023-11-27" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:GPKG ;
+            dcat:mediaType "application/geopackage+sqlite3" ;
+            busbar:localPath "nged/esa/south-wales-bsp-2023-11-27.gpkg" ] ;
+    dcat:inSeries id:nged.esa.south-wales-bsp .
+
+id:nged.esa.south-wales-distribution a dcat:DatasetSeries ;
+    dct:publisher id:NGED ;
+    dct:spatial id:SWales ;
+    dct:title "NGED Service areas – south wales distribution" ;
+    dcat:first <https://busbar.example/id/nged.esa.south-wales-distribution/undated> ;
+    dcat:last <https://busbar.example/id/nged.esa.south-wales-distribution/undated> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:ServiceArea,
+        busbar:Substation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.esa.south-wales-distribution/undated> a dcat:Dataset ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:GPKG ;
+            dcat:mediaType "application/geopackage+sqlite3" ;
+            busbar:localPath "nged/esa/south-wales-distribution.gpkg" ] ;
+    dcat:inSeries id:nged.esa.south-wales-distribution .
+
+id:nged.esa.south-wales-gsp a dcat:DatasetSeries ;
+    dct:publisher id:NGED ;
+    dct:spatial id:SWales ;
+    dct:title "NGED Service areas – south wales gsp" ;
+    dcat:first <https://busbar.example/id/nged.esa.south-wales-gsp/2023-11-27> ;
+    dcat:last <https://busbar.example/id/nged.esa.south-wales-gsp/2023-11-27> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:GridSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.esa.south-wales-gsp/2023-11-27> a dcat:Dataset ;
+    dct:issued "2023-11-27" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:GPKG ;
+            dcat:mediaType "application/geopackage+sqlite3" ;
+            busbar:localPath "nged/esa/south-wales-gsp-2023-11-27.gpkg" ] ;
+    dcat:inSeries id:nged.esa.south-wales-gsp .
+
+id:nged.esa.south-west-bsp a dcat:DatasetSeries ;
+    dct:publisher id:NGED ;
+    dct:spatial id:SWest ;
+    dct:title "NGED Service areas – south west bsp" ;
+    dcat:first <https://busbar.example/id/nged.esa.south-west-bsp/2023-11-27> ;
+    dcat:last <https://busbar.example/id/nged.esa.south-west-bsp/2023-11-27> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.esa.south-west-bsp/2023-11-27> a dcat:Dataset ;
+    dct:issued "2023-11-27" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:GPKG ;
+            dcat:mediaType "application/geopackage+sqlite3" ;
+            busbar:localPath "nged/esa/south-west-bsp-2023-11-27.gpkg" ] ;
+    dcat:inSeries id:nged.esa.south-west-bsp .
+
+id:nged.esa.south-west-distribution a dcat:DatasetSeries ;
+    dct:publisher id:NGED ;
+    dct:spatial id:SWest ;
+    dct:title "NGED Service areas – south west distribution" ;
+    dcat:first <https://busbar.example/id/nged.esa.south-west-distribution/undated> ;
+    dcat:last <https://busbar.example/id/nged.esa.south-west-distribution/undated> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:ServiceArea,
+        busbar:Substation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.esa.south-west-distribution/undated> a dcat:Dataset ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:GPKG ;
+            dcat:mediaType "application/geopackage+sqlite3" ;
+            busbar:localPath "nged/esa/south-west-distribution.gpkg" ] ;
+    dcat:inSeries id:nged.esa.south-west-distribution .
+
+id:nged.esa.south-west-gsp a dcat:DatasetSeries ;
+    dct:publisher id:NGED ;
+    dct:spatial id:SWest ;
+    dct:title "NGED Service areas – south west gsp" ;
+    dcat:first <https://busbar.example/id/nged.esa.south-west-gsp/2023-11-27> ;
+    dcat:last <https://busbar.example/id/nged.esa.south-west-gsp/2023-11-27> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:GridSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.esa.south-west-gsp/2023-11-27> a dcat:Dataset ;
+    dct:issued "2023-11-27" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:GPKG ;
+            dcat:mediaType "application/geopackage+sqlite3" ;
+            busbar:localPath "nged/esa/south-west-gsp-2023-11-27.gpkg" ] ;
+    dcat:inSeries id:nged.esa.south-west-gsp .
+
+id:nged.esa.west-midlands-bsp a dcat:DatasetSeries ;
+    dct:publisher id:NGED ;
+    dct:spatial id:WMids ;
+    dct:title "NGED Service areas – west midlands bsp" ;
+    dcat:first <https://busbar.example/id/nged.esa.west-midlands-bsp/2023-11-27> ;
+    dcat:last <https://busbar.example/id/nged.esa.west-midlands-bsp/2023-11-27> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.esa.west-midlands-bsp/2023-11-27> a dcat:Dataset ;
+    dct:issued "2023-11-27" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:GPKG ;
+            dcat:mediaType "application/geopackage+sqlite3" ;
+            busbar:localPath "nged/esa/west-midlands-bsp-2023-11-27.gpkg" ] ;
+    dcat:inSeries id:nged.esa.west-midlands-bsp .
+
+id:nged.esa.west-midlands-distribution a dcat:DatasetSeries ;
+    dct:publisher id:NGED ;
+    dct:spatial id:WMids ;
+    dct:title "NGED Service areas – west midlands distribution" ;
+    dcat:first <https://busbar.example/id/nged.esa.west-midlands-distribution/undated> ;
+    dcat:last <https://busbar.example/id/nged.esa.west-midlands-distribution/undated> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:ServiceArea,
+        busbar:Substation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.esa.west-midlands-distribution/undated> a dcat:Dataset ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:GPKG ;
+            dcat:mediaType "application/geopackage+sqlite3" ;
+            busbar:localPath "nged/esa/west-midlands-distribution.gpkg" ] ;
+    dcat:inSeries id:nged.esa.west-midlands-distribution .
+
+id:nged.esa.west-midlands-gsp a dcat:DatasetSeries ;
+    dct:publisher id:NGED ;
+    dct:spatial id:WMids ;
+    dct:title "NGED Service areas – west midlands gsp" ;
+    dcat:first <https://busbar.example/id/nged.esa.west-midlands-gsp/2023-11-27> ;
+    dcat:last <https://busbar.example/id/nged.esa.west-midlands-gsp/2023-11-27> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:GridSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.esa.west-midlands-gsp/2023-11-27> a dcat:Dataset ;
+    dct:issued "2023-11-27" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:GPKG ;
+            dcat:mediaType "application/geopackage+sqlite3" ;
+            busbar:localPath "nged/esa/west-midlands-gsp-2023-11-27.gpkg" ] ;
+    dcat:inSeries id:nged.esa.west-midlands-gsp .
+
+id:nged.ltds.attachment-8 a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:NGED ;
+    dct:spatial id:EMids,
+        id:SWales,
+        id:SWest,
+        id:WMids ;
+    dct:title "NGED LTDS – attachment 8" ;
+    dcat:first <https://busbar.example/id/nged.ltds.attachment-8/2023-11-01> ;
+    dcat:last <https://busbar.example/id/nged.ltds.attachment-8/2023-11-01> ;
+    dcat:theme id:ltds ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:GridSupplyPoint,
+        busbar:Node ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.ltds.attachment-8/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "nged/ltds/attachment-8-2023-11-01.csv" ] ;
+    dcat:inSeries id:nged.ltds.attachment-8 .
+
+id:nged.ltds.table-1 a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:NGED ;
+    dct:spatial id:EMids,
+        id:SWales,
+        id:SWest,
+        id:WMids ;
+    dct:title "NGED LTDS – table 1" ;
+    dcat:first <https://busbar.example/id/nged.ltds.table-1/2023-11-01> ;
+    dcat:last <https://busbar.example/id/nged.ltds.table-1/2023-11-01> ;
+    dcat:theme id:ltds-circuits ;
+    busbar:describes busbar:Circuit,
+        busbar:Node ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.ltds.table-1/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "nged/ltds/table-1-2023-11-01.csv" ] ;
+    dcat:inSeries id:nged.ltds.table-1 .
+
+id:nged.ltds.table-2a a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:NGED ;
+    dct:spatial id:EMids,
+        id:SWales,
+        id:SWest,
+        id:WMids ;
+    dct:title "NGED LTDS – table 2a" ;
+    dcat:first <https://busbar.example/id/nged.ltds.table-2a/2023-11-01> ;
+    dcat:last <https://busbar.example/id/nged.ltds.table-2a/2023-11-01> ;
+    dcat:theme id:ltds-transformers ;
+    busbar:describes busbar:Node,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/nged.ltds.table-2a/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "nged/ltds/table-2a-2023-11-01.csv" ] ;
+    dcat:inSeries id:nged.ltds.table-2a .
+
+<https://busbar.example/id/nged.ltds.table-3/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "nged/ltds/table-3-2023-11-01.csv" ] ;
+    dcat:inSeries id:nged.ltds.table-3 .
+
+<https://busbar.example/id/npg.cim.northeast/2025-12-28> a dcat:Dataset ;
+    dct:issued "2025-12-28" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "npg/cim/northeast/northeast-cim-2025-12-28.zip" ] ;
+    dcat:inSeries id:npg.cim.northeast .
+
+<https://busbar.example/id/npg.cim.yorkshire/2025-12-28> a dcat:Dataset ;
+    dct:issued "2025-12-28" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "npg/cim/yorkshire/yorkshire-cim-2025-12-28.zip" ] ;
+    dcat:inSeries id:npg.cim.yorkshire .
+
+<https://busbar.example/id/npg.dno-boundaries.all_dno_boundaries/2024-01-04> a dcat:Dataset ;
+    dct:issued "2024-01-04" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/dno-boundaries/all_dno_boundaries-2024-01-04.csv" ] ;
+    dcat:inSeries id:npg.dno-boundaries.all_dno_boundaries .
+
+<https://busbar.example/id/npg.ecr/2024-06-14> a dcat:Dataset ;
+    dct:issued "2024-06-14" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ecr/embedded-capacity-register-2024-06-14.csv" ] ;
+    dcat:inSeries id:npg.ecr .
+
+id:npg.esa.substation-combined-service-areas a dcat:DatasetSeries ;
+    dct:publisher id:NPG ;
+    dct:spatial id:Northeast,
+        id:Yorkshire ;
+    dct:title "NPG Service areas – substation combined service areas" ;
+    dcat:first <https://busbar.example/id/npg.esa.substation-combined-service-areas/2026-01-15> ;
+    dcat:last <https://busbar.example/id/npg.esa.substation-combined-service-areas/2026-01-15> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/npg.esa.substation-combined-service-areas/2026-01-15> a dcat:Dataset ;
+    dct:issued "2026-01-15" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/esa/substation-combined-service-areas-2026-01-15.csv" ] ;
+    dcat:inSeries id:npg.esa.substation-combined-service-areas .
+
+id:npg.heatmap.heatmapgenerationdata a dcat:DatasetSeries ;
+    dct:publisher id:NPG ;
+    dct:spatial id:Northeast,
+        id:Yorkshire ;
+    dct:title "NPG Capacity data – heatmapgenerationdata" ;
+    dcat:first <https://busbar.example/id/npg.heatmap.heatmapgenerationdata/2024-08-02> ;
+    dcat:last <https://busbar.example/id/npg.heatmap.heatmapgenerationdata/2024-08-02> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:CapacityAssessment,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/npg.heatmap.heatmapgenerationdata/2024-08-02> a dcat:Dataset ;
+    dct:issued "2024-08-02" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/heatmap/heatmapgenerationdata-2024-08-02.csv" ] ;
+    dcat:inSeries id:npg.heatmap.heatmapgenerationdata .
+
+<https://busbar.example/id/npg.heatmap.heatmapsubstationareas/2026-01-29> a dcat:Dataset ;
+    dct:issued "2026-01-29" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/heatmap/heatmapsubstationareas-2026-01-29.csv" ] ;
+    dcat:inSeries id:npg.heatmap.heatmapsubstationareas .
+
+id:npg.ltds.Appendix-4-Table-2-Northeast a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:NPG ;
+    dct:spatial id:Northeast ;
+    dct:title "NPG LTDS – Appendix 4 Table 2 Northeast" ;
+    dcat:first <https://busbar.example/id/npg.ltds.Appendix-4-Table-2-Northeast/2024-05-01> ;
+    dcat:last <https://busbar.example/id/npg.ltds.Appendix-4-Table-2-Northeast/2024-05-01> ;
+    dcat:theme id:ltds-transformers ;
+    busbar:describes busbar:Node,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/npg.ltds.Appendix-4-Table-2-Northeast/2024-05-01> a dcat:Dataset ;
+    dct:issued "2024-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "npg/ltds/Appendix 4 Table 2 Northeast-2024-05-01.xlsx" ] ;
+    dcat:inSeries id:npg.ltds.Appendix-4-Table-2-Northeast .
+
+id:npg.ltds.Appendix-4-Table-2-Yorkshire a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:NPG ;
+    dct:spatial id:Yorkshire ;
+    dct:title "NPG LTDS – Appendix 4 Table 2 Yorkshire" ;
+    dcat:first <https://busbar.example/id/npg.ltds.Appendix-4-Table-2-Yorkshire/2024-05-01> ;
+    dcat:last <https://busbar.example/id/npg.ltds.Appendix-4-Table-2-Yorkshire/2024-05-01> ;
+    dcat:theme id:ltds-transformers ;
+    busbar:describes busbar:Node,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/npg.ltds.Appendix-4-Table-2-Yorkshire/2024-05-01> a dcat:Dataset ;
+    dct:issued "2024-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "npg/ltds/Appendix 4 Table 2 Yorkshire-2024-05-01.xlsx" ] ;
+    dcat:inSeries id:npg.ltds.Appendix-4-Table-2-Yorkshire .
+
+id:npg.ltds.ltds-appendix-1-northeast a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:NPG ;
+    dct:spatial id:Northeast ;
+    dct:title "NPG LTDS – ltds appendix 1 northeast" ;
+    dcat:first <https://busbar.example/id/npg.ltds.ltds-appendix-1-northeast/2024-05-01> ;
+    dcat:last <https://busbar.example/id/npg.ltds.ltds-appendix-1-northeast/2024-05-01> ;
+    dcat:theme id:ltds ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/npg.ltds.ltds-appendix-1-northeast/2024-05-01> a dcat:Dataset ;
+    dct:issued "2024-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ltds/ltds-appendix-1-northeast-2024-05-01.csv" ] ;
+    dcat:inSeries id:npg.ltds.ltds-appendix-1-northeast .
+
+id:npg.ltds.ltds-appendix-1-yorkshire a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:NPG ;
+    dct:spatial id:Yorkshire ;
+    dct:title "NPG LTDS – ltds appendix 1 yorkshire" ;
+    dcat:first <https://busbar.example/id/npg.ltds.ltds-appendix-1-yorkshire/2024-05-01> ;
+    dcat:last <https://busbar.example/id/npg.ltds.ltds-appendix-1-yorkshire/2024-05-01> ;
+    dcat:theme id:ltds ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/npg.ltds.ltds-appendix-1-yorkshire/2024-05-01> a dcat:Dataset ;
+    dct:issued "2024-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ltds/ltds-appendix-1-yorkshire-2024-05-01.csv" ] ;
+    dcat:inSeries id:npg.ltds.ltds-appendix-1-yorkshire .
+
+id:npg.ltds.ltds-appendix-3 a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:NPG ;
+    dct:spatial id:Northeast,
+        id:Yorkshire ;
+    dct:title "NPG LTDS – ltds appendix 3" ;
+    dcat:first <https://busbar.example/id/npg.ltds.ltds-appendix-3/2024-05-01> ;
+    dcat:last <https://busbar.example/id/npg.ltds.ltds-appendix-3/2024-05-01> ;
+    dcat:theme id:ltds-circuits ;
+    busbar:describes busbar:Circuit,
+        busbar:Node ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/npg.ltds.ltds-appendix-3/2024-05-01> a dcat:Dataset ;
+    dct:issued "2024-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ltds/ltds-appendix-3-2024-05-01.csv" ] ;
+    dcat:inSeries id:npg.ltds.ltds-appendix-3 .
+
+id:npg.ltds.ltds-appendix-5 a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:NPG ;
+    dct:spatial id:Northeast,
+        id:Yorkshire ;
+    dct:title "NPG LTDS – ltds appendix 5" ;
+    dcat:first <https://busbar.example/id/npg.ltds.ltds-appendix-5/2024-05-01> ;
+    dcat:last <https://busbar.example/id/npg.ltds.ltds-appendix-5/2024-05-01> ;
+    dcat:theme id:ltds-loads ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:PrimarySubstation,
+        busbar:SubstationLoad ;
+    busbar:temporalNature busbar:forecast .
+
+<https://busbar.example/id/npg.ltds.ltds-appendix-5/2024-05-01> a dcat:Dataset ;
+    dct:issued "2024-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "npg/ltds/ltds-appendix-5-2024-05-01.csv" ] ;
+    dcat:inSeries id:npg.ltds.ltds-appendix-5 .
+
+id:spen.cim.spd a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPD ;
+    dct:title "SPEN CIM network model – spd" ;
+    dcat:first <https://busbar.example/id/spen.cim.spd/2026-05-26> ;
+    dcat:last <https://busbar.example/id/spen.cim.spd/2026-05-26> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.cim.spd/2026-05-26> a dcat:Dataset ;
+    dct:issued "2026-05-26" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "spen/cim/spd/spd-cim-2026-05-26.zip" ] ;
+    dcat:inSeries id:spen.cim.spd .
+
+id:spen.cim.spm a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN CIM network model – spm" ;
+    dcat:first <https://busbar.example/id/spen.cim.spm/2026-06-05> ;
+    dcat:last <https://busbar.example/id/spen.cim.spm/2026-06-05> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.cim.spm/2026-06-05> a dcat:Dataset ;
+    dct:issued "2026-06-05" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "spen/cim/spm/spm-cim-2026-06-05.zip" ] ;
+    dcat:inSeries id:spen.cim.spm .
+
+<https://busbar.example/id/spen.ecr/2024-06-27> a dcat:Dataset ;
+    dct:issued "2024-06-27" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/ecr/embedded-capacity-register-2024-06-27.csv" ] ;
+    dcat:inSeries id:spen.ecr .
+
+id:spen.firm_capacity.historic_substation_utilisation_spd a dcat:DatasetSeries ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPD ;
+    dct:title "SPEN Capacity data – historic substation utilisation spd" ;
+    dcat:first <https://busbar.example/id/spen.firm_capacity.historic_substation_utilisation_spd/2025-12-15> ;
+    dcat:last <https://busbar.example/id/spen.firm_capacity.historic_substation_utilisation_spd/2025-12-15> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:CapacityAssessment,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.firm_capacity.historic_substation_utilisation_spd/2025-12-15> a dcat:Dataset ;
+    dct:issued "2025-12-15" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/firm_capacity/historic_substation_utilisation_spd-2025-12-15.csv" ] ;
+    dcat:inSeries id:spen.firm_capacity.historic_substation_utilisation_spd .
+
+id:spen.firm_capacity.historic_substation_utilisation_spm a dcat:DatasetSeries ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN Capacity data – historic substation utilisation spm" ;
+    dcat:first <https://busbar.example/id/spen.firm_capacity.historic_substation_utilisation_spm/2025-12-15> ;
+    dcat:last <https://busbar.example/id/spen.firm_capacity.historic_substation_utilisation_spm/2025-12-15> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:CapacityAssessment,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.firm_capacity.historic_substation_utilisation_spm/2025-12-15> a dcat:Dataset ;
+    dct:issued "2025-12-15" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/firm_capacity/historic_substation_utilisation_spm-2025-12-15.csv" ] ;
+    dcat:inSeries id:spen.firm_capacity.historic_substation_utilisation_spm .
+
+id:spen.firm_capacity.spd-dg-connections-network-info a dcat:DatasetSeries ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPD ;
+    dct:title "SPEN Capacity data – spd dg connections network info" ;
+    dcat:first <https://busbar.example/id/spen.firm_capacity.spd-dg-connections-network-info/2025-10-08> ;
+    dcat:last <https://busbar.example/id/spen.firm_capacity.spd-dg-connections-network-info/2025-10-08> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:CapacityAssessment,
+        busbar:GridSupplyPoint ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.firm_capacity.spd-dg-connections-network-info/2025-10-08> a dcat:Dataset ;
+    dct:issued "2025-10-08" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/firm_capacity/spd-dg-connections-network-info-2025-10-08.csv" ] ;
+    dcat:inSeries id:spen.firm_capacity.spd-dg-connections-network-info .
+
+id:spen.firm_capacity.spm-technical-limits a dcat:DatasetSeries ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN Capacity data – spm technical limits" ;
+    dcat:first <https://busbar.example/id/spen.firm_capacity.spm-technical-limits/2024-04-10> ;
+    dcat:last <https://busbar.example/id/spen.firm_capacity.spm-technical-limits/2024-04-10> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:CapacityAssessment,
+        busbar:GridSupplyPoint ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.firm_capacity.spm-technical-limits/2024-04-10> a dcat:Dataset ;
+    dct:issued "2024-04-10" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/firm_capacity/spm-technical-limits-2024-04-10.csv" ] ;
+    dcat:inSeries id:spen.firm_capacity.spm-technical-limits .
+
+id:spen.flows.network-flow-dataset-power-current-and-embedded-generation a dcat:DatasetSeries ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPD,
+        id:SPM ;
+    dct:title "SPEN Network flows – network flow dataset power current and embedded generation" ;
+    dcat:first <https://busbar.example/id/spen.flows.network-flow-dataset-power-current-and-embedded-generation/2025-01-12> ;
+    dcat:last <https://busbar.example/id/spen.flows.network-flow-dataset-power-current-and-embedded-generation/2025-01-12> ;
+    dcat:theme id:network-flows ;
+    busbar:describes busbar:FlowObservation,
+        busbar:GridSupplyPoint ;
+    busbar:temporalNature busbar:timeSeries .
+
+<https://busbar.example/id/spen.flows.network-flow-dataset-power-current-and-embedded-generation/2025-01-12> a dcat:Dataset ;
+    dct:issued "2025-01-12" ;
+    dct:temporal [ a dct:PeriodOfTime ;
+            dcat:endDate "2025-01-12" ;
+            dcat:startDate "2024-01-01" ] ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/flows/network-flow-dataset-power-current-and-embedded-generation-2025-01-12.csv" ] ;
+    dcat:inSeries id:spen.flows.network-flow-dataset-power-current-and-embedded-generation .
+
+id:spen.groups.ndp-spm-grid-group-polygons a dcat:DatasetSeries ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN Service areas – ndp spm grid group polygons" ;
+    dcat:first <https://busbar.example/id/spen.groups.ndp-spm-grid-group-polygons/2024-04-30> ;
+    dcat:last <https://busbar.example/id/spen.groups.ndp-spm-grid-group-polygons/2024-04-30> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.groups.ndp-spm-grid-group-polygons/2024-04-30> a dcat:Dataset ;
+    dct:issued "2024-04-30" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/groups/ndp-spm-grid-group-polygons-2024-04-30.csv" ] ;
+    dcat:inSeries id:spen.groups.ndp-spm-grid-group-polygons .
+
+id:spen.groups.spd-dfes-substation-polygons-gsp a dcat:DatasetSeries ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPD ;
+    dct:title "SPEN Service areas – spd dfes substation polygons gsp" ;
+    dcat:first <https://busbar.example/id/spen.groups.spd-dfes-substation-polygons-gsp/undated> ;
+    dcat:last <https://busbar.example/id/spen.groups.spd-dfes-substation-polygons-gsp/undated> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:GridSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.groups.spd-dfes-substation-polygons-gsp/undated> a dcat:Dataset ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/groups/spd-dfes-substation-polygons-gsp.csv" ] ;
+    dcat:inSeries id:spen.groups.spd-dfes-substation-polygons-gsp .
+
+id:spen.groups.spm-dfes-substation-polygons-gsp a dcat:DatasetSeries ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN Service areas – spm dfes substation polygons gsp" ;
+    dcat:first <https://busbar.example/id/spen.groups.spm-dfes-substation-polygons-gsp/2026-05-20> ;
+    dcat:last <https://busbar.example/id/spen.groups.spm-dfes-substation-polygons-gsp/2026-05-20> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:GridSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.groups.spm-dfes-substation-polygons-gsp/2026-05-20> a dcat:Dataset ;
+    dct:issued "2026-05-20" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/groups/spm-dfes-substation-polygons-gsp-2026-05-20.csv" ] ;
+    dcat:inSeries id:spen.groups.spm-dfes-substation-polygons-gsp .
+
+<https://busbar.example/id/spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-grid-substations/2024-06-17> a dcat:Dataset ;
+    dct:issued "2024-06-17" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/heatmap/distributed-generation-sp-distribution-heat-maps-spd-grid-substations-2024-06-17.csv" ] ;
+    dcat:inSeries id:spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-grid-substations .
+
+id:spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-primary-substations a dcat:DatasetSeries ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPD ;
+    dct:title "SPEN Capacity data – distributed generation sp distribution heat maps spd primary substations" ;
+    dcat:first <https://busbar.example/id/spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-primary-substations/2024-06-17> ;
+    dcat:last <https://busbar.example/id/spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-primary-substations/2024-06-17> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:CapacityAssessment,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-primary-substations/2024-06-17> a dcat:Dataset ;
+    dct:issued "2024-06-17" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/heatmap/distributed-generation-sp-distribution-heat-maps-spd-primary-substations-2024-06-17.csv" ] ;
+    dcat:inSeries id:spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-primary-substations .
+
+id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-grid-substations a dcat:DatasetSeries ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN Capacity data – distributed generation sp manweb heat maps spm grid substations" ;
+    dcat:first <https://busbar.example/id/spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-grid-substations/2024-05-30> ;
+    dcat:last <https://busbar.example/id/spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-grid-substations/2024-05-30> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:CapacityAssessment ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-grid-substations/2024-05-30> a dcat:Dataset ;
+    dct:issued "2024-05-30" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/heatmap/distributed-generation-sp-manweb-heat-maps-spm-grid-substations-2024-05-30.csv" ] ;
+    dcat:inSeries id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-grid-substations .
+
+id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-primary-substations a dcat:DatasetSeries ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN Capacity data – distributed generation sp manweb heat maps spm primary substations" ;
+    dcat:first <https://busbar.example/id/spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-primary-substations/2024-05-30> ;
+    dcat:last <https://busbar.example/id/spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-primary-substations/2024-05-30> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:CapacityAssessment,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-primary-substations/2024-05-30> a dcat:Dataset ;
+    dct:issued "2024-05-30" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/heatmap/distributed-generation-sp-manweb-heat-maps-spm-primary-substations-2024-05-30.csv" ] ;
+    dcat:inSeries id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-primary-substations .
+
+id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-super-grid-substations a dcat:DatasetSeries ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN Capacity data – distributed generation sp manweb heat maps spm super grid substations" ;
+    dcat:first <https://busbar.example/id/spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-super-grid-substations/2024-05-30> ;
+    dcat:last <https://busbar.example/id/spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-super-grid-substations/2024-05-30> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:CapacityAssessment,
+        busbar:GridSupplyPoint ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-super-grid-substations/2024-05-30> a dcat:Dataset ;
+    dct:issued "2024-05-30" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/heatmap/distributed-generation-sp-manweb-heat-maps-spm-super-grid-substations-2024-05-30.csv" ] ;
+    dcat:inSeries id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-super-grid-substations .
+
+id:spen.ltds.spd-ltds-appendix-1-circuit-data-table-1 a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPD ;
+    dct:title "SPEN LTDS – spd ltds appendix 1 circuit data table 1" ;
+    dcat:first <https://busbar.example/id/spen.ltds.spd-ltds-appendix-1-circuit-data-table-1/2023-11-01> ;
+    dcat:last <https://busbar.example/id/spen.ltds.spd-ltds-appendix-1-circuit-data-table-1/2023-11-01> ;
+    dcat:theme id:ltds-circuits ;
+    busbar:describes busbar:Circuit,
+        busbar:Node ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.ltds.spd-ltds-appendix-1-circuit-data-table-1/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/ltds/spd-ltds-appendix-1-circuit-data-table-1-2023-11-01.csv" ] ;
+    dcat:inSeries id:spen.ltds.spd-ltds-appendix-1-circuit-data-table-1 .
+
+id:spen.ltds.spd-ltds-appendix-2-transformer-data-table-2 a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPD ;
+    dct:title "SPEN LTDS – spd ltds appendix 2 transformer data table 2" ;
+    dcat:first <https://busbar.example/id/spen.ltds.spd-ltds-appendix-2-transformer-data-table-2/2023-11-01> ;
+    dcat:last <https://busbar.example/id/spen.ltds.spd-ltds-appendix-2-transformer-data-table-2/2023-11-01> ;
+    dcat:theme id:ltds-transformers ;
+    busbar:describes busbar:Node,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.ltds.spd-ltds-appendix-2-transformer-data-table-2/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/ltds/spd-ltds-appendix-2-transformer-data-table-2-2023-11-01.csv" ] ;
+    dcat:inSeries id:spen.ltds.spd-ltds-appendix-2-transformer-data-table-2 .
+
+id:spen.ltds.spd-ltds-appendix-3-system-loads-table-3 a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPD ;
+    dct:title "SPEN LTDS – spd ltds appendix 3 system loads table 3" ;
+    dcat:first <https://busbar.example/id/spen.ltds.spd-ltds-appendix-3-system-loads-table-3/2023-11-01> ;
+    dcat:last <https://busbar.example/id/spen.ltds.spd-ltds-appendix-3-system-loads-table-3/2023-11-01> ;
+    dcat:theme id:ltds-loads ;
+    busbar:describes busbar:PrimarySubstation,
+        busbar:SubstationLoad ;
+    busbar:temporalNature busbar:forecast .
+
+<https://busbar.example/id/spen.ltds.spd-ltds-appendix-3-system-loads-table-3/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/ltds/spd-ltds-appendix-3-system-loads-table-3-2023-11-01.csv" ] ;
+    dcat:inSeries id:spen.ltds.spd-ltds-appendix-3-system-loads-table-3 .
+
+id:spen.ltds.spm-ltds-appendix-1-circuit-data-table-1 a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN LTDS – spm ltds appendix 1 circuit data table 1" ;
+    dcat:first <https://busbar.example/id/spen.ltds.spm-ltds-appendix-1-circuit-data-table-1/2023-11-01> ;
+    dcat:last <https://busbar.example/id/spen.ltds.spm-ltds-appendix-1-circuit-data-table-1/2023-11-01> ;
+    dcat:theme id:ltds-circuits ;
+    busbar:describes busbar:Circuit,
+        busbar:Node ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.ltds.spm-ltds-appendix-1-circuit-data-table-1/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/ltds/spm-ltds-appendix-1-circuit-data-table-1-2023-11-01.csv" ] ;
+    dcat:inSeries id:spen.ltds.spm-ltds-appendix-1-circuit-data-table-1 .
+
+id:spen.ltds.spm-ltds-appendix-2-transformer-data-table-2 a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN LTDS – spm ltds appendix 2 transformer data table 2" ;
+    dcat:first <https://busbar.example/id/spen.ltds.spm-ltds-appendix-2-transformer-data-table-2/2023-11-01> ;
+    dcat:last <https://busbar.example/id/spen.ltds.spm-ltds-appendix-2-transformer-data-table-2/2023-11-01> ;
+    dcat:theme id:ltds-transformers ;
+    busbar:describes busbar:Node,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+id:spen.ltds.spm-ltds-appendix-2-transformer-data-table-2-33-to-11kv a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN LTDS – spm ltds appendix 2 transformer data table 2 33 to 11kv" ;
+    dcat:first <https://busbar.example/id/spen.ltds.spm-ltds-appendix-2-transformer-data-table-2-33-to-11kv/2023-11-01> ;
+    dcat:last <https://busbar.example/id/spen.ltds.spm-ltds-appendix-2-transformer-data-table-2-33-to-11kv/2023-11-01> ;
+    dcat:theme id:ltds-transformers ;
+    busbar:describes busbar:Node,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.ltds.spm-ltds-appendix-2-transformer-data-table-2-33-to-11kv/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/ltds/spm-ltds-appendix-2-transformer-data-table-2-33-to-11kv-2023-11-01.csv" ] ;
+    dcat:inSeries id:spen.ltds.spm-ltds-appendix-2-transformer-data-table-2-33-to-11kv .
+
+<https://busbar.example/id/spen.ltds.spm-ltds-appendix-2-transformer-data-table-2/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/ltds/spm-ltds-appendix-2-transformer-data-table-2-2023-11-01.csv" ] ;
+    dcat:inSeries id:spen.ltds.spm-ltds-appendix-2-transformer-data-table-2 .
+
+id:spen.ltds.spm-ltds-appendix-3-system-loads-table-3-ehv-forecast a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN LTDS – spm ltds appendix 3 system loads table 3 ehv forecast" ;
+    dcat:first <https://busbar.example/id/spen.ltds.spm-ltds-appendix-3-system-loads-table-3-ehv-forecast/2023-11-01> ;
+    dcat:last <https://busbar.example/id/spen.ltds.spm-ltds-appendix-3-system-loads-table-3-ehv-forecast/2023-11-01> ;
+    dcat:theme id:ltds-loads ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:SubstationLoad ;
+    busbar:temporalNature busbar:forecast .
+
+<https://busbar.example/id/spen.ltds.spm-ltds-appendix-3-system-loads-table-3-ehv-forecast/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/ltds/spm-ltds-appendix-3-system-loads-table-3-ehv-forecast-2023-11-01.csv" ] ;
+    dcat:inSeries id:spen.ltds.spm-ltds-appendix-3-system-loads-table-3-ehv-forecast .
+
+id:spen.ltds.spm-ltds-appendix-3-system-loads-table-3-hv-forecast a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN LTDS – spm ltds appendix 3 system loads table 3 hv forecast" ;
+    dcat:first <https://busbar.example/id/spen.ltds.spm-ltds-appendix-3-system-loads-table-3-hv-forecast/2023-11-01> ;
+    dcat:last <https://busbar.example/id/spen.ltds.spm-ltds-appendix-3-system-loads-table-3-hv-forecast/2023-11-01> ;
+    dcat:theme id:ltds-loads ;
+    busbar:describes busbar:PrimarySubstation,
+        busbar:SubstationLoad ;
+    busbar:temporalNature busbar:forecast .
+
+<https://busbar.example/id/spen.ltds.spm-ltds-appendix-3-system-loads-table-3-hv-forecast/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/ltds/spm-ltds-appendix-3-system-loads-table-3-hv-forecast-2023-11-01.csv" ] ;
+    dcat:inSeries id:spen.ltds.spm-ltds-appendix-3-system-loads-table-3-hv-forecast .
+
+id:spen.ltds.spm-ltds-appendix-9-system-schematics a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPM ;
+    dct:title "SPEN LTDS – spm ltds appendix 9 system schematics" ;
+    dcat:first <https://busbar.example/id/spen.ltds.spm-ltds-appendix-9-system-schematics/2023-11-01> ;
+    dcat:last <https://busbar.example/id/spen.ltds.spm-ltds-appendix-9-system-schematics/2023-11-01> ;
+    dcat:theme id:ltds ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/spen.ltds.spm-ltds-appendix-9-system-schematics/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "spen/ltds/spm-ltds-appendix-9-system-schematics-2023-11-01.csv" ] ;
+    dcat:inSeries id:spen.ltds.spm-ltds-appendix-9-system-schematics .
+
+<https://busbar.example/id/sse.cim.scottish/2025-11-22> a dcat:Dataset ;
+    dct:issued "2025-11-22" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XML ;
+            dcat:mediaType "application/xml" ;
+            busbar:localPath "sse/cim/scottish/20251122T2246Z__EQ_1.xml" ] ;
+    dcat:inSeries id:sse.cim.scottish .
+
+id:sse.cim.southern a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:SSEN ;
+    dct:spatial id:SEPD ;
+    dct:title "SSEN CIM network model – southern" ;
+    dcat:first <https://busbar.example/id/sse.cim.southern/2025-11-25> ;
+    dcat:last <https://busbar.example/id/sse.cim.southern/2025-11-25> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/sse.cim.southern/2025-11-25> a dcat:Dataset ;
+    dct:issued "2025-11-25" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XML ;
+            dcat:mediaType "application/xml" ;
+            busbar:localPath "sse/cim/southern/20251125T1444Z__EQ_1.xml" ] ;
+    dcat:inSeries id:sse.cim.southern .
+
+<https://busbar.example/id/sse.ecr/2023-08-01> a dcat:Dataset ;
+    dct:issued "2023-08-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ecr/embedded-capacity-register-4.0-2023-08-01.xlsx" ] ;
+    dcat:inSeries id:sse.ecr .
+
+id:sse.groups.sepd_bulksupplypoint_esa a dcat:DatasetSeries ;
+    dct:publisher id:SSEN ;
+    dct:spatial id:SEPD ;
+    dct:title "SSEN Service areas – sepd bulksupplypoint esa" ;
+    dcat:first <https://busbar.example/id/sse.groups.sepd_bulksupplypoint_esa/2025-12-23> ;
+    dcat:last <https://busbar.example/id/sse.groups.sepd_bulksupplypoint_esa/2025-12-23> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/sse.groups.sepd_bulksupplypoint_esa/2025-12-23> a dcat:Dataset ;
+    dct:issued "2025-12-23" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "sse/groups/sepd_bulksupplypoint_esa_2025-12-23.csv" ] ;
+    dcat:inSeries id:sse.groups.sepd_bulksupplypoint_esa .
+
+id:sse.groups.sepd_gridsupplypoint_esa a dcat:DatasetSeries ;
+    dct:publisher id:SSEN ;
+    dct:spatial id:SEPD ;
+    dct:title "SSEN Service areas – sepd gridsupplypoint esa" ;
+    dcat:first <https://busbar.example/id/sse.groups.sepd_gridsupplypoint_esa/2025-12-23> ;
+    dcat:last <https://busbar.example/id/sse.groups.sepd_gridsupplypoint_esa/2025-12-23> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:GridSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/sse.groups.sepd_gridsupplypoint_esa/2025-12-23> a dcat:Dataset ;
+    dct:issued "2025-12-23" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "sse/groups/sepd_gridsupplypoint_esa_2025-12-23.csv" ] ;
+    dcat:inSeries id:sse.groups.sepd_gridsupplypoint_esa .
+
+id:sse.groups.shepd_gridsupplypoint_esa a dcat:DatasetSeries ;
+    dct:publisher id:SSEN ;
+    dct:spatial id:SHEPD ;
+    dct:title "SSEN Service areas – shepd gridsupplypoint esa" ;
+    dcat:first <https://busbar.example/id/sse.groups.shepd_gridsupplypoint_esa/2025-12-23> ;
+    dcat:last <https://busbar.example/id/sse.groups.shepd_gridsupplypoint_esa/2025-12-23> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:GridSupplyPoint,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/sse.groups.shepd_gridsupplypoint_esa/2025-12-23> a dcat:Dataset ;
+    dct:issued "2025-12-23" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "sse/groups/shepd_gridsupplypoint_esa_2025-12-23.csv" ] ;
+    dcat:inSeries id:sse.groups.shepd_gridsupplypoint_esa .
+
+id:sse.heatmap.demand-heat-map-update-feb-24 a dcat:DatasetSeries ;
+    dct:publisher id:SSEN ;
+    dct:spatial id:SEPD,
+        id:SHEPD ;
+    dct:title "SSEN Capacity data – demand heat map update feb 24" ;
+    dcat:first <https://busbar.example/id/sse.heatmap.demand-heat-map-update-feb-24/2024-05-01> ;
+    dcat:last <https://busbar.example/id/sse.heatmap.demand-heat-map-update-feb-24/2024-05-01> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:CapacityAssessment,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/sse.heatmap.demand-heat-map-update-feb-24/2024-05-01> a dcat:Dataset ;
+    dct:issued "2024-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/heatmap/demand-heat-map-update-feb-24-2024-05-01.xlsx" ] ;
+    dcat:inSeries id:sse.heatmap.demand-heat-map-update-feb-24 .
+
+id:sse.heatmap.headroom-dashboard-data a dcat:DatasetSeries ;
+    dct:publisher id:SSEN ;
+    dct:spatial id:SEPD,
+        id:SHEPD ;
+    dct:title "SSEN Capacity data – headroom dashboard data" ;
+    dcat:first <https://busbar.example/id/sse.heatmap.headroom-dashboard-data/2026-03-01> ;
+    dcat:last <https://busbar.example/id/sse.heatmap.headroom-dashboard-data/2026-03-01> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:CapacityAssessment,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/sse.heatmap.headroom-dashboard-data/2026-03-01> a dcat:Dataset ;
+    dct:issued "2026-03-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "sse/heatmap/headroom-dashboard-data-2026-03-01.csv" ] ;
+    dcat:inSeries id:sse.heatmap.headroom-dashboard-data .
+
+id:sse.heatmap.scotland-demand-heat-map-august a dcat:DatasetSeries ;
+    dct:publisher id:SSEN ;
+    dct:spatial id:SEPD,
+        id:SHEPD ;
+    dct:title "SSEN Capacity data – scotland demand heat map august" ;
+    skos:editorialNote "SSEN labels its Scottish 132/33 kV sites as GSPs and leaves the BSP sheet empty." ;
+    dcat:first <https://busbar.example/id/sse.heatmap.scotland-demand-heat-map-august/2023-09-01> ;
+    dcat:last <https://busbar.example/id/sse.heatmap.scotland-demand-heat-map-august/2023-09-01> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:CapacityAssessment,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/sse.heatmap.scotland-demand-heat-map-august/2023-09-01> a dcat:Dataset ;
+    dct:issued "2023-09-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/heatmap/scotland-demand-heat-map-august-2023-09-01.xlsx" ] ;
+    dcat:inSeries id:sse.heatmap.scotland-demand-heat-map-august .
+
+<https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2023-05-01> a dcat:Dataset ;
+    dct:issued "2023-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/scottish-hydro-electric-power-distribution-long-term-development-statement-tables-2023-05-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables .
+
+<https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2023-05-01> a dcat:Dataset ;
+    dct:issued "2023-05-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:XLSX ;
+            dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ;
+            busbar:localPath "sse/ltds/southern-electric-power-distribution-long-term-development-statement-tables-2023-05-01.xlsx" ] ;
+    dcat:inSeries id:sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables .
+
+id:ukpn.cim.epn a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:UKPN ;
+    dct:spatial id:EPN ;
+    dct:title "UKPN CIM network model – epn" ;
+    dcat:first <https://busbar.example/id/ukpn.cim.epn/2025-11-28> ;
+    dcat:last <https://busbar.example/id/ukpn.cim.epn/2025-11-28> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/ukpn.cim.epn/2025-11-28> a dcat:Dataset ;
+    dct:issued "2025-11-28" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "ukpn/cim/epn/epn-cim-2025-11-28.zip" ] ;
+    dcat:inSeries id:ukpn.cim.epn .
+
+id:ukpn.cim.lpn a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:UKPN ;
+    dct:spatial id:LPN ;
+    dct:title "UKPN CIM network model – lpn" ;
+    dcat:first <https://busbar.example/id/ukpn.cim.lpn/2025-11-28> ;
+    dcat:last <https://busbar.example/id/ukpn.cim.lpn/2025-11-28> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/ukpn.cim.lpn/2025-11-28> a dcat:Dataset ;
+    dct:issued "2025-11-28" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "ukpn/cim/lpn/lpn-cim-2025-11-28.zip" ] ;
+    dcat:inSeries id:ukpn.cim.lpn .
+
+id:ukpn.cim.spn a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:UKPN ;
+    dct:spatial id:SPN ;
+    dct:title "UKPN CIM network model – spn" ;
+    dcat:first <https://busbar.example/id/ukpn.cim.spn/2025-10-13> ;
+    dcat:last <https://busbar.example/id/ukpn.cim.spn/2025-10-13> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/ukpn.cim.spn/2025-10-13> a dcat:Dataset ;
+    dct:issued "2025-10-13" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:ZIP ;
+            dcat:mediaType "application/zip" ;
+            busbar:localPath "ukpn/cim/spn/spn-cim-2025-10-13.zip" ] ;
+    dcat:inSeries id:ukpn.cim.spn .
+
+id:ukpn.dfes.dfes-network-headroom-report a dcat:DatasetSeries ;
+    dct:publisher id:UKPN ;
+    dct:spatial id:EPN,
+        id:LPN,
+        id:SPN ;
+    dct:title "UKPN DFES – dfes network headroom report" ;
+    dcat:first <https://busbar.example/id/ukpn.dfes.dfes-network-headroom-report/2024-05-15> ;
+    dcat:last <https://busbar.example/id/ukpn.dfes.dfes-network-headroom-report/2024-05-15> ;
+    dcat:theme id:dfes ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:CapacityAssessment,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:forecast .
+
+<https://busbar.example/id/ukpn.dfes.dfes-network-headroom-report/2024-05-15> a dcat:Dataset ;
+    dct:issued "2024-05-15" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/dfes/dfes-network-headroom-report-2024-05-15.csv" ] ;
+    dcat:inSeries id:ukpn.dfes.dfes-network-headroom-report .
+
+<https://busbar.example/id/ukpn.ecr/2024-06-14> a dcat:Dataset ;
+    dct:issued "2024-06-14" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/ecr/embedded-capacity-register-2024-06-14.csv" ] ;
+    dcat:inSeries id:ukpn.ecr .
+
+id:ukpn.groups.ukpn-grid-postcode-area a dcat:DatasetSeries ;
+    dct:publisher id:UKPN ;
+    dct:spatial id:EPN,
+        id:LPN,
+        id:SPN ;
+    dct:title "UKPN Service areas – ukpn grid postcode area" ;
+    dcat:first <https://busbar.example/id/ukpn.groups.ukpn-grid-postcode-area/undated> ;
+    dcat:last <https://busbar.example/id/ukpn.groups.ukpn-grid-postcode-area/undated> ;
+    dcat:theme id:service-areas ;
+    busbar:describes busbar:CapacityAssessment,
+        busbar:ServiceArea ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/ukpn.groups.ukpn-grid-postcode-area/undated> a dcat:Dataset ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/groups/ukpn-grid-postcode-area.csv" ] ;
+    dcat:inSeries id:ukpn.groups.ukpn-grid-postcode-area .
+
+<https://busbar.example/id/ukpn.gsp.ukpn-grid-supply-points-overview/2024-11-23> a dcat:Dataset ;
+    dct:issued "2024-11-23" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/gsp/ukpn-grid-supply-points-overview-2024-11-23.csv" ] ;
+    dcat:inSeries id:ukpn.gsp.ukpn-grid-supply-points-overview .
+
+id:ukpn.ltds.ltds-table-1-circuit-data a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:UKPN ;
+    dct:spatial id:EPN,
+        id:LPN,
+        id:SPN ;
+    dct:title "UKPN LTDS – ltds table 1 circuit data" ;
+    dcat:first <https://busbar.example/id/ukpn.ltds.ltds-table-1-circuit-data/2023-11-01> ;
+    dcat:last <https://busbar.example/id/ukpn.ltds.ltds-table-1-circuit-data/2023-11-01> ;
+    dcat:theme id:ltds-circuits ;
+    busbar:describes busbar:Circuit,
+        busbar:Node ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/ukpn.ltds.ltds-table-1-circuit-data/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/ltds/ltds-table-1-circuit-data-2023-11-01.csv" ] ;
+    dcat:inSeries id:ukpn.ltds.ltds-table-1-circuit-data .
+
+id:ukpn.ltds.ltds-table-2a-transformer-2w a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:UKPN ;
+    dct:spatial id:EPN,
+        id:LPN,
+        id:SPN ;
+    dct:title "UKPN LTDS – ltds table 2a transformer 2w" ;
+    dcat:first <https://busbar.example/id/ukpn.ltds.ltds-table-2a-transformer-2w/2023-11-01> ;
+    dcat:last <https://busbar.example/id/ukpn.ltds.ltds-table-2a-transformer-2w/2023-11-01> ;
+    dcat:theme id:ltds-transformers ;
+    busbar:describes busbar:Node,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+<https://busbar.example/id/ukpn.ltds.ltds-table-2a-transformer-2w/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/ltds/ltds-table-2a-transformer-2w-2023-11-01.csv" ] ;
+    dcat:inSeries id:ukpn.ltds.ltds-table-2a-transformer-2w .
+
+<https://busbar.example/id/ukpn.ltds.ltds-table-3a-load-data-observed/2023-11-01> a dcat:Dataset ;
+    dct:issued "2023-11-01" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/ltds/ltds-table-3a-load-data-observed-2023-11-01.csv" ] ;
+    dcat:inSeries id:ukpn.ltds.ltds-table-3a-load-data-observed .
+
+<https://busbar.example/id/ukpn.substations.ukpn-grid-supply-points/2024-06-20> a dcat:Dataset ;
+    dct:issued "2024-06-20" ;
+    dcat:distribution [ a dcat:Distribution ;
+            dct:format filetype:CSV ;
+            dcat:mediaType "text/csv" ;
+            busbar:localPath "ukpn/substations/ukpn-grid-supply-points-2024-06-20.csv" ] ;
+    dcat:inSeries id:ukpn.substations.ukpn-grid-supply-points .
+
+id:enwl.substation-numbers.substation-numbers a dcat:DatasetSeries ;
+    dct:publisher id:ENWL ;
+    dct:spatial id:NorthWest ;
+    dct:title "ENWL Substation register – substation numbers" ;
+    dcat:first <https://busbar.example/id/enwl.substation-numbers.substation-numbers/2026-03-19> ;
+    dcat:last <https://busbar.example/id/enwl.substation-numbers.substation-numbers/2026-07-23> ;
+    dcat:theme id:substation-register ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation,
+        busbar:Site ;
+    busbar:temporalNature busbar:snapshot .
+
+id:eso.appendix-b a dcat:DatasetSeries ;
+    dct:publisher id:NESO ;
+    dct:spatial id:GB ;
+    dct:title "NESO ETYS Appendix B" ;
+    dcat:first <https://busbar.example/id/eso.appendix-b/2023> ;
+    dcat:last <https://busbar.example/id/eso.appendix-b/2025> ;
+    dcat:theme id:etys-appendix-b ;
+    busbar:describes busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+id:nged.cim.emids a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:NGED ;
+    dct:spatial id:EMids ;
+    dct:title "NGED CIM network model – emids" ;
+    dcat:first <https://busbar.example/id/nged.cim.emids/2025-09-18> ;
+    dcat:last <https://busbar.example/id/nged.cim.emids/2026-05-28> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+id:nged.cim.swales a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:NGED ;
+    dct:spatial id:SWales ;
+    dct:title "NGED CIM network model – swales" ;
+    dcat:first <https://busbar.example/id/nged.cim.swales/2025-09-19> ;
+    dcat:last <https://busbar.example/id/nged.cim.swales/2026-05-28> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+id:nged.cim.swest a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:NGED ;
+    dct:spatial id:SWest ;
+    dct:title "NGED CIM network model – swest" ;
+    dcat:first <https://busbar.example/id/nged.cim.swest/2025-09-19> ;
+    dcat:last <https://busbar.example/id/nged.cim.swest/2026-05-28> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+id:nged.cim.wmids a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:NGED ;
+    dct:spatial id:WMids ;
+    dct:title "NGED CIM network model – wmids" ;
+    dcat:first <https://busbar.example/id/nged.cim.wmids/2025-09-18> ;
+    dcat:last <https://busbar.example/id/nged.cim.wmids/2026-05-28> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+id:npg.cim.northeast a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:NPG ;
+    dct:spatial id:Northeast ;
+    dct:title "NPG CIM network model – northeast" ;
+    dcat:first <https://busbar.example/id/npg.cim.northeast/2025-12-28> ;
+    dcat:last <https://busbar.example/id/npg.cim.northeast/2026-05-28> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+id:npg.cim.yorkshire a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:NPG ;
+    dct:spatial id:Yorkshire ;
+    dct:title "NPG CIM network model – yorkshire" ;
+    dcat:first <https://busbar.example/id/npg.cim.yorkshire/2025-12-28> ;
+    dcat:last <https://busbar.example/id/npg.cim.yorkshire/2026-05-28> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+id:npg.dno-boundaries.all_dno_boundaries a dcat:DatasetSeries ;
+    dct:publisher id:NPG ;
+    dct:spatial id:GB ;
+    dct:title "NPG Licence area boundaries – all dno boundaries" ;
+    dcat:first <https://busbar.example/id/npg.dno-boundaries.all_dno_boundaries/2024-01-04> ;
+    dcat:last <https://busbar.example/id/npg.dno-boundaries.all_dno_boundaries/2025-05-06> ;
+    dcat:theme id:licence-area-boundaries ;
+    busbar:describes busbar:DistributionArea ;
+    busbar:temporalNature busbar:snapshot .
+
+id:spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-grid-substations a dcat:DatasetSeries ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPD ;
+    dct:title "SPEN Capacity data – distributed generation sp distribution heat maps spd grid substations" ;
+    dcat:first <https://busbar.example/id/spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-grid-substations/2024-06-17> ;
+    dcat:last <https://busbar.example/id/spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-grid-substations/2025-10-08> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:CapacityAssessment ;
+    busbar:temporalNature busbar:snapshot .
+
+id:sse.cim.scottish a dcat:DatasetSeries ;
+    dct:conformsTo id:iec-61970-cim ;
+    dct:publisher id:SSEN ;
+    dct:spatial id:SHEPD ;
+    dct:title "SSEN CIM network model – scottish" ;
+    dcat:first <https://busbar.example/id/sse.cim.scottish/2025-11-22> ;
+    dcat:last <https://busbar.example/id/sse.cim.scottish/2026-05-29> ;
+    dcat:theme id:cim ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:GridSupplyPoint,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+id:ukpn.gsp.ukpn-grid-supply-points-overview a dcat:DatasetSeries ;
+    dct:publisher id:UKPN ;
+    dct:spatial id:EPN,
+        id:LPN,
+        id:SPN ;
+    dct:title "UKPN Capacity data – ukpn grid supply points overview" ;
+    dcat:first <https://busbar.example/id/ukpn.gsp.ukpn-grid-supply-points-overview/2024-11-23> ;
+    dcat:last <https://busbar.example/id/ukpn.gsp.ukpn-grid-supply-points-overview/2026-03-06> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:CapacityAssessment,
+        busbar:GridSupplyPoint ;
+    busbar:temporalNature busbar:snapshot .
+
+id:ukpn.substations.ukpn-grid-supply-points a dcat:DatasetSeries ;
+    dct:publisher id:UKPN ;
+    dct:spatial id:EPN,
+        id:LPN,
+        id:SPN ;
+    dct:title "UKPN Substation register – ukpn grid supply points" ;
+    dcat:first <https://busbar.example/id/ukpn.substations.ukpn-grid-supply-points/2024-06-20> ;
+    dcat:last <https://busbar.example/id/ukpn.substations.ukpn-grid-supply-points/2025-07-16> ;
+    dcat:theme id:substation-register ;
+    busbar:describes busbar:GridSupplyPoint,
+        busbar:Site ;
+    busbar:temporalNature busbar:snapshot .
+
+id:nged.ltds.table-3 a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:NGED ;
+    dct:spatial id:EMids,
+        id:SWales,
+        id:SWest,
+        id:WMids ;
+    dct:title "NGED LTDS – table 3" ;
+    dcat:first <https://busbar.example/id/nged.ltds.table-3/2023-11-01> ;
+    dcat:last <https://busbar.example/id/nged.ltds.table-3/2026-06-19> ;
+    dcat:theme id:ltds-loads ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:PrimarySubstation,
+        busbar:SubstationLoad ;
+    busbar:temporalNature busbar:forecast .
+
+id:ukpn.ltds.ltds-table-3a-load-data-observed a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:UKPN ;
+    dct:spatial id:EPN,
+        id:LPN,
+        id:SPN ;
+    dct:title "UKPN LTDS – ltds table 3a load data observed" ;
+    dcat:first <https://busbar.example/id/ukpn.ltds.ltds-table-3a-load-data-observed/2023-11-01> ;
+    dcat:last <https://busbar.example/id/ukpn.ltds.ltds-table-3a-load-data-observed/2026-06-01> ;
+    dcat:theme id:ltds-loads ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:PrimarySubstation,
+        busbar:SubstationLoad ;
+    busbar:temporalNature busbar:forecast .
+
+id:npg.heatmap.heatmapsubstationareas a dcat:DatasetSeries ;
+    dct:publisher id:NPG ;
+    dct:spatial id:Northeast,
+        id:Yorkshire ;
+    dct:title "NPG Capacity data – heatmapsubstationareas" ;
+    dcat:first <https://busbar.example/id/npg.heatmap.heatmapsubstationareas/2026-01-29> ;
+    dcat:last <https://busbar.example/id/npg.heatmap.heatmapsubstationareas/2026-07-27> ;
+    dcat:theme id:capacity-data ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:CapacityAssessment,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+id:gov_uk.repd a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:QUARTERLY ;
+    dct:publisher id:DESNZ ;
+    dct:spatial id:GB ;
+    dct:title "DESNZ Renewable Energy Planning Database" ;
+    dcat:first <https://busbar.example/id/gov_uk.repd/2025-Q1> ;
+    dcat:last <https://busbar.example/id/gov_uk.repd/2026-Q1> ;
+    dcat:theme id:repd ;
+    busbar:describes busbar:REPDProject ;
+    busbar:temporalNature busbar:snapshot .
+
+id:enwl.ecr a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:MONTHLY ;
+    dct:conformsTo id:ena-ecr ;
+    dct:publisher id:ENWL ;
+    dct:spatial id:NorthWest ;
+    dct:title "ENWL Embedded Capacity Register" ;
+    dcat:first <https://busbar.example/id/enwl.ecr/2024-06-14> ;
+    dcat:last <https://busbar.example/id/enwl.ecr/2026-07-13> ;
+    dcat:theme id:ecr ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:DistributionProject,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+id:sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:SSEN ;
+    dct:spatial id:SHEPD ;
+    dct:title "SSEN LTDS – scottish hydro electric power distribution long term development statement tables" ;
+    dcat:first <https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2023-05-01> ;
+    dcat:last <https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2026-05-01> ;
+    dcat:theme id:ltds ;
+    busbar:describes busbar:Circuit,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:SubstationLoad,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+id:nged.ecr a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:MONTHLY ;
+    dct:conformsTo id:ena-ecr ;
+    dct:publisher id:NGED ;
+    dct:spatial id:EMids,
+        id:SWales,
+        id:SWest,
+        id:WMids ;
+    dct:title "NGED Embedded Capacity Register" ;
+    dcat:first <https://busbar.example/id/nged.ecr/2024-06-01> ;
+    dcat:last <https://busbar.example/id/nged.ecr/2026-04-01> ;
+    dcat:theme id:ecr ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:DistributionProject,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+id:sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:ANNUAL_2 ;
+    dct:conformsTo id:ofgem-ltds ;
+    dct:publisher id:SSEN ;
+    dct:spatial id:SEPD ;
+    dct:title "SSEN LTDS – southern electric power distribution long term development statement tables" ;
+    dcat:first <https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2023-05-01> ;
+    dcat:last <https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2026-05-01> ;
+    dcat:theme id:ltds ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:Circuit,
+        busbar:Node,
+        busbar:PrimarySubstation,
+        busbar:SubstationLoad,
+        busbar:Transformer ;
+    busbar:temporalNature busbar:snapshot .
+
+id:ukpn.ecr a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:MONTHLY ;
+    dct:conformsTo id:ena-ecr ;
+    dct:publisher id:UKPN ;
+    dct:spatial id:EPN,
+        id:LPN,
+        id:SPN ;
+    dct:title "UKPN Embedded Capacity Register" ;
+    dcat:first <https://busbar.example/id/ukpn.ecr/2024-06-14> ;
+    dcat:last <https://busbar.example/id/ukpn.ecr/2026-07-14> ;
+    dcat:theme id:ecr ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:DistributionProject,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+id:spen.ecr a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:MONTHLY ;
+    dct:conformsTo id:ena-ecr ;
+    dct:publisher id:SPEN ;
+    dct:spatial id:SPD,
+        id:SPM ;
+    dct:title "SPEN Embedded Capacity Register" ;
+    dcat:first <https://busbar.example/id/spen.ecr/2024-06-27> ;
+    dcat:last <https://busbar.example/id/spen.ecr/2026-08-28> ;
+    dcat:theme id:ecr ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:DistributionProject,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+id:npg.ecr a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:MONTHLY ;
+    dct:conformsTo id:ena-ecr ;
+    dct:publisher id:NPG ;
+    dct:spatial id:Northeast,
+        id:Yorkshire ;
+    dct:title "NPG Embedded Capacity Register" ;
+    dcat:first <https://busbar.example/id/npg.ecr/2024-06-14> ;
+    dcat:last <https://busbar.example/id/npg.ecr/2026-09-01> ;
+    dcat:theme id:ecr ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:DistributionProject,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
+id:eso.tec a dcat:DatasetSeries ;
+    dct:conformsTo id:cusc ;
+    dct:publisher id:NESO ;
+    dct:spatial id:GB ;
+    dct:title "NESO TEC register" ;
+    dcat:first <https://busbar.example/id/eso.tec/2024-06-25> ;
+    dcat:last <https://busbar.example/id/eso.tec/2026-07-14> ;
+    dcat:theme id:tec-register ;
+    busbar:describes busbar:GridSupplyPoint,
+        busbar:TransmissionProject ;
+    busbar:temporalNature busbar:snapshot .
+
+id:sse.ecr a dcat:DatasetSeries ;
+    dct:accrualPeriodicity freq:MONTHLY ;
+    dct:conformsTo id:ena-ecr ;
+    dct:publisher id:SSEN ;
+    dct:spatial id:SEPD,
+        id:SHEPD ;
+    dct:title "SSEN Embedded Capacity Register" ;
+    dcat:first <https://busbar.example/id/sse.ecr/2023-08-01> ;
+    dcat:last <https://busbar.example/id/sse.ecr/2026-09-01> ;
+    dcat:theme id:ecr ;
+    busbar:describes busbar:BulkSupplyPoint,
+        busbar:DistributionProject,
+        busbar:GridSupplyPoint,
+        busbar:PrimarySubstation ;
+    busbar:temporalNature busbar:snapshot .
+
