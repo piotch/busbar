@@ -1,0 +1,24 @@
+# Supply ?before and ?after as observation IRIs through RDFLib initBindings
+# (or add a VALUES clause when using an interactive SPARQL client).
+PREFIX pub: <https://busbar.example/publishing#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+
+SELECT DISTINCT ?dataset ?title
+WHERE {
+  # Require successful observations of the same catalogue and specification.
+  GRAPH <https://busbar.example/graphs/observations> {
+    ?before pub:observedCatalog ?canonicalCatalogue ;
+            pub:specification ?specification ; pub:status "success" .
+    ?after pub:observedCatalog ?canonicalCatalogue ;
+           pub:specification ?specification ; pub:status "success" .
+  }
+  GRAPH ?after {
+    ?sourceCatalogue a dcat:Catalog ; dcat:dataset ?dataset .
+    OPTIONAL { ?dataset dct:title ?title }
+  }
+  FILTER NOT EXISTS {
+    GRAPH ?before { ?previousCatalogue a dcat:Catalog ; dcat:dataset ?dataset }
+  }
+}
+ORDER BY ?dataset
