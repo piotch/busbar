@@ -125,5 +125,6 @@ substation, project or capacity equivalence mappings are being claimed.
 - [CIM/LTDS alignment](cim-ltds-alignment.md): cited DNO definition and pending domain review.
 
 The raw captures, generated exports, private archive data and locally excluded
-LTDS reference package are not part of the Git changeset. No scheduling or UNS
-publication is implemented yet.
+LTDS reference package are not part of the Git changeset. A subsequent
+[GitHub Actions workflow](github-actions.md) now supports scheduled public capture
+once repository secrets are configured. No UNS messages are published yet.

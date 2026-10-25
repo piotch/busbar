@@ -83,6 +83,16 @@ linked through the metadata, not merged across historical states.
 See [source tracking](docs/source-tracking.md#trig-observation-history) for
 SPARQL examples. Protégé's flat OWL export remains a separate viewer artifact.
 
+## Scheduled capture with GitHub Actions
+
+The [Catalogue observations workflow](.github/workflows/catalogue-observations.yml)
+can capture public catalogues daily and on manual dispatch, persisting history in
+the S3-compatible bucket and publishing versioned exports. Pull requests only run
+validation and tests; they never access bucket credentials.
+
+Configure the repository secrets first—the local `.env` is not available on a
+GitHub runner. See [GitHub Actions setup and storage](docs/github-actions.md).
+
 ## Tracking publishing sources
 
 Git-managed Turtle declarations describe UKPN and Northern Powergrid, their
@@ -105,7 +115,7 @@ uv run scripts/capture_catalogue.py --spec \
 Original responses and observation records are written under ignored `captures/`,
 not committed to Git. Run a capture command again to compare catalogue membership
 with the previous successful observation of that same specification. Standalone
-commands are unscheduled.
+commands are unscheduled; the GitHub workflow runs after repository setup.
 
 See [source tracking](docs/source-tracking.md) for ownership, storage, limitations,
 validation and the relationship to Django and the UNS.
