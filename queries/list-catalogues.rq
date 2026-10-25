@@ -1,0 +1,19 @@
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX pub: <https://busbar.example/publishing#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?catalogue ?title ?publisherName ?maintainerName
+WHERE {
+  GRAPH <https://busbar.example/graphs/current-definitions> {
+    ?catalogue a dcat:Catalog ;
+               dct:title ?title ;
+               dct:publisher ?publisher .
+    ?publisher foaf:name ?publisherName .
+    OPTIONAL {
+      ?catalogue pub:maintainedBy ?maintainer .
+      ?maintainer foaf:name ?maintainerName .
+    }
+  }
+}
+ORDER BY ?catalogue

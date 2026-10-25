@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Busbar: publisher catalogues, observations and the curated archive catalogue</title>
+  <desc id="desc">DNOs publish catalogues describing datasets. We capture successive catalogue observations and preserve their RDF. Separately ReferenceWorks maintains Busbar, describing selected dataset series, editions and archived files. Reviewed links between these layers and verification of private archive locations remain future work.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#52647a"/></marker>
+    <style>
+      text {font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill:#18283a}
+      .heading {font-size:24px;font-weight:700}
+      .section {font-size:19px;font-weight:700}
+      .label {font-size:16px;font-weight:600}
+      .small {font-size:14px;fill:#44566c}
+      .tiny {font-size:13px;fill:#44566c}
+      .box {fill:white;stroke:#80a6cf;stroke-width:1.5;rx:10}
+      .green {stroke:#76aa91}
+      .edge {fill:none;stroke:#52647a;stroke-width:1.6;marker-end:url(#arrow)}
+      .future {stroke-dasharray:6 5}
+    </style>
+  </defs>
+  <rect width="1200" height="800" fill="#ffffff"/>
+  <text x="35" y="40" class="heading">Two catalogues, two kinds of history</text>
+  <text x="35" y="67" class="small">Source observations preserve what publishers said. Busbar describes selected datasets and the files we hold.</text>
+
+  <rect x="25" y="90" width="1150" height="270" rx="14" fill="#f0f6fc" stroke="#ccdef0"/>
+  <text x="45" y="121" class="section">1 · Publisher catalogues — observed by us</text>
+  <rect x="45" y="145" width="180" height="75" class="box"/>
+  <text x="135" y="175" text-anchor="middle" class="label">DNO organization</text>
+  <text x="135" y="199" text-anchor="middle" class="small">UKPN / NPG</text>
+  <path d="M225 182H310" class="edge"/>
+  <text x="267" y="168" text-anchor="middle" class="tiny">publishes</text>
+  <rect x="310" y="145" width="225" height="75" class="box"/>
+  <text x="422" y="175" text-anchor="middle" class="label">Source catalogue</text>
+  <text x="422" y="199" text-anchor="middle" class="small">one canonical ID per DNO</text>
+  <path d="M535 182H650" class="edge"/>
+  <text x="592" y="168" text-anchor="middle" class="tiny">lists</text>
+  <rect x="650" y="145" width="475" height="75" class="box"/>
+  <text x="887" y="175" text-anchor="middle" class="label">Dataset entries + download links</text>
+  <text x="887" y="199" text-anchor="middle" class="small">Descriptions, themes, distributions; sometimes historical releases</text>
+
+  <path d="M422 220V265" class="edge"/>
+  <text x="438" y="247" class="tiny">we capture</text>
+  <rect x="310" y="265" width="225" height="65" class="box"/>
+  <text x="422" y="292" text-anchor="middle" class="label">Observations over time</text>
+  <text x="422" y="314" text-anchor="middle" class="small">when / outcome / source</text>
+  <path d="M535 297H650" class="edge"/>
+  <text x="592" y="282" text-anchor="middle" class="tiny">reference</text>
+  <rect x="650" y="265" width="475" height="65" class="box"/>
+  <text x="887" y="292" text-anchor="middle" class="label">Archived catalogue RDF + observation records</text>
+  <text x="887" y="314" text-anchor="middle" class="small">Metadata evidence — NOT downloaded dataset contents</text>
+
+  <rect x="25" y="410" width="1150" height="280" rx="14" fill="#f0f8f3" stroke="#cce3d5"/>
+  <text x="45" y="441" class="section">2 · Busbar — curated by ReferenceWorks</text>
+  <path d="M1125 205H1145V380H685V465" class="edge future"/>
+  <rect x="685" y="366" width="420" height="28" rx="5" fill="white"/>
+  <text x="895" y="385" text-anchor="middle" class="tiny">Reviewed source-to-series mappings: not implemented</text>
+  <rect x="45" y="465" width="180" height="75" class="box green"/>
+  <text x="135" y="495" text-anchor="middle" class="label">ReferenceWorks</text>
+  <text x="135" y="519" text-anchor="middle" class="small">organization</text>
+  <path d="M225 502H350" class="edge"/>
+  <text x="287" y="483" text-anchor="middle" class="tiny">publishes /</text>
+  <text x="287" y="499" text-anchor="middle" class="tiny">maintains</text>
+  <rect x="350" y="465" width="190" height="75" class="box green"/>
+  <text x="445" y="495" text-anchor="middle" class="label">Busbar catalogue</text>
+  <text x="445" y="519" text-anchor="middle" class="small">our curated knowledge</text>
+  <path d="M540 502H600" class="edge"/>
+  <rect x="600" y="465" width="170" height="75" class="box green"/>
+  <text x="685" y="495" text-anchor="middle" class="label">Dataset series</text>
+  <text x="685" y="519" text-anchor="middle" class="small">e.g. UKPN ECR</text>
+  <path d="M770 502H825" class="edge"/>
+  <rect x="825" y="465" width="135" height="75" class="box green"/>
+  <text x="892" y="495" text-anchor="middle" class="label">Editions</text>
+  <text x="892" y="519" text-anchor="middle" class="small">publications</text>
+  <path d="M960 502H1005" class="edge"/>
+  <rect x="1005" y="465" width="150" height="75" class="box green"/>
+  <text x="1080" y="495" text-anchor="middle" class="label">File descriptions</text>
+  <text x="1080" y="519" text-anchor="middle" class="small">distributions</text>
+
+  <path d="M1080 540V585H875" class="edge future"/>
+  <text x="1100" y="566" text-anchor="end" class="tiny">localPath references exist</text>
+  <rect x="400" y="560" width="475" height="95" rx="10" fill="#fffaf0" stroke="#c7a966" stroke-width="1.5"/>
+  <text x="637" y="589" text-anchor="middle" class="label">Private archive: actual dataset files</text>
+  <text x="637" y="613" text-anchor="middle" class="small">CSV / XLSX / ZIP — stored outside the repository</text>
+  <text x="637" y="637" text-anchor="middle" class="small">Storage root, file verification and acquisition provenance still to resolve</text>
+  <text x="45" y="650" class="tiny">An edition date is not</text>
+  <text x="45" y="670" class="tiny">an observation timestamp.</text>
+
+  <text x="35" y="726" class="label">Assertion boundaries stay explicit</text>
+  <text x="35" y="750" class="small">Git: definitions + curated catalogue · Runtime: captures + observations · Private archive: data files</text>
+  <text x="35" y="774" class="small">TriG keeps definitions, Busbar assertions, observation metadata and each publisher snapshot in separate named graphs.</text>
+</svg>

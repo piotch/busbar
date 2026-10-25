@@ -1,0 +1,14 @@
+PREFIX pub: <https://busbar.example/publishing#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+SELECT ?observation ?catalogue ?observedAt ?status ?datasetCount
+WHERE {
+  GRAPH <https://busbar.example/graphs/observations> {
+    ?observation a pub:ObservationRecord ;
+                 pub:observedCatalog ?catalogue ;
+                 prov:generatedAtTime ?observedAt ;
+                 pub:status ?status .
+    OPTIONAL { ?observation pub:datasetCount ?datasetCount }
+  }
+}
+ORDER BY ?catalogue ?observedAt

@@ -67,4 +67,37 @@ references and curator responsibility separately from acquisition configuration.
 - Captured snapshot graphs: unmodified parsed publisher assertions.
 - Observation metadata graph: local acquisition outcomes and evidence references.
 
-Publisher-assigned organization identifiers are not automatically equated to curated organization identities. No ECR series-to-source mappings are asserted; scope and evidence must be reviewed first.
+The OWL viewer includes definitions and selected source captures, but not the
+curated series membership or the original domain vocabulary. Thus it shows three
+catalogue identities: two observed source catalogues and Busbar.
+
+The TriG export keeps current curated catalogue assertions in
+`https://busbar.example/graphs/busbar-catalogue`, separate from current definitions,
+observations and source snapshots. Join graphs explicitly using their shared
+entity URIs. The current curated graph is not a historical reconstruction of
+Busbar at each capture time.
+
+Publisher-assigned organization identifiers in raw DCAT remain unchanged. They
+are not automatically equated to curated organization identities. No ECR series
+is yet linked to a particular publisher entry; scope and evidence must be reviewed
+before adding those mappings.
+
+## Query
+
+`queries/list-catalogues.rq` lists the three canonical catalogue identities and
+their publishers and maintainers from the current-definitions graph:
+
+```bash
+uv run scripts/build_observations.py
+uv run --with rdflib python - <<'PY'
+from pathlib import Path
+from rdflib import Dataset
+history = Dataset(default_union=False)
+history.parse('build/observations.trig', format='trig')
+for row in history.query(Path('queries/list-catalogues.rq').read_text()):
+    print(row.title, row.publisherName, row.maintainerName)
+PY
+```
+
+The existing curated series can then be queried in their own graph and joined to
+definitions through `dct:publisher` and the shared organization URI.
