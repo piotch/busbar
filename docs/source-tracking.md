@@ -115,7 +115,7 @@ Python 3.11 or newer is required. The script:
 Observations written with `--storage-uri s3://bucket/prefix` retain portable
 `artifact_path`, `artifact_uri` and `manifest_uri` references. Restored files can be
 queried on a different machine; local file references remain supported for local
-experiments. Portable references do not upload files: the capture command still writes locally.
+experiments. The bucket workflow does not automatically upload laptop-only history.
 
 Each observation records source URL, request start/completion times, HTTP result,
 response content type, ETag/Last-Modified when supplied, artifact URI/hash,
@@ -138,7 +138,9 @@ avoid comparing unlike scopes.
 
 ## What is intentionally not implemented
 
-- No scheduler or bucket synchronization is included yet; capture commands run locally.
+- Standalone scripts do not schedule themselves. The repository now includes an
+  optional GitHub Actions workflow for daily/manual capture with durable bucket
+  storage; see [workflow setup](github-actions.md).
 - No dataset content download, Django integration, Iceberg loading or UNS publication.
 - No native API field-schema or glossary capture yet; DCAT alone does not preserve
   all the useful metadata identified in the UKPN exploration.
