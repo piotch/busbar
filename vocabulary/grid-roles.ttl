@@ -1,0 +1,17 @@
+@prefix grid: <https://busbar.example/grid#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+grid:organization-classifications a skos:ConceptScheme ;
+    dct:title "Grid organization classifications"@en ;
+    skos:hasTopConcept grid:DistributionNetworkOperator .
+
+grid:DistributionNetworkOperator a skos:Concept ;
+    skos:inScheme grid:organization-classifications ;
+    skos:topConceptOf grid:organization-classifications ;
+    skos:prefLabel "Distribution network operator"@en ;
+    skos:altLabel "DNO"@en ;
+    skos:definition "A DNO is a company that owns, operates and maintains an electric distribution network in Great Britain."@en ;
+    dct:source <https://busbar.example/id/references/ltds-grid-modelling-v2-1-1/annex-2-v7> ;
+    skos:editorialNote "Definition transcribed from the release glossary, with line breaks normalized. This is a local domain classification, not an assertion of equivalence to a CIM DSO class."@en ;
+    skos:scopeNote "Great Britain DNO classification. No equivalence to an external DSO term is asserted."@en .

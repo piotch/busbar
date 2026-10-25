@@ -1,0 +1,12 @@
+@prefix pub: <https://busbar.example/publishing#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+# Curated catalogue identity and responsibility live here.
+# Dataset-series membership and editions remain in catalogue.ttl.
+<https://busbar.example/id/grid/catalogues/busbar>
+    a dcat:Catalog, pub:CuratedCatalog ;
+    dct:title "Busbar" ;
+    dct:description "ReferenceWorks' curated catalogue of selected datasets about the GB electricity grid, including their provenance, coverage and publication history."@en ;
+    dct:publisher <https://busbar.example/id/organisations/referenceworks> ;
+    pub:maintainedBy <https://busbar.example/id/organisations/referenceworks> .

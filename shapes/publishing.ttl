@@ -1,0 +1,51 @@
+@prefix pub: <https://busbar.example/publishing#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+pub:OrganizationShape a sh:NodeShape ;
+    sh:targetClass org:Organization ;
+    sh:nodeKind sh:IRI ;
+    sh:class org:Organization ;
+    sh:property [ sh:path foaf:name ; sh:minCount 1 ] ;
+    sh:property [ sh:path org:classification ; sh:class skos:Concept ] .
+
+pub:CuratedCatalogShape a sh:NodeShape ;
+    sh:targetClass pub:CuratedCatalog ;
+    sh:nodeKind sh:IRI ;
+    sh:class dcat:Catalog ;
+    sh:property [ sh:path dct:title ; sh:minCount 1 ] ;
+    sh:property [ sh:path dct:publisher ; sh:minCount 1 ;
+        sh:nodeKind sh:IRI ; sh:node pub:OrganizationShape ] ;
+    sh:property [ sh:path pub:maintainedBy ; sh:minCount 1 ;
+        sh:nodeKind sh:IRI ; sh:node pub:OrganizationShape ] .
+
+pub:PortalShape a sh:NodeShape ;
+    sh:targetClass pub:Portal ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:path dct:title ; sh:minCount 1 ] ;
+    sh:property [ sh:path pub:portalOperator ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:nodeKind sh:IRI ; sh:node pub:OrganizationShape ] ;
+    sh:property [ sh:path pub:platform ; sh:minCount 1 ; sh:maxCount 1 ; sh:class pub:Platform ] ;
+    sh:property [ sh:path foaf:homepage ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ; sh:pattern "^https://" ] ;
+    sh:property [ sh:path pub:exposesCatalog ; sh:minCount 1 ; sh:class pub:TrackedCatalog ] .
+
+pub:CatalogShape a sh:NodeShape ;
+    sh:targetClass pub:TrackedCatalog ;
+    sh:class dcat:Catalog ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:path dct:title ; sh:minCount 1 ] ;
+    sh:property [ sh:path dct:publisher ; sh:minCount 1 ; sh:nodeKind sh:IRI ; sh:node pub:OrganizationShape ] ;
+    sh:property [ sh:path [ sh:inversePath pub:catalog ] ; sh:minCount 1 ; sh:class pub:CaptureSpecification ] .
+
+pub:CaptureShape a sh:NodeShape ;
+    sh:targetClass pub:CaptureSpecification ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:path pub:catalog ; sh:minCount 1 ; sh:maxCount 1 ; sh:class pub:TrackedCatalog ] ;
+    sh:property [ sh:path pub:endpoint ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ; sh:pattern "^https://" ] ;
+    sh:property [ sh:path pub:mediaType ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ; sh:in ( "application/rdf+xml" ) ] .

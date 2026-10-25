@@ -1,0 +1,6 @@
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<https://busbar.example/id/organisations/referenceworks>
+    a org:Organization ;
+    foaf:name "ReferenceWorks" .
