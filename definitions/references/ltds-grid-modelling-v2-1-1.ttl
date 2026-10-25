@@ -1,0 +1,12 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# Bibliographic reference only: no private download path, archived copy or hash.
+<https://busbar.example/id/references/ltds-grid-modelling-v2-1-1/annex-2-v7>
+    a foaf:Document ;
+    dct:title "LTDS Grid Modelling Annex 2 - Data Exchange Specifications v7"@en ;
+    dct:isPartOf <https://cim.bsigroup.com/releases/ltds/ltds-grid-modelling-v2-1-1-r15/> ;
+    dct:bibliographicCitation "LTDS Grid Modelling v2-1-1, Annex 2: Data Exchange Specifications v7, section 6, Terms, Definitions and Abbreviated Terms, page 75; entry: Distribution Network Operator (DNO)."@en .
+
+<https://cim.bsigroup.com/releases/ltds/ltds-grid-modelling-v2-1-1-r15/>
+    dct:title "LTDS Grid Modelling v2-1-1"@en .

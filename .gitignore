@@ -1,0 +1,7 @@
+# Captured evidence and observation records are runtime data, not declarations.
+/captures/
+/captures-shared/
+/build/
+__pycache__/
+*.pyc
+.env

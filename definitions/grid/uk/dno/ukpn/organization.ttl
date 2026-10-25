@@ -1,0 +1,9 @@
+@prefix grid: <https://busbar.example/grid#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# Independent source-registry identity; no dependency on the grid ontology.
+<https://busbar.example/id/grid/uk/dno/ukpn>
+    a org:Organization ;
+    org:classification grid:DistributionNetworkOperator ;
+    foaf:name "UK Power Networks" .
