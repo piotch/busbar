@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="960" viewBox="0 0 1200 960" role="img" aria-labelledby="title desc">
   <title id="title">Busbar: publisher catalogues, observations and the curated archive catalogue</title>
-  <desc id="desc">DNOs publish catalogues describing datasets. We capture successive catalogue observations and preserve their RDF. Separately ReferenceWorks maintains Busbar, describing selected dataset series, editions and archived files. Reviewed links between these layers and verification of private archive locations remain future work.</desc>
+  <desc id="desc">DNOs publish catalogues describing datasets. We capture successive catalogue observations and preserve their RDF. Separately ReferenceWorks maintains Busbar, describing selected dataset series, editions and archived files. A separate Grid domain ontology describes business concepts and relationships, not catalogue metadata or files. Dataset-content mappings to this ontology, reviewed source-to-series links and verification of private archive locations remain future work.</desc>
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#52647a"/></marker>
     <style>
@@ -16,7 +16,7 @@
       .future {stroke-dasharray:6 5}
     </style>
   </defs>
-  <rect width="1200" height="800" fill="#ffffff"/>
+  <rect width="1200" height="960" fill="#ffffff"/>
   <text x="35" y="40" class="heading">Two catalogues, two kinds of history</text>
   <text x="35" y="67" class="small">Source observations preserve what publishers said. Busbar describes selected datasets and the files we hold.</text>
 
@@ -83,7 +83,13 @@
   <text x="45" y="650" class="tiny">An edition date is not</text>
   <text x="45" y="670" class="tiny">an observation timestamp.</text>
 
-  <text x="35" y="726" class="label">Assertion boundaries stay explicit</text>
-  <text x="35" y="750" class="small">Git: definitions + curated catalogue · Runtime: captures + observations · Private archive: data files</text>
-  <text x="35" y="774" class="small">TriG keeps definitions, Busbar assertions, observation metadata and each publisher snapshot in separate named graphs.</text>
+  <rect x="25" y="715" width="1150" height="135" rx="14" fill="#f5f1fa" stroke="#d9cce9"/>
+  <text x="45" y="746" class="section">3 · Grid domain ontology — business concepts and relationships</text>
+  <text x="45" y="775" class="label">Network operators · Substations · Connections · Projects · Capacity assessments</text>
+  <text x="45" y="802" class="small">Models the electricity-network domain — distinct from descriptions of datasets, editions and files.</text>
+  <text x="45" y="828" class="small">Dataset-content mappings to these concepts are not yet implemented; CIM/LTDS alignment remains under review.</text>
+
+  <text x="35" y="886" class="label">Assertion boundaries stay explicit</text>
+  <text x="35" y="910" class="small">Git: definitions + curated catalogue + domain ontology · Runtime: captures + observations · Private archive: data files</text>
+  <text x="35" y="934" class="small">TriG keeps definitions, Busbar assertions, observation metadata and each publisher snapshot in separate named graphs.</text>
 </svg>
