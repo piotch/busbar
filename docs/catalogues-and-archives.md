@@ -1,6 +1,6 @@
 # Busbar: catalogues, observations and archives
 
-![Publisher catalogues and observations, alongside Busbar's curated catalogue and private archive](images/catalogues-and-archives.svg)
+![Publisher catalogues and observations, Busbar's curated catalogue and private archive, and the Grid domain ontology](images/catalogues-and-archives.svg)
 
 ## The short explanation
 
@@ -16,6 +16,12 @@ These are complementary activities, not two competing catalogues.
 | Current storage | Ignored `captures/` directory | Git-managed `catalogue.ttl`; actual private data files live elsewhere |
 
 **A catalogue snapshot is metadata, not a copy of all the data it lists.**
+
+The diagram also shows the **Grid domain ontology**: business concepts and
+relationships such as network operators, substations, connections, projects and
+capacity assessments. This is distinct from catalogue metadata and archived
+files. Mappings from dataset contents to these concepts are not yet implemented;
+CIM/LTDS alignment remains under review.
 
 ## 1. DNO catalogues and observations
 
