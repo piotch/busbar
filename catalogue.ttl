@@ -5,7 +5,8 @@
 #   dcat:Dataset        one edition of a series (dct:issued, dcat:prev to the previous edition)
 #   dcat:Distribution   one file of an edition
 # Terms prefixed busbar: and the resources prefixed id: (publishers, areas, dataset types, standards)
-# are defined in busbar-ontology.ttl.
+# are defined in busbar-ontology.ttl; shared organization and catalogue identities
+# are declared under definitions/.
 
 @prefix busbar: <https://busbar.example/ns#> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
@@ -15,9 +16,7 @@
 @prefix id: <https://busbar.example/id/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-id:busbar a dcat:Catalog ;
-    dct:description "Open catalogue of open datasets about the GB electricity grid: where each dataset comes from, what it describes, its geographic and temporal coverage and its publication history. Terms are defined in busbar-ontology.json." ;
-    dct:title "Busbar" ;
+<https://busbar.example/id/grid/catalogues/busbar> a dcat:Catalog ;
     dcat:dataset id:enwl.boundary-flow.enwl-boundary-flow-gsp-xy,
         id:enwl.boundary-flow.enwl-boundary-flow-merge,
         id:enwl.boundary-flow.gsp-boundary-flow,
@@ -1855,7 +1854,7 @@ id:nged.ltds.table-2a a dcat:DatasetSeries ;
     dcat:inSeries id:npg.ecr .
 
 id:npg.esa.substation-combined-service-areas a dcat:DatasetSeries ;
-    dct:publisher id:NPG ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/npg> ;
     dct:spatial id:Northeast,
         id:Yorkshire ;
     dct:title "NPG Service areas – substation combined service areas" ;
@@ -1877,7 +1876,7 @@ id:npg.esa.substation-combined-service-areas a dcat:DatasetSeries ;
     dcat:inSeries id:npg.esa.substation-combined-service-areas .
 
 id:npg.heatmap.heatmapgenerationdata a dcat:DatasetSeries ;
-    dct:publisher id:NPG ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/npg> ;
     dct:spatial id:Northeast,
         id:Yorkshire ;
     dct:title "NPG Capacity data – heatmapgenerationdata" ;
@@ -1909,7 +1908,7 @@ id:npg.heatmap.heatmapgenerationdata a dcat:DatasetSeries ;
 id:npg.ltds.Appendix-4-Table-2-Northeast a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:NPG ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/npg> ;
     dct:spatial id:Northeast ;
     dct:title "NPG LTDS – Appendix 4 Table 2 Northeast" ;
     dcat:first <https://busbar.example/id/npg.ltds.Appendix-4-Table-2-Northeast/2024-05-01> ;
@@ -1930,7 +1929,7 @@ id:npg.ltds.Appendix-4-Table-2-Northeast a dcat:DatasetSeries ;
 id:npg.ltds.Appendix-4-Table-2-Yorkshire a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:NPG ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/npg> ;
     dct:spatial id:Yorkshire ;
     dct:title "NPG LTDS – Appendix 4 Table 2 Yorkshire" ;
     dcat:first <https://busbar.example/id/npg.ltds.Appendix-4-Table-2-Yorkshire/2024-05-01> ;
@@ -1951,7 +1950,7 @@ id:npg.ltds.Appendix-4-Table-2-Yorkshire a dcat:DatasetSeries ;
 id:npg.ltds.ltds-appendix-1-northeast a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:NPG ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/npg> ;
     dct:spatial id:Northeast ;
     dct:title "NPG LTDS – ltds appendix 1 northeast" ;
     dcat:first <https://busbar.example/id/npg.ltds.ltds-appendix-1-northeast/2024-05-01> ;
@@ -1973,7 +1972,7 @@ id:npg.ltds.ltds-appendix-1-northeast a dcat:DatasetSeries ;
 id:npg.ltds.ltds-appendix-1-yorkshire a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:NPG ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/npg> ;
     dct:spatial id:Yorkshire ;
     dct:title "NPG LTDS – ltds appendix 1 yorkshire" ;
     dcat:first <https://busbar.example/id/npg.ltds.ltds-appendix-1-yorkshire/2024-05-01> ;
@@ -1995,7 +1994,7 @@ id:npg.ltds.ltds-appendix-1-yorkshire a dcat:DatasetSeries ;
 id:npg.ltds.ltds-appendix-3 a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:NPG ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/npg> ;
     dct:spatial id:Northeast,
         id:Yorkshire ;
     dct:title "NPG LTDS – ltds appendix 3" ;
@@ -2017,7 +2016,7 @@ id:npg.ltds.ltds-appendix-3 a dcat:DatasetSeries ;
 id:npg.ltds.ltds-appendix-5 a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:NPG ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/npg> ;
     dct:spatial id:Northeast,
         id:Yorkshire ;
     dct:title "NPG LTDS – ltds appendix 5" ;
@@ -2704,7 +2703,7 @@ id:sse.heatmap.scotland-demand-heat-map-august a dcat:DatasetSeries ;
 
 id:ukpn.cim.epn a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:UKPN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ukpn> ;
     dct:spatial id:EPN ;
     dct:title "UKPN CIM network model – epn" ;
     dcat:first <https://busbar.example/id/ukpn.cim.epn/2025-11-28> ;
@@ -2728,7 +2727,7 @@ id:ukpn.cim.epn a dcat:DatasetSeries ;
 
 id:ukpn.cim.lpn a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:UKPN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ukpn> ;
     dct:spatial id:LPN ;
     dct:title "UKPN CIM network model – lpn" ;
     dcat:first <https://busbar.example/id/ukpn.cim.lpn/2025-11-28> ;
@@ -2752,7 +2751,7 @@ id:ukpn.cim.lpn a dcat:DatasetSeries ;
 
 id:ukpn.cim.spn a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:UKPN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ukpn> ;
     dct:spatial id:SPN ;
     dct:title "UKPN CIM network model – spn" ;
     dcat:first <https://busbar.example/id/ukpn.cim.spn/2025-10-13> ;
@@ -2775,7 +2774,7 @@ id:ukpn.cim.spn a dcat:DatasetSeries ;
     dcat:inSeries id:ukpn.cim.spn .
 
 id:ukpn.dfes.dfes-network-headroom-report a dcat:DatasetSeries ;
-    dct:publisher id:UKPN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ukpn> ;
     dct:spatial id:EPN,
         id:LPN,
         id:SPN ;
@@ -2806,7 +2805,7 @@ id:ukpn.dfes.dfes-network-headroom-report a dcat:DatasetSeries ;
     dcat:inSeries id:ukpn.ecr .
 
 id:ukpn.groups.ukpn-grid-postcode-area a dcat:DatasetSeries ;
-    dct:publisher id:UKPN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ukpn> ;
     dct:spatial id:EPN,
         id:LPN,
         id:SPN ;
@@ -2836,7 +2835,7 @@ id:ukpn.groups.ukpn-grid-postcode-area a dcat:DatasetSeries ;
 id:ukpn.ltds.ltds-table-1-circuit-data a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:UKPN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ukpn> ;
     dct:spatial id:EPN,
         id:LPN,
         id:SPN ;
@@ -2859,7 +2858,7 @@ id:ukpn.ltds.ltds-table-1-circuit-data a dcat:DatasetSeries ;
 id:ukpn.ltds.ltds-table-2a-transformer-2w a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:UKPN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ukpn> ;
     dct:spatial id:EPN,
         id:LPN,
         id:SPN ;
@@ -2986,7 +2985,7 @@ id:nged.cim.wmids a dcat:DatasetSeries ;
 
 id:npg.cim.northeast a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:NPG ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/npg> ;
     dct:spatial id:Northeast ;
     dct:title "NPG CIM network model – northeast" ;
     dcat:first <https://busbar.example/id/npg.cim.northeast/2025-12-28> ;
@@ -3002,7 +3001,7 @@ id:npg.cim.northeast a dcat:DatasetSeries ;
 
 id:npg.cim.yorkshire a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:NPG ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/npg> ;
     dct:spatial id:Yorkshire ;
     dct:title "NPG CIM network model – yorkshire" ;
     dcat:first <https://busbar.example/id/npg.cim.yorkshire/2025-12-28> ;
@@ -3017,7 +3016,7 @@ id:npg.cim.yorkshire a dcat:DatasetSeries ;
     busbar:temporalNature busbar:snapshot .
 
 id:npg.dno-boundaries.all_dno_boundaries a dcat:DatasetSeries ;
-    dct:publisher id:NPG ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/npg> ;
     dct:spatial id:GB ;
     dct:title "NPG Licence area boundaries – all dno boundaries" ;
     dcat:first <https://busbar.example/id/npg.dno-boundaries.all_dno_boundaries/2024-01-04> ;
@@ -3054,7 +3053,7 @@ id:sse.cim.scottish a dcat:DatasetSeries ;
     busbar:temporalNature busbar:snapshot .
 
 id:ukpn.gsp.ukpn-grid-supply-points-overview a dcat:DatasetSeries ;
-    dct:publisher id:UKPN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ukpn> ;
     dct:spatial id:EPN,
         id:LPN,
         id:SPN ;
@@ -3067,7 +3066,7 @@ id:ukpn.gsp.ukpn-grid-supply-points-overview a dcat:DatasetSeries ;
     busbar:temporalNature busbar:snapshot .
 
 id:ukpn.substations.ukpn-grid-supply-points a dcat:DatasetSeries ;
-    dct:publisher id:UKPN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ukpn> ;
     dct:spatial id:EPN,
         id:LPN,
         id:SPN ;
@@ -3099,7 +3098,7 @@ id:nged.ltds.table-3 a dcat:DatasetSeries ;
 id:ukpn.ltds.ltds-table-3a-load-data-observed a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:UKPN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ukpn> ;
     dct:spatial id:EPN,
         id:LPN,
         id:SPN ;
@@ -3113,7 +3112,7 @@ id:ukpn.ltds.ltds-table-3a-load-data-observed a dcat:DatasetSeries ;
     busbar:temporalNature busbar:forecast .
 
 id:npg.heatmap.heatmapsubstationareas a dcat:DatasetSeries ;
-    dct:publisher id:NPG ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/npg> ;
     dct:spatial id:Northeast,
         id:Yorkshire ;
     dct:title "NPG Capacity data – heatmapsubstationareas" ;
@@ -3206,7 +3205,7 @@ id:sse.ltds.southern-electric-power-distribution-long-term-development-statement
 id:ukpn.ecr a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:MONTHLY ;
     dct:conformsTo id:ena-ecr ;
-    dct:publisher id:UKPN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ukpn> ;
     dct:spatial id:EPN,
         id:LPN,
         id:SPN ;
@@ -3239,7 +3238,7 @@ id:spen.ecr a dcat:DatasetSeries ;
 id:npg.ecr a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:MONTHLY ;
     dct:conformsTo id:ena-ecr ;
-    dct:publisher id:NPG ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/npg> ;
     dct:spatial id:Northeast,
         id:Yorkshire ;
     dct:title "NPG Embedded Capacity Register" ;

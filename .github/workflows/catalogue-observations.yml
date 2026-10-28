@@ -1,0 +1,104 @@
+name: Catalogue observations
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 6 * * *" # Daily, 06:23 UTC; scheduling is best-effort.
+  pull_request:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - name: Validate source declarations
+        run: uv run scripts/capture_catalogue.py --validate-only
+      - name: Test (no network or bucket credentials)
+        run: >-
+          uv run --with 'rdflib>=7.1,<8' --with 'pyshacl>=0.30,<1'
+          python -m unittest discover -s tests -v
+
+  observe:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency:
+      group: busbar-public-catalogue-observations
+      cancel-in-progress: false
+    env:
+      BUCKET_URL: ${{ secrets.BUCKET_URL || vars.BUCKET_URL || 'https://fsn1.your-objectstorage.com' }}
+      BUCKET_NAME: ${{ vars.BUCKET_NAME || 'busbar' }}
+      BUCKET_PREFIX: ${{ vars.BUCKET_PREFIX || 'catalogue-history' }}
+      BUCKET_REGION: ${{ vars.BUCKET_REGION || 'fsn1' }}
+      BUCKET_ACCESS_KEY: ${{ secrets.BUCKET_ACCESS_KEY }}
+      BUCKET_SECRET_KEY: ${{ secrets.BUCKET_SECRET_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - name: Restore durable history
+        id: restore
+        run: uv run scripts/bucket_store.py pull
+      - name: Capture all declared public catalogues
+        id: capture
+        continue-on-error: true
+        run: >-
+          uv run scripts/capture_all.py
+          --storage-uri "s3://${BUCKET_NAME}/${BUCKET_PREFIX}"
+      - name: Preserve observations, including acquisition failures
+        id: archive
+        if: always() && steps.restore.outcome == 'success' && steps.capture.outcome != 'skipped'
+        run: uv run scripts/bucket_store.py push
+      - name: Build queryable history and viewer exports
+        id: export
+        if: always() && steps.archive.outcome == 'success'
+        continue-on-error: true
+        run: |
+          uv run scripts/build_observations.py
+          uv run scripts/build_ontology.py
+      - name: Publish exports only for a fully successful capture run
+        id: publish
+        if: >-
+          steps.capture.outcome == 'success' &&
+          steps.archive.outcome == 'success' &&
+          steps.export.outcome == 'success'
+        run: >-
+          uv run scripts/bucket_store.py publish
+          --run-id "${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+      - name: Attach diagnostic summary and exports (not the permanent archive)
+        if: always() && steps.restore.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalogue-observations-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            build/capture-summary.json
+            build/observations.trig
+            build/news-catalogues.owl
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Report incomplete runs as failures
+        if: always()
+        env:
+          RESTORE: ${{ steps.restore.outcome }}
+          CAPTURE: ${{ steps.capture.outcome }}
+          ARCHIVE: ${{ steps.archive.outcome }}
+          EXPORT: ${{ steps.export.outcome }}
+          PUBLISH: ${{ steps.publish.outcome }}
+        run: |
+          for outcome in "$RESTORE" "$CAPTURE" "$ARCHIVE" "$EXPORT" "$PUBLISH"; do
+            if [[ "$outcome" != "success" ]]; then
+              echo "::error::Observation run incomplete; inspect the source summary and storage steps."
+              exit 1
+            fi
+          done

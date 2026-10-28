@@ -1,0 +1,40 @@
+# Minimal standard-term declarations for standalone OWL viewers.
+# This is NOT a copy of the complete DCAT/PROV/ORG/SKOS vocabularies.
+# No owl:imports: viewing the captured metadata does not require network access.
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+org:Organization a owl:Class ; rdfs:subClassOf foaf:Agent ; rdfs:label "Organization"@en .
+org:classification a owl:ObjectProperty ; rdfs:label "organization classification"@en .
+foaf:Agent a owl:Class ; rdfs:label "Agent"@en .
+foaf:Document a owl:Class ; rdfs:label "Document"@en .
+prov:Entity a owl:Class ; rdfs:label "Provenance entity"@en .
+dcat:Catalog a owl:Class ; rdfs:subClassOf dcat:Dataset ; rdfs:label "Catalogue"@en .
+dcat:Dataset a owl:Class ; rdfs:label "Dataset"@en .
+dcat:Distribution a owl:Class ; rdfs:label "Distribution"@en .
+dcat:DataService a owl:Class ; rdfs:label "Data service"@en .
+skos:Concept a owl:Class ; rdfs:label "Concept"@en .
+
+dcat:dataset a owl:ObjectProperty ; rdfs:label "dataset"@en .
+dcat:distribution a owl:ObjectProperty ; rdfs:label "distribution"@en .
+dcat:accessService a owl:ObjectProperty ; rdfs:label "access service"@en .
+dcat:accessURL a owl:ObjectProperty ; rdfs:label "access URL"@en .
+dcat:downloadURL a owl:ObjectProperty ; rdfs:label "download URL"@en .
+dcat:theme a owl:ObjectProperty ; rdfs:label "theme"@en .
+dct:publisher a owl:ObjectProperty ; rdfs:label "publisher"@en .
+prov:wasDerivedFrom a owl:ObjectProperty ; rdfs:label "derived from"@en .
+prov:hadPrimarySource a owl:ObjectProperty ; rdfs:label "primary source"@en .
+prov:generatedAtTime a owl:DatatypeProperty ; rdfs:label "observed at"@en .
+
+# Annotation declarations preserve literal or resource-valued descriptive metadata.
+dct:title a owl:AnnotationProperty .
+dct:description a owl:AnnotationProperty .
+foaf:name a owl:AnnotationProperty .
+foaf:homepage a owl:AnnotationProperty .
+skos:prefLabel a owl:AnnotationProperty .

@@ -19,6 +19,8 @@
 @prefix dcat:     <http://www.w3.org/ns/dcat#> .
 @prefix dct:      <http://purl.org/dc/terms/> .
 @prefix foaf:     <http://xmlns.com/foaf/0.1/> .
+@prefix org:      <http://www.w3.org/ns/org#> .
+@prefix grid:     <https://busbar.example/grid#> .
 @prefix freq:     <http://publications.europa.eu/resource/authority/frequency/> .
 
 <https://busbar.example/ns>
@@ -242,7 +244,7 @@ id:licence-area-boundaries a skos:Concept ; skos:inScheme id:dataset-types ;
 
 busbar:Organisation
     a owl:Class ;
-    rdfs:subClassOf foaf:Organization ;
+    rdfs:subClassOf org:Organization ;
     rdfs:label "Organisation"@en ;
     rdfs:comment "A body that runs part of the network, publishes data about it or issues a standard, e.g. a network operator, a government department or a regulator."@en .
 
@@ -251,13 +253,6 @@ busbar:NetworkOperator
     rdfs:subClassOf busbar:Organisation ;
     rdfs:label "Network operator"@en ;
     rdfs:comment "An organisation that holds an Ofgem licence for part of the UK electricity system."@en .
-
-busbar:DistributionNetworkOperator
-    a owl:Class ;
-    rdfs:subClassOf busbar:NetworkOperator ;
-    rdfs:label "Distribution network operator"@en ;
-    skos:altLabel "DNO"@en ;
-    rdfs:comment "Owns and operates the distribution network in one or more distribution areas."@en .
 
 busbar:SystemOperator
     a owl:Class ;
@@ -472,7 +467,7 @@ busbar:FlowObservation
 busbar:operates
     a owl:ObjectProperty ;
     rdfs:label "operates"@en ;
-    rdfs:domain busbar:DistributionNetworkOperator ;
+    rdfs:domain busbar:NetworkOperator ;
     rdfs:range busbar:DistributionArea .
 
 busbar:operatedBy
@@ -480,7 +475,7 @@ busbar:operatedBy
     rdfs:label "operated by"@en ;
     owl:inverseOf busbar:operates ;
     rdfs:domain busbar:DistributionArea ;
-    rdfs:range busbar:DistributionNetworkOperator .
+    rdfs:range busbar:NetworkOperator .
 
 busbar:owns
     a owl:ObjectProperty ;
@@ -1142,41 +1137,47 @@ busbar:demandMW
 
 # Distribution network operators
 
-id:UKPN a busbar:DistributionNetworkOperator ;
+<https://busbar.example/id/grid/uk/dno/ukpn> a org:Organization, busbar:NetworkOperator ;
+    org:classification grid:DistributionNetworkOperator ;
     foaf:name "UK Power Networks" ;
     busbar:parentCompany "CK Infrastructure Holdings" ;
     busbar:operates id:EPN , id:LPN , id:SPN .
 
-id:SPEN a busbar:DistributionNetworkOperator ;
+id:SPEN a org:Organization, busbar:NetworkOperator ;
+    org:classification grid:DistributionNetworkOperator ;
     foaf:name "SP Energy Networks" ;
     busbar:parentCompany "ScottishPower" ;
     busbar:operates id:SPD , id:SPM .
 
-id:SSEN a busbar:DistributionNetworkOperator ;
+id:SSEN a org:Organization, busbar:NetworkOperator ;
+    org:classification grid:DistributionNetworkOperator ;
     foaf:name "Scottish and Southern Electricity Networks" ;
     busbar:parentCompany "SSE plc" ;
     busbar:operates id:SHEPD , id:SEPD .
 
-id:NGED a busbar:DistributionNetworkOperator ;
+id:NGED a org:Organization, busbar:NetworkOperator ;
+    org:classification grid:DistributionNetworkOperator ;
     foaf:name "National Grid Electricity Distribution" ;
     busbar:parentCompany "National Grid plc" ;
     busbar:operates id:EMids , id:WMids , id:SWales , id:SWest .
 
-id:NPG a busbar:DistributionNetworkOperator ;
+<https://busbar.example/id/grid/uk/dno/npg> a org:Organization, busbar:NetworkOperator ;
+    org:classification grid:DistributionNetworkOperator ;
     foaf:name "Northern Powergrid" ;
     busbar:parentCompany "Berkshire Hathaway Energy" ;
     busbar:operates id:Northeast , id:Yorkshire .
 
-id:ENWL a busbar:DistributionNetworkOperator ;
+id:ENWL a org:Organization, busbar:NetworkOperator ;
+    org:classification grid:DistributionNetworkOperator ;
     foaf:name "Electricity North West" ;
     busbar:parentCompany "ScottishPower" ;
     busbar:operates id:NorthWest .
 
 # Distribution areas (DNO licence areas)
 
-id:EPN       a busbar:DistributionArea ; busbar:name "Eastern Power Networks" ; busbar:operatedBy id:UKPN .
-id:LPN       a busbar:DistributionArea ; busbar:name "London Power Networks" ; busbar:operatedBy id:UKPN .
-id:SPN       a busbar:DistributionArea ; busbar:name "South Eastern Power Networks" ; busbar:operatedBy id:UKPN .
+id:EPN       a busbar:DistributionArea ; busbar:name "Eastern Power Networks" ; busbar:operatedBy <https://busbar.example/id/grid/uk/dno/ukpn> .
+id:LPN       a busbar:DistributionArea ; busbar:name "London Power Networks" ; busbar:operatedBy <https://busbar.example/id/grid/uk/dno/ukpn> .
+id:SPN       a busbar:DistributionArea ; busbar:name "South Eastern Power Networks" ; busbar:operatedBy <https://busbar.example/id/grid/uk/dno/ukpn> .
 id:SPD       a busbar:DistributionArea ; busbar:name "SP Distribution" ; busbar:operatedBy id:SPEN .
 id:SPM       a busbar:DistributionArea ; busbar:name "SP Manweb" ; busbar:operatedBy id:SPEN .
 id:SHEPD     a busbar:DistributionArea ; busbar:name "Scottish Hydro Electric Power Distribution" ; busbar:operatedBy id:SSEN .
@@ -1185,8 +1186,8 @@ id:EMids     a busbar:DistributionArea ; busbar:name "East Midlands" ; busbar:op
 id:WMids     a busbar:DistributionArea ; busbar:name "West Midlands" ; busbar:operatedBy id:NGED .
 id:SWales    a busbar:DistributionArea ; busbar:name "South Wales" ; busbar:operatedBy id:NGED .
 id:SWest     a busbar:DistributionArea ; busbar:name "South West" ; busbar:operatedBy id:NGED .
-id:Northeast a busbar:DistributionArea ; busbar:name "Northeast" ; busbar:operatedBy id:NPG .
-id:Yorkshire a busbar:DistributionArea ; busbar:name "Yorkshire" ; busbar:operatedBy id:NPG .
+id:Northeast a busbar:DistributionArea ; busbar:name "Northeast" ; busbar:operatedBy <https://busbar.example/id/grid/uk/dno/npg> .
+id:Yorkshire a busbar:DistributionArea ; busbar:name "Yorkshire" ; busbar:operatedBy <https://busbar.example/id/grid/uk/dno/npg> .
 id:NorthWest a busbar:DistributionArea ; busbar:name "North West" ; busbar:operatedBy id:ENWL .
 
 # System operator, transmission owners and areas
