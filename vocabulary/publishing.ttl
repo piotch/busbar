@@ -1,0 +1,116 @@
+@prefix pub: <https://busbar.example/publishing#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<https://busbar.example/publishing>
+    a owl:Ontology ;
+    dct:title "News source and publishing infrastructure ontology"@en ;
+    owl:versionInfo "0.1" ;
+    rdfs:comment "Curated source declarations, separate from publisher assertions and runtime observations. Instance paths are shared with the UNS; /state and /events suffixes are communication addresses, not entity identifiers."@en .
+
+pub:ObservationRecord a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Catalogue observation record"@en ;
+    rdfs:comment "A record of an acquisition outcome, including failed attempts. Only successful captures have snapshot graphs."@en .
+
+pub:CatalogSnapshot a owl:Class ;
+    rdfs:subClassOf pub:ObservationRecord ;
+    rdfs:label "Catalogue observation"@en ;
+    rdfs:comment "A successful local observation of catalogue metadata, not a publisher dataset edition."@en .
+
+pub:sourceCatalogIdentifier a owl:DatatypeProperty ;
+    rdfs:label "publisher catalogue identifier"@en ;
+    rdfs:domain dcat:Catalog ;
+    rdfs:range xsd:anyURI ;
+    rdfs:comment "Original publisher catalogue URI, preserved as metadata on the canonical catalogue in the viewer projection."@en .
+
+pub:sourceCatalogTitle a owl:AnnotationProperty ;
+    rdfs:label "publisher catalogue title"@en ;
+    rdfs:comment "Original publisher title retained separately from the curated display name."@en .
+
+pub:status a owl:DatatypeProperty ;
+    rdfs:domain pub:ObservationRecord ;
+    rdfs:range xsd:string ;
+    rdfs:label "Acquisition status"@en .
+
+pub:datasetCount a owl:DatatypeProperty ;
+    rdfs:domain pub:CatalogSnapshot ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Observed dataset count"@en .
+
+pub:contentHash a owl:DatatypeProperty ;
+    rdfs:domain pub:ObservationRecord ;
+    rdfs:range xsd:string .
+
+pub:error a owl:DatatypeProperty ;
+    rdfs:domain pub:ObservationRecord ;
+    rdfs:range xsd:string .
+
+pub:specification a owl:ObjectProperty ;
+    rdfs:domain pub:ObservationRecord ;
+    rdfs:range pub:CaptureSpecification .
+
+pub:observedCatalog a owl:ObjectProperty ;
+    rdfs:domain pub:ObservationRecord ;
+    rdfs:range dcat:Catalog ;
+    rdfs:label "observed catalogue"@en .
+
+pub:Portal a owl:Class ;
+    rdfs:label "Publishing portal"@en ;
+    rdfs:comment "A public publishing service with a stable identity independent of its current software or hostname."@en .
+
+pub:Platform a owl:Class ;
+    rdfs:label "Publishing software platform"@en .
+
+pub:CuratedCatalog a owl:Class ;
+    rdfs:subClassOf dcat:Catalog ;
+    rdfs:label "Curated catalogue"@en ;
+    rdfs:comment "A catalogue whose selection, descriptions and publication history are maintained by a curator, distinct from observed source catalogues."@en .
+
+pub:maintainedBy a owl:ObjectProperty ;
+    rdfs:domain dcat:Catalog ;
+    rdfs:range org:Organization ;
+    rdfs:label "maintained by"@en ;
+    rdfs:comment "Organization responsible for maintaining the catalogue. This is distinct from dataset authorship, ownership and publisher responsibility."@en .
+
+pub:TrackedCatalog a owl:Class ;
+    rdfs:subClassOf dcat:Catalog ;
+    rdfs:comment "A source catalogue whose representation Busbar captures."@en .
+
+pub:CaptureSpecification a owl:Class ;
+    rdfs:comment "Git-managed instructions for observing a source catalogue; not an observation or a publisher edition."@en .
+
+pub:portalOperator a owl:ObjectProperty ;
+    rdfs:domain pub:Portal ;
+    rdfs:range org:Organization ;
+    rdfs:comment "Organization responsible for the publishing portal."@en .
+
+pub:platform a owl:ObjectProperty ;
+    rdfs:domain pub:Portal ;
+    rdfs:range pub:Platform .
+
+pub:exposesCatalog a owl:ObjectProperty ;
+    rdfs:domain pub:Portal ;
+    rdfs:range dcat:Catalog .
+
+pub:catalog a owl:ObjectProperty ;
+    rdfs:domain pub:CaptureSpecification ;
+    rdfs:range dcat:Catalog .
+
+pub:endpoint a owl:ObjectProperty ;
+    rdfs:domain pub:CaptureSpecification ;
+    rdfs:comment "HTTPS endpoint from which to capture a complete catalogue representation."@en .
+
+pub:mediaType a owl:DatatypeProperty ;
+    rdfs:domain pub:CaptureSpecification ;
+    rdfs:range xsd:string .
+
+pub:OpenDataSoft a pub:Platform ;
+    rdfs:label "OpenDataSoft"@en .
+pub:CKAN a pub:Platform ;
+    rdfs:label "CKAN"@en .
