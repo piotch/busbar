@@ -105,8 +105,6 @@ uv build  # Builds an sdist, then a wheel from it in dist/.
 `uv sync` installs an editable package. Keep editing the canonical RDF files at
 this repository's root and under `definitions/`, `vocabulary/` and `shapes/`;
 release builds bundle those same files without maintaining a second copy.
-Existing `uv run scripts/*.py` commands remain compatibility entry points;
-bucket scripts now require `uv run --extra s3 scripts/bucket_store.py ...`.
 Commit `uv.lock` for reproducible repository development; consuming projects
 resolve their own dependency versions. PyPI publishing is not configured yet.
 
@@ -119,7 +117,7 @@ The original grid-domain vocabulary and Busbar's curated series membership are
 not merged into this flat viewer file:
 
 ```bash
-uv run scripts/build_ontology.py
+uv run busbar build-ontology
 open -a "$HOME/Applications/Protégé.app" build/news-catalogues.owl
 ```
 
@@ -135,7 +133,7 @@ enable **Window → Tabs → OntoGraf** for an interactive relationship diagram.
 ## Queryable observation history (TriG)
 
 ```bash
-uv run scripts/build_observations.py
+uv run busbar build-observations
 ```
 
 This writes ignored `build/observations.trig`: one named graph per successful
@@ -171,11 +169,11 @@ With [uv](https://docs.astral.sh/uv/) installed, run from this repository:
 
 ```bash
 # Validate the declarations without accessing the network.
-uv run scripts/capture_catalogue.py --validate-only
+uv run busbar capture --validate-only
 
 # Capture UKPN (the default) and Northern Powergrid separately.
-uv run scripts/capture_catalogue.py
-uv run scripts/capture_catalogue.py --spec \
+uv run busbar capture
+uv run busbar capture --spec \
   'https://busbar.example/id/grid/uk/dno/npg/catalogue/captures/dcat'
 ```
 

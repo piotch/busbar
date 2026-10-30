@@ -33,4 +33,4 @@ packages = ["src/busbar"]
 "queries" = "busbar/data/queries"
 
 [tool.hatch.build.targets.sdist]
-include = ["/src", "/scripts", "/tests", "/definitions", "/vocabulary", "/shapes", "/queries", "/*.ttl", "/pyproject.toml", "/uv.lock", "/README.md", "/LICENSE"]
+include = ["/src", "/tests", "/definitions", "/vocabulary", "/shapes", "/queries", "/*.ttl", "/pyproject.toml", "/uv.lock", "/README.md", "/LICENSE"]
