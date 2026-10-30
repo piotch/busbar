@@ -8,7 +8,7 @@ repository's default branch.
 
 ## Enable the workflow
 
-1. Push the workflow, scripts and supporting definitions to the repository.
+1. Push the workflow, Python package and supporting definitions to the repository.
 2. Create repository Actions secrets:
    - `BUCKET_ACCESS_KEY`
    - `BUCKET_SECRET_KEY`
@@ -94,7 +94,7 @@ Builders resolve bytes from the restored capture directory and verify SHA-256;
 they do not need live S3 credentials. RDF provenance uses stable storage references,
 not the ephemeral runner's filesystem. These are private object identifiers, not
 public or presigned download URLs. Authorized consumers can restore history using
-`bucket_store.py pull` and query or rebuild it locally.
+`uv run --extra s3 busbar bucket pull` and query or rebuild it locally.
 
 The initial laptop-only captures are not uploaded automatically. Their absolute
 `file://` references are not suitable for the shared archive; bucket push rejects
@@ -109,21 +109,21 @@ responsibilities; no lifecycle policy is created by this workflow.
 
 ## Local commands
 
-`bucket_store.py` loads the repository's `.env` without overriding existing
+`busbar bucket` loads the repository's `.env` without overriding existing
 environment variables. Start with `.env.example` and real private credentials.
 
 Read-only credential check (does not test write permission):
 
 ```bash
-uv run scripts/bucket_store.py check
+uv run --extra s3 busbar bucket check
 ```
 
 Restore the shared archive and rebuild (no remote writes):
 
 ```bash
-uv run scripts/bucket_store.py pull --captures captures-shared
-uv run scripts/build_observations.py --captures captures-shared
-uv run scripts/build_ontology.py --captures captures-shared
+uv run --extra s3 busbar bucket pull --captures captures-shared
+uv run busbar build-observations --captures captures-shared
+uv run busbar build-ontology --captures captures-shared
 ```
 
 Use a clean restore directory, or an exact previous restore. Conflicting local
@@ -133,15 +133,15 @@ Capture and persist explicitly (these commands **do write to the bucket** at the
 push/publish steps):
 
 ```bash
-uv run scripts/capture_all.py --output captures-shared \
+uv run busbar capture-all --output captures-shared \
   --storage-uri s3://busbar/catalogue-history
-uv run scripts/bucket_store.py push --captures captures-shared
-uv run scripts/build_observations.py --captures captures-shared
-uv run scripts/build_ontology.py --captures captures-shared
-uv run scripts/bucket_store.py publish --run-id manual-unique-run-id
+uv run --extra s3 busbar bucket push --captures captures-shared
+uv run busbar build-observations --captures captures-shared
+uv run busbar build-ontology --captures captures-shared
+uv run --extra s3 busbar bucket publish --run-id manual-unique-run-id
 ```
 
-`capture_all.py` prints and writes a compact source summary with status, dataset
+`busbar capture-all` prints and writes a compact source summary with status, dataset
 counts and membership-change counts. Complete observation details remain in the
 manifests. No command automatically modifies the curated catalogue, inventory of
 private dataset files, Git contents or source definitions.

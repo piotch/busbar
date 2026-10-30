@@ -1,7 +1,3 @@
-# /// script
-# requires-python = ">=3.11"
-# dependencies = ["rdflib>=7.1,<8", "pyshacl>=0.30,<1"]
-# ///
 """Export archived catalogue observations as separate named graphs in TriG."""
 import argparse
 from datetime import datetime
@@ -12,8 +8,9 @@ from urllib.parse import quote, urljoin
 from rdflib import Dataset, Graph, Literal, Namespace, RDF, URIRef
 from rdflib.namespace import XSD
 
-from capture_catalogue import ROOT, load_declarations
-from artifact_store import artifact_bytes, manifest_reference
+from .capture_catalogue import load_declarations
+from .artifact_store import artifact_bytes, manifest_reference
+from .resources import load_catalogue
 
 PUB = Namespace("https://busbar.example/publishing#")
 PROV = Namespace("http://www.w3.org/ns/prov#")
@@ -27,7 +24,7 @@ CURATED = URIRef("https://busbar.example/graphs/busbar-catalogue")
 def build(observation_paths):
     paths = sorted(observation_paths)
     if not paths:
-        raise ValueError("No observations found; run scripts/capture_catalogue.py first")
+        raise ValueError("No observations found; run busbar capture first")
     dataset = Dataset(default_union=False)
     for prefix, namespace in (("pub", PUB), ("prov", PROV), ("dcat", DCAT), ("dct", DCT)):
         dataset.bind(prefix, namespace)
@@ -36,7 +33,8 @@ def build(observation_paths):
     for triple in declarations:
         definitions.add(triple)
     # Curator assertions remain separate from definitions and publisher snapshots.
-    dataset.graph(CURATED).parse(ROOT / "catalogue.ttl", format="turtle")
+    for triple in load_catalogue():
+        dataset.graph(CURATED).add(triple)
     metadata = dataset.graph(METADATA)
     seen = set()
     summary = []
@@ -108,13 +106,13 @@ def build(observation_paths):
     return dataset, summary
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--captures", type=Path, default=ROOT / "captures")
-    parser.add_argument("--output", type=Path, default=ROOT / "build/observations.trig")
+    parser.add_argument("--captures", type=Path, default=Path.cwd() / "captures")
+    parser.add_argument("--output", type=Path, default=Path.cwd() / "build/observations.trig")
     parser.add_argument("--observation", type=Path, action="append",
                         help="Select observation manifests explicitly; repeat as needed")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     paths = args.observation if args.observation else args.captures.joinpath("observations").glob("*.json")
     dataset, summary = build(paths)
     args.output.parent.mkdir(parents=True, exist_ok=True)

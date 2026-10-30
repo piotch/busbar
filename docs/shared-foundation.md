@@ -96,7 +96,7 @@ before adding those mappings.
 their publishers and maintainers from the current-definitions graph:
 
 ```bash
-uv run scripts/build_observations.py
+uv run busbar build-observations
 uv run --with rdflib python - <<'PY'
 from pathlib import Path
 from rdflib import Dataset

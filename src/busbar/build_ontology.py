@@ -1,7 +1,3 @@
-# /// script
-# requires-python = ">=3.11"
-# dependencies = ["rdflib>=7.1,<8", "pyshacl>=0.30,<1"]
-# ///
 """Build a news/source ontology with one selected catalogue capture per source."""
 import argparse
 import json
@@ -10,8 +6,8 @@ from pathlib import Path
 from rdflib import Graph, Literal, Namespace, RDF, RDFS, URIRef
 from rdflib.namespace import OWL, XSD
 
-from capture_catalogue import ROOT, capture_parameters, load_declarations
-from artifact_store import artifact_bytes, manifest_reference
+from .capture_catalogue import capture_parameters, load_declarations
+from .artifact_store import artifact_bytes, manifest_reference
 
 DCT = Namespace("http://purl.org/dc/terms/")
 DCAT = Namespace("http://www.w3.org/ns/dcat#")
@@ -26,7 +22,7 @@ def select_observation(directory, specification):
         if record.get("status") == "success" and record.get("specification") == specification:
             candidates.append((record["observed_at"], path, record))
     if not candidates:
-        raise ValueError(f"No successful capture for {specification}. Run scripts/capture_catalogue.py --spec '{specification}' first.")
+        raise ValueError(f"No successful capture for {specification}. Run busbar capture --spec '{specification}' first.")
     _, path, record = max(candidates, key=lambda item: item[0])
     return path, record
 
@@ -103,14 +99,14 @@ def build_many(observation_paths):
     return graph, records
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=ROOT / "build/news-catalogues.owl")
+    parser.add_argument("--output", type=Path, default=Path.cwd() / "build/news-catalogues.owl")
     selection = parser.add_mutually_exclusive_group()
     selection.add_argument("--observation", type=Path, action="append", help="Successful observation JSON; repeat for multiple sources")
     selection.add_argument("--spec", action="append", help="Specification IRI; repeat to select sources (default: all declared)")
-    parser.add_argument("--captures", type=Path, default=ROOT / "captures")
-    args = parser.parse_args()
+    parser.add_argument("--captures", type=Path, default=Path.cwd() / "captures")
+    args = parser.parse_args(argv)
     paths = args.observation
     if paths is None:
         declarations, _ = load_declarations()

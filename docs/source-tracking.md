@@ -45,7 +45,7 @@ store, not a requirement to avoid a future Django database or Iceberg tables.
 | NGED | CKAN | https://connecteddata.nationalgrid.co.uk/catalog.rdf |
 | ENWL | OpenDataSoft | https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/exports/dcat |
 
-Run `uv run scripts/capture_all.py` to capture every declared source.
+Run `uv run busbar capture-all` to capture every declared source.
 SSEN's frontend is https://data.ssen.co.uk/; RDF is served by its CKAN backend.
 
 The canonical entity path is:
@@ -106,15 +106,15 @@ identity.
 ## Capture lifecycle
 
 ```bash
-uv run scripts/capture_catalogue.py --validate-only
-uv run scripts/capture_catalogue.py
-uv run scripts/capture_catalogue.py --output /path/to/runtime-storage
-uv run scripts/capture_catalogue.py --spec \
+uv run busbar capture --validate-only
+uv run busbar capture
+uv run busbar capture --output /path/to/runtime-storage
+uv run busbar capture --spec \
   'https://busbar.example/id/grid/uk/dno/npg/catalogue/captures/dcat'
 ```
 
-Dependencies are declared in the script's PEP 723 metadata and managed by `uv`.
-Python 3.11 or newer is required. The script:
+Dependencies are declared in `pyproject.toml` and managed by `uv`.
+Python 3.11 or newer is required. The capture command:
 
 1. Parses all `definitions/**/*.ttl` and `vocabulary/**/*.ttl` files.
 2. Validates them with SHACL before any network access.
@@ -166,7 +166,7 @@ avoid comparing unlike scopes.
 
 ## What is intentionally not implemented
 
-- Standalone scripts do not schedule themselves. The repository now includes an
+- Standalone commands do not schedule themselves. The repository now includes an
   optional GitHub Actions workflow for daily/manual capture with durable bucket
   storage; see [workflow setup](github-actions.md).
 - No dataset content download, Django integration, Iceberg loading or UNS publication.
@@ -185,7 +185,7 @@ avoid comparing unlike scopes.
 ## Independent news/source viewer export
 
 ```bash
-uv run scripts/build_ontology.py
+uv run busbar build-ontology
 open -a "$HOME/Applications/Protégé.app" build/news-catalogues.owl
 ```
 
@@ -247,9 +247,9 @@ exports. Open `build/news-catalogues.owl` instead. Generated files remain ignore
 ## TriG observation history
 
 ```bash
-uv run scripts/build_observations.py
+uv run busbar build-observations
 # Optional: select particular observation manifests instead of the entire archive.
-uv run scripts/build_observations.py --observation <first.json> --observation <second.json>
+uv run busbar build-observations --observation <first.json> --observation <second.json>
 ```
 
 The derived `build/observations.trig` has these named graph boundaries:

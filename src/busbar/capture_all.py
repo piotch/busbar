@@ -1,7 +1,3 @@
-# /// script
-# requires-python = ">=3.11"
-# dependencies = ["rdflib>=7.1,<8", "pyshacl>=0.30,<1"]
-# ///
 """Capture every declared source independently and write a compact run summary."""
 import argparse
 from datetime import datetime, timezone
@@ -11,7 +7,7 @@ from pathlib import Path
 
 from rdflib import RDF
 
-from capture_catalogue import PUB, ROOT, capture, load_declarations
+from .capture_catalogue import PUB, capture, load_declarations
 
 
 def run(output, summary_path, storage_uri=None):
@@ -42,12 +38,12 @@ def run(output, summary_path, storage_uri=None):
     return results
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=ROOT / "captures")
-    parser.add_argument("--summary", type=Path, default=ROOT / "build/capture-summary.json")
+    parser.add_argument("--output", type=Path, default=Path.cwd() / "captures")
+    parser.add_argument("--summary", type=Path, default=Path.cwd() / "build/capture-summary.json")
     parser.add_argument("--storage-uri")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     results = run(args.output, args.summary, args.storage_uri)
     if os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as stream:

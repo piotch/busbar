@@ -1,7 +1,3 @@
-# /// script
-# requires-python = ">=3.11"
-# dependencies = ["boto3>=1.36,<2", "python-dotenv>=1,<2"]
-# ///
 """Persist catalogue history in a dedicated S3-compatible bucket prefix.
 
 pull/check are read-only remotely. push writes immutable history; publish writes
@@ -18,9 +14,8 @@ from pathlib import Path, PurePosixPath
 import re
 from urllib.parse import urlsplit
 
-from artifact_store import storage_reference
+from .artifact_store import storage_reference
 
-ROOT = Path(__file__).resolve().parents[1]
 MAX_BYTES = 50 * 1024 * 1024
 
 
@@ -211,16 +206,17 @@ def publish(client, settings, build, run_id):
     return index
 
 
-def main():
-    from dotenv import load_dotenv
-    load_dotenv(ROOT / ".env", override=False)
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=["check", "pull", "push", "publish"])
-    parser.add_argument("--captures", type=Path, default=ROOT / "captures")
-    parser.add_argument("--build", type=Path, default=ROOT / "build")
+    parser.add_argument("--captures", type=Path, default=Path.cwd() / "captures")
+    parser.add_argument("--build", type=Path, default=Path.cwd() / "build")
+    parser.add_argument("--env-file", type=Path, default=Path.cwd() / ".env", help="Environment file (default: .env in the working directory)")
     parser.add_argument("--run-id")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     try:
+        from dotenv import load_dotenv
+        load_dotenv(args.env_file, override=False)
         settings = Settings.from_env()
         client = client_for(settings)
         if args.command == "check":
@@ -236,6 +232,9 @@ def main():
             publish(client, settings, args.build, args.run_id)
             print("Published versioned exports and latest index")
         return 0
+    except ImportError:
+        print("S3 support requires the optional dependencies: install busbar[s3]")
+        return 1
     except Exception as exc:
         # Never print SDK request dumps or credential-bearing configuration.
         print(f"Storage operation failed: {type(exc).__name__} ({error_code(exc) or 'configuration/integrity error'})")

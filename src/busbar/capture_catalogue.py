@@ -1,10 +1,6 @@
-# /// script
-# requires-python = ">=3.11"
-# dependencies = ["rdflib>=7.1,<8", "pyshacl>=0.30,<1"]
-# ///
 """Validate Git-managed declarations and archive a declared DCAT RDF/XML export.
 
-Run with uv; dependencies are isolated from the application's environment.
+Usable as a library or through the Busbar CLI.
 No scheduling, messaging, database loading or dataset downloads are performed.
 """
 import argparse
@@ -21,9 +17,9 @@ import uuid
 from pyshacl import validate
 from rdflib import Graph, Namespace, RDF, URIRef
 
-from artifact_store import storage_reference
+from .artifact_store import storage_reference
 
-ROOT = Path(__file__).resolve().parents[1]
+from .resources import data_root, load_graph, source_root, turtle_files
 PUB = Namespace("https://busbar.example/publishing#")
 DCAT = Namespace("http://www.w3.org/ns/dcat#")
 DEFAULT_SPEC = "https://busbar.example/id/grid/uk/dno/ukpn/catalogue/captures/dcat"
@@ -52,18 +48,17 @@ def next_catalogue_page(graph, endpoint):
     return urlunsplit(parts._replace(query=urlencode(query, doseq=True)))
 
 
-def load_declarations(root=ROOT):
-    paths = sorted([
-        *root.joinpath("definitions").rglob("*.ttl"),
-        *root.joinpath("vocabulary").rglob("*.ttl"),
-    ])
+def load_declarations(root=None):
+    """Load and validate bundled declarations, or a custom declaration directory."""
+    root = data_root() if root is None else Path(root)
     graph = Graph()
     hashes = {}
-    for path in paths:
-        content = path.read_bytes()
-        graph.parse(data=content, format="turtle")
-        hashes[path.relative_to(root).as_posix()] = hashlib.sha256(content).hexdigest()
-    shapes = Graph().parse(root / "shapes/publishing.ttl", format="turtle")
+    for directory in ("definitions", "vocabulary"):
+        for relative, resource in turtle_files(root.joinpath(directory)):
+            content = resource.read_bytes()
+            graph.parse(data=content, format="turtle")
+            hashes[f"{directory}/{relative}"] = hashlib.sha256(content).hexdigest()
+    shapes = load_graph("shapes/publishing.ttl", root=root)
     conforms, _, report = validate(graph, shacl_graph=shapes, inference="none")
     if not conforms:
         raise ValueError(str(report))
@@ -116,10 +111,17 @@ def previous_success(output, spec):
 
 
 def git_revision():
-    result = subprocess.run(
-        ["git", "-C", str(ROOT), "rev-parse", "HEAD"],
-        capture_output=True, text=True, check=False,
-    )
+    # An installed wheel must not report the consuming application's revision.
+    root = source_root()
+    if root is None or not (root / ".git").exists():
+        return None
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(root), "rev-parse", "HEAD"],
+            capture_output=True, text=True, check=False,
+        )
+    except OSError:
+        return None
     return result.stdout.strip() if result.returncode == 0 else None
 
 
@@ -236,13 +238,13 @@ def capture(graph, hashes, spec, output, storage_uri=None):
     return record, destination
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--validate-only", action="store_true")
     parser.add_argument("--spec", default=DEFAULT_SPEC, help="Capture specification IRI")
-    parser.add_argument("--output", type=Path, default=ROOT / "captures")
+    parser.add_argument("--output", type=Path, default=Path.cwd() / "captures")
     parser.add_argument("--storage-uri", help="Portable s3://bucket/prefix references; files are still written locally")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     graph, hashes = load_declarations()
     capture_parameters(graph, args.spec)
     if args.validate_only:

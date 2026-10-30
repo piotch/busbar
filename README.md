@@ -43,6 +43,71 @@ It distinguishes implemented source observation from future archive/source mappi
 See [shared foundation](docs/shared-foundation.md). No curated ECR-to-source mapping
 or DNO/DSO equivalence has been asserted yet.
 
+## Install and use from Python
+
+Busbar requires Python 3.11 or newer. Install directly from GitHub with
+[uv](https://docs.astral.sh/uv/) (pin a tag or commit for reproducible deployments):
+
+```bash
+uv add "busbar @ git+https://github.com/piotch/busbar.git"
+# Optional S3-compatible storage support:
+uv add "busbar[s3] @ git+https://github.com/piotch/busbar.git"
+```
+
+These commands require a revision containing the Python package. Until this branch
+is merged, append `@feat/python-package` to the Git URL. Standard pip also works:
+
+```bash
+pip install "busbar @ git+https://github.com/piotch/busbar.git"
+```
+
+```python
+import busbar
+
+catalogue = busbar.load_catalogue()  # Fresh rdflib.Graph; no network access.
+ontology = busbar.load_ontology()
+declarations, hashes = busbar.load_declarations()  # Includes SHACL validation.
+```
+
+The wheel includes the curated catalogue, ontology, source definitions,
+vocabularies, SHACL shapes and example SPARQL queries. Installing Busbar does not
+capture remote catalogues or download datasets. S3 credentials are only needed
+for explicit bucket operations; the core library has no boto3 dependency.
+
+### Command line
+
+```bash
+uv run busbar capture --validate-only
+uv run busbar capture
+uv run busbar capture-all
+uv run busbar build-observations
+uv run busbar build-ontology
+uv run --extra s3 busbar bucket check  # From this repository.
+```
+
+Each command has `--help`. In a consuming project, install the `[s3]` extra with
+`uv add` as above, then use `uv run busbar bucket check` without `--extra`.
+`python -m busbar` is also supported.
+
+Captures and exports default to `captures/` and `build/` **in the current working
+directory**, never inside the installed package. Use `--output`, `--captures`,
+`--summary` or `--build` to select other locations. Bucket commands load `.env`
+from the current directory (or `--env-file`); existing environment variables win.
+
+### Development and releases
+
+```bash
+uv sync
+uv run python -m unittest discover -s tests -v
+uv build  # Builds an sdist, then a wheel from it in dist/.
+```
+
+`uv sync` installs an editable package. Keep editing the canonical RDF files at
+this repository's root and under `definitions/`, `vocabulary/` and `shapes/`;
+release builds bundle those same files without maintaining a second copy.
+Commit `uv.lock` for reproducible repository development; consuming projects
+resolve their own dependency versions. PyPI publishing is not configured yet.
+
 ## Viewing in Protégé
 
 Generate an independent RDF/XML ontology containing the news/source vocabulary,
@@ -51,7 +116,7 @@ The original grid-domain vocabulary and Busbar's curated series membership are
 not merged into this flat viewer file:
 
 ```bash
-uv run scripts/build_ontology.py
+uv run busbar build-ontology
 open -a "$HOME/Applications/Protégé.app" build/news-catalogues.owl
 ```
 
@@ -67,7 +132,7 @@ enable **Window → Tabs → OntoGraf** for an interactive relationship diagram.
 ## Queryable observation history (TriG)
 
 ```bash
-uv run scripts/build_observations.py
+uv run busbar build-observations
 ```
 
 This writes ignored `build/observations.trig`: one named graph per successful
@@ -104,14 +169,14 @@ With [uv](https://docs.astral.sh/uv/) installed, run from this repository:
 
 ```bash
 # Validate the declarations without accessing the network.
-uv run scripts/capture_catalogue.py --validate-only
+uv run busbar capture --validate-only
 
 # Capture all six declared sources.
-uv run scripts/capture_all.py
+uv run busbar capture-all
 
 # Or capture UKPN (the default) and Northern Powergrid separately.
-uv run scripts/capture_catalogue.py
-uv run scripts/capture_catalogue.py --spec \
+uv run busbar capture
+uv run busbar capture --spec \
   'https://busbar.example/id/grid/uk/dno/npg/catalogue/captures/dcat'
 ```
 
