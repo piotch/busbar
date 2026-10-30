@@ -2,10 +2,11 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Private London SSEN catalogue relay for Busbar
 Parameters:
-  GitHubRepository:
+  GitHubSubjectPrefix:
     Type: String
-    Default: piotch/busbar
-    AllowedPattern: '[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+'
+    Default: repo:piotch@5766816/busbar@1400768869
+    Description: Exact sub_claim_prefix from GitHub's repository OIDC customization API
+    AllowedPattern: 'repo:[A-Za-z0-9_.@-]+/[A-Za-z0-9_.@-]+'
   GitHubBranch:
     Type: String
     Default: main
@@ -56,7 +57,7 @@ Resources:
             Condition:
               StringEquals:
                 token.actions.githubusercontent.com:aud: sts.amazonaws.com
-                token.actions.githubusercontent.com:sub: !Sub 'repo:${GitHubRepository}:ref:refs/heads/${GitHubBranch}'
+                token.actions.githubusercontent.com:sub: !Sub '${GitHubSubjectPrefix}:ref:refs/heads/${GitHubBranch}'
       Policies:
         - PolicyName: InvokeSsenRelayOnly
           PolicyDocument:

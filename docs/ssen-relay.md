@@ -37,7 +37,13 @@ For a working local login, append `--profile busbar` to deployment commands.
 
 Guided deployment:
 - Region: **eu-west-2** (the template itself does not enforce the region).
-- Repository: `piotch/busbar`; branch: your trusted default branch (default `main`).
+- GitHubSubjectPrefix: `repo:piotch@5766816/busbar@1400768869` for this repository;
+  branch: your trusted default branch (default `main`).
+- Confirm the exact prefix with
+  `gh api repos/piotch/busbar/actions/oidc/customization/sub` on your Mac.
+  This repository uses immutable subjects containing owner/repository IDs, not
+  the legacy `repo:piotch/busbar` prefix. For another repository, use its returned
+  `sub_claim_prefix` (or `repo:OWNER/REPO` if it uses legacy default subjects).
 - Confirm the change set before execution.
 - Allow SAM to create IAM roles; no public invocation is required.
 - Save configuration locally if desired; generated SAM configuration is ignored.
