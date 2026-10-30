@@ -3,6 +3,7 @@ import argparse
 from datetime import datetime
 import json
 from pathlib import Path
+from urllib.parse import quote, urljoin
 
 from rdflib import Dataset, Graph, Literal, Namespace, RDF, URIRef
 from rdflib.namespace import XSD
@@ -83,8 +84,20 @@ def build(observation_paths):
         if "triple_count" in record and len(captured) != record["triple_count"]:
             raise ValueError(f"Triple count mismatch: {path}")
         snapshot = dataset.graph(observation)
+        repairs = {}
         for triple in captured:
-            snapshot.add(triple)
+            for term in triple:
+                if isinstance(term, URIRef) and any(c in str(term) for c in '<>" {}|\\^`\n\r\t'):
+                    # NGED emits e.g. rdf:resource="GIS Data". Keep the raw
+                    # artifact untouched, but make the TriG projection legal.
+                    repairs[term] = URIRef(quote(
+                        urljoin(record.get("source_url", str(catalog)), str(term)),
+                        safe=":/?#[]@!$&'()*+,;=%~",
+                    ))
+            snapshot.add(tuple(repairs.get(term, term) for term in triple))
+        if repairs:
+            metadata.add((observation, PUB.iriRepairCount,
+                          Literal(len(repairs), datatype=XSD.integer)))
         metadata.add((observation, RDF.type, PUB.CatalogSnapshot))
         metadata.add((observation, PUB.datasetCount, Literal(len(members), datatype=XSD.integer)))
         for source in source_catalogs:

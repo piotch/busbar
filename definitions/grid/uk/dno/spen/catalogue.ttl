@@ -1,0 +1,16 @@
+@prefix pub: <https://busbar.example/publishing#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<https://busbar.example/id/grid/uk/dno/spen/catalogue>
+    a dcat:Catalog, pub:TrackedCatalog ;
+    dct:title "SP Energy Networks Open Data Catalogue"@en ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
+    foaf:homepage <https://spenergynetworks.opendatasoft.com/explore/> .
+
+<https://busbar.example/id/grid/uk/dno/spen/catalogue/captures/dcat>
+    a pub:CaptureSpecification ;
+    pub:catalog <https://busbar.example/id/grid/uk/dno/spen/catalogue> ;
+    pub:endpoint <https://spenergynetworks.opendatasoft.com/api/explore/v2.1/catalog/exports/dcat> ;
+    pub:mediaType "application/rdf+xml" .

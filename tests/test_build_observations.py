@@ -91,6 +91,28 @@ class ObservationExportTests(unittest.TestCase):
             self.assertIn((observation, export.PUB.status, Literal("failed")), metadata)
             self.assertNotIn((observation, RDF.type, export.PUB.CatalogSnapshot), metadata)
 
+    def test_malformed_publisher_iri_is_repaired_only_in_trig_projection(self):
+        content = RDF_XML.replace(
+            b'<dcat:Dataset rdf:about="https://source.example/dataset/one"/>',
+            b'<dcat:Dataset rdf:about="https://source.example/dataset/one">'
+            b'<dct:theme rdf:resource="GIS Data"/></dcat:Dataset>',
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = self.write(root, 'a', content=content)
+            record = json.loads(path.read_text())
+            record['source_url'] = 'https://source.example/catalog.rdf'
+            path.write_text(json.dumps(record))
+            dataset, summary = export.build([path])
+            self.assertEqual((root / 'a.rdf').read_bytes(), content)
+            snapshot = dataset.graph(URIRef(summary[0][0]))
+            self.assertIn((URIRef('https://source.example/dataset/one'), export.DCT.theme,
+                           URIRef('https://source.example/GIS%20Data')), snapshot)
+            self.assertEqual(int(dataset.graph(export.METADATA).value(
+                URIRef(summary[0][0]), export.PUB.iriRepairCount)), 1)
+            serialized = dataset.serialize(format='trig')
+            self.assertIn('GIS%20Data', serialized)
+
     def test_tampered_evidence_is_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
