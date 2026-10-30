@@ -16,13 +16,20 @@ external publication.
 | Northern Powergrid | `grid/uk/dno/npg` |
 | Northern Powergrid portal | `grid/uk/dno/npg/portal` |
 | Northern Powergrid source catalogue | `grid/uk/dno/npg/catalogue` |
+| SP Energy Networks | `grid/uk/dno/spen` |
+| SSEN | `grid/uk/dno/ssen` |
+| National Grid Electricity Distribution | `grid/uk/dno/nged` |
+| Electricity North West | `grid/uk/dno/enwl` |
+
+Each DNO has sibling `/portal` and `/catalogue` identities, and a
+`/catalogue/captures/dcat` capture specification.
 
 These entity paths also provide the intended UNS addressing convention, with
 communication suffixes such as `/state`. No broker integration is implemented.
 
 ## Organization classifications
 
-Shared organizations are `org:Organization` instances. UKPN and NPG use
+Shared organizations are `org:Organization` instances. All six DNO groups use
 `org:classification grid:DistributionNetworkOperator`, where the latter is a
 SKOS concept in `vocabulary/grid-roles.ttl`, not an OWL class belonging to a
 catalogue vocabulary. This local domain classification makes no claim of exact
@@ -37,10 +44,9 @@ organizations/network operators classified with the same grid SKOS concept.
 The domain model's `operates`/`operatedBy` properties now use the broader
 `busbar:NetworkOperator` class; DNO classification is stated separately rather
 than inferred from those properties. `busbar:Organisation` specializes
-`org:Organization`. UKPN/NPG domain facts use the shared organization URIs;
+`org:Organization`. All six DNO groups' domain facts use the shared organization URIs;
 their publisher references in the curated catalogue use the same URIs too.
-Other organizations still present only in the original domain model have not been
-migrated in this first step.
+Non-DNO organizations present only in the original domain model have not been migrated.
 
 ## Responsibility, not ownership
 
@@ -51,7 +57,7 @@ it does not assert copyright ownership or authorship of every listed dataset.
 - UKPN publishes the UKPN source catalogue.
 - NPG publishes the NPG source catalogue.
 - ReferenceWorks publishes and maintains Busbar.
-- ReferenceWorks is not asserted to publish or maintain either DNO's source catalogue.
+- ReferenceWorks is not asserted to publish or maintain any DNO's source catalogue.
 
 Busbar is a `pub:CuratedCatalog`, not a `pub:TrackedCatalog`. It does not need
 a remote capture specification. SHACL validates organization names, publisher
@@ -64,12 +70,14 @@ references and curator responsibility separately from acquisition configuration.
   Catalogue name, description, publisher and maintainer live in
   `definitions/grid/catalogues/busbar.ttl`.
 - `busbar-ontology.ttl`: the original domain vocabulary and richer reference facts.
-- Captured snapshot graphs: unmodified parsed publisher assertions.
+- Captured snapshot graphs: publisher assertions, with malformed IRIs repaired only
+  in the TriG projection as documented in [source tracking](source-tracking.md).
+  Raw response artifacts remain unchanged.
 - Observation metadata graph: local acquisition outcomes and evidence references.
 
 The OWL viewer includes definitions and selected source captures, but not the
-curated series membership or the original domain vocabulary. Thus it shows three
-catalogue identities: two observed source catalogues and Busbar.
+curated series membership or the original domain vocabulary. Thus it shows seven
+catalogue identities: six source catalogues and Busbar.
 
 The TriG export keeps current curated catalogue assertions in
 `https://busbar.example/graphs/busbar-catalogue`, separate from current definitions,
@@ -84,7 +92,7 @@ before adding those mappings.
 
 ## Query
 
-`queries/list-catalogues.rq` lists the three canonical catalogue identities and
+`queries/list-catalogues.rq` lists the seven canonical catalogue identities and
 their publishers and maintainers from the current-definitions graph:
 
 ```bash

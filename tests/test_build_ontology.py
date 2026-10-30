@@ -78,8 +78,8 @@ class BuilderTests(unittest.TestCase):
             second = self.write_observation(Path(directory) / 'npg', npg_spec, npg_content)
             graph, records = builder.build_many([first, second])
         catalogs = set(graph.subjects(builder.RDF.type, builder.DCAT.Catalog))
-        self.assertEqual(catalogs, {builder.URIRef(r['catalog']) for r in records}
-                         | {builder.URIRef('https://busbar.example/id/grid/catalogues/busbar')})
+        declarations, _ = capture.load_declarations()
+        self.assertEqual(catalogs, set(declarations.subjects(builder.RDF.type, builder.DCAT.Catalog)))
         for record, domain in zip(records, ['source.example', 'npg.example']):
             members = set(graph.objects(builder.URIRef(record['catalog']), builder.DCAT.dataset))
             self.assertEqual(members, {builder.URIRef(f'https://{domain}/datasets/one')})
