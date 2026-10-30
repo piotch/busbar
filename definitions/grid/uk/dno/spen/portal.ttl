@@ -1,0 +1,11 @@
+@prefix pub: <https://busbar.example/publishing#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<https://busbar.example/id/grid/uk/dno/spen/portal>
+    a pub:Portal ;
+    dct:title "SP Energy Networks Open Data Portal"@en ;
+    pub:portalOperator <https://busbar.example/id/grid/uk/dno/spen> ;
+    pub:platform pub:OpenDataSoft ;
+    foaf:homepage <https://spenergynetworks.opendatasoft.com/> ;
+    pub:exposesCatalog <https://busbar.example/id/grid/uk/dno/spen/catalogue> .

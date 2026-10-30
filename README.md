@@ -15,7 +15,7 @@ The core catalogue describes those datasets in two standard files, both written 
 | `busbar-ontology.ttl` | The vocabulary: network concepts (substations, circuits, projects…), dataset types, publishers, areas | OWL 2, SKOS |
 | `catalogue.ttl` | The datasets: who publishes each one, what it covers, and every edition and file | DCAT 3, Dublin Core |
 
-The ontology defines network concepts such as `busbar:GridSupplyPoint`, and the catalogue uses them. UKPN and Northern Powergrid publisher references now reuse the shared organization identities under `definitions/`, rather than separate uppercase identifiers.
+The ontology defines network concepts such as `busbar:GridSupplyPoint`, and the catalogue uses them. All six DNO publisher references now reuse the shared organization identities under `definitions/`, rather than separate uppercase identifiers.
 
 ![Historical Busbar ontology and catalogue map](docs/images/busbar-map.png)
 
@@ -30,14 +30,14 @@ It distinguishes implemented source observation from future archive/source mappi
 
 ## Shared organizations and catalogue identities
 
-- UKPN and Northern Powergrid are `org:Organization` instances, classified as DNOs
+- All six GB DNO groups are `org:Organization` instances, classified as DNOs
   through `org:classification` and the local SKOS scheme in `vocabulary/grid-roles.ttl`.
 - ReferenceWorks is defined in `definitions/organisations/referenceworks.ttl`.
 - ReferenceWorks publishes and maintains Busbar, whose identity is defined in
   `definitions/grid/catalogues/busbar.ttl`.
 - Busbar's series membership, editions and distributions remain in `catalogue.ttl`.
   Its catalogue identity is `https://busbar.example/id/grid/catalogues/busbar`.
-- UKPN/NPG source catalogues keep their separate identities under
+- DNO source catalogues keep their separate identities under
   `grid/uk/dno/{dno}/catalogue` and their publisher responsibilities.
 
 See [shared foundation](docs/shared-foundation.md). No curated ECR-to-source mapping
@@ -111,8 +111,7 @@ resolve their own dependency versions. PyPI publishing is not configured yet.
 ## Viewing in Protégé
 
 Generate an independent RDF/XML ontology containing the news/source vocabulary,
-source definitions and the latest successfully captured UKPN and Northern Powergrid
-DCAT catalogues. Shared identities, including Busbar and ReferenceWorks, are included.
+source definitions and the latest successfully captured DCAT catalogues for all six DNOs. Shared identities, including Busbar and ReferenceWorks, are included.
 The original grid-domain vocabulary and Busbar's curated series membership are
 not merged into this flat viewer file:
 
@@ -124,7 +123,7 @@ open -a "$HOME/Applications/Protégé.app" build/news-catalogues.owl
 The generated `build/` directory is ignored by Git. Edit the source Turtle files,
 not the viewer export. One capture per publisher is included, with separate
 catalogue membership and capture provenance; SHACL shapes are used for validation but are not merged into this file.
-Capture both sources first if their observations are not present. The builder
+Capture all sources first if their observations are not present. The builder
 fails rather than silently skipping a missing source. Select particular captures
 with repeated `--observation captures/observations/<observation>.json` arguments,
 or select sources with repeated `--spec <specification-IRI>` arguments. In Protégé, use **Entities** to browse classes and individuals;
@@ -160,9 +159,10 @@ GitHub runner. See [GitHub Actions setup and storage](docs/github-actions.md).
 
 ## Tracking publishing sources
 
-Git-managed Turtle declarations describe UKPN and Northern Powergrid, their
-OpenDataSoft portals, source catalogues and DCAT capture endpoints. Their canonical
-paths follow `grid/uk/dno/{ukpn|npg}/catalogue`, shared with
+Git-managed Turtle declarations describe UKPN, Northern Powergrid, SP Energy Networks,
+SSEN, National Grid Electricity Distribution and Electricity North West, their
+OpenDataSoft or CKAN portals, source catalogues and DCAT capture endpoints. Their canonical
+paths follow `grid/uk/dno/{ukpn|npg|spen|ssen|nged|enwl}/catalogue`, shared with
 the intended UNS. Each source catalogue is distinct from Busbar's curated catalogue above.
 
 With [uv](https://docs.astral.sh/uv/) installed, run from this repository:
@@ -171,7 +171,10 @@ With [uv](https://docs.astral.sh/uv/) installed, run from this repository:
 # Validate the declarations without accessing the network.
 uv run busbar capture --validate-only
 
-# Capture UKPN (the default) and Northern Powergrid separately.
+# Capture all six declared sources.
+uv run busbar capture-all
+
+# Or capture UKPN (the default) and Northern Powergrid separately.
 uv run busbar capture
 uv run busbar capture --spec \
   'https://busbar.example/id/grid/uk/dno/npg/catalogue/captures/dcat'

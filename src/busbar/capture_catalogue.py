@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+from urllib.parse import parse_qs, urlencode, urlsplit, urlunsplit
 from urllib.request import Request, urlopen
 import uuid
 
@@ -23,6 +24,28 @@ PUB = Namespace("https://busbar.example/publishing#")
 DCAT = Namespace("http://www.w3.org/ns/dcat#")
 DEFAULT_SPEC = "https://busbar.example/id/grid/uk/dno/ukpn/catalogue/captures/dcat"
 MAX_BYTES = 50 * 1024 * 1024
+MAX_PAGES = 1000
+HYDRA = Namespace("http://www.w3.org/ns/hydra/core#")
+
+
+def next_catalogue_page(graph, endpoint):
+    """Use CKAN's page number on the declared endpoint, not its advertised host.
+
+    Some portals advertise a frontend host that cannot serve RDF. Never follow
+    arbitrary publisher URLs; only a single increasing integer page is accepted.
+    """
+    links = set(graph.objects(None, HYDRA.nextPage)) | set(graph.objects(None, HYDRA.next))
+    if not links:
+        return None
+    if len(links) != 1:
+        raise ValueError("Ambiguous catalogue pagination")
+    page = parse_qs(urlsplit(str(next(iter(links)))).query).get("page", [])
+    if len(page) != 1 or not page[0].isdigit() or int(page[0]) < 1:
+        raise ValueError("Invalid catalogue page number")
+    parts = urlsplit(endpoint)
+    query = parse_qs(parts.query)
+    query["page"] = page
+    return urlunsplit(parts._replace(query=urlencode(query, doseq=True)))
 
 
 def load_declarations(root=None):
@@ -120,29 +143,63 @@ def capture(graph, hashes, spec, output, storage_uri=None):
         "status": "failed",
     }
     try:
-        request = Request(endpoint, headers={
-            "Accept": media_type,
-            "User-Agent": "Busbar-catalogue-observer/0.1",
-        })
-        with urlopen(request, timeout=60) as response:
-            record.update({
-                "http_status": response.status,
-                "final_url": response.url,
-                "content_type": response.headers.get("Content-Type"),
-                "etag": response.headers.get("ETag"),
-                "last_modified": response.headers.get("Last-Modified"),
+        url, seen, total_bytes = endpoint, set(), 0
+        combined = Graph()
+        record["pages"] = []
+        while url:
+            if url in seen or len(seen) >= MAX_PAGES:
+                raise ValueError("Catalogue pagination cycle or page limit exceeded")
+            seen.add(url)
+            request = Request(url, headers={
+                "Accept": media_type,
+                "User-Agent": "Busbar-catalogue-observer/0.1",
             })
-            content = response.read(MAX_BYTES + 1)
-        if len(content) > MAX_BYTES:
-            raise ValueError("Catalogue exceeds the 50 MiB capture limit")
-        # Preserve the response even if RDF parsing subsequently fails.
-        digest, artifact_uri = store_artifact(output, content)
-        relative = f"objects/sha256/{digest}.rdf"
-        record.update({
-            "content_hash": f"sha256:{digest}", "artifact_path": relative,
-            "artifact_uri": storage_reference(storage_uri, relative) if storage_uri else artifact_uri,
-        })
+            with urlopen(request, timeout=60) as response:
+                metadata = {
+                    "source_url": url, "http_status": response.status,
+                    "final_url": response.url,
+                    "content_type": response.headers.get("Content-Type"),
+                    "etag": response.headers.get("ETag"),
+                    "last_modified": response.headers.get("Last-Modified"),
+                }
+                content = response.read(MAX_BYTES - total_bytes + 1)
+            total_bytes += len(content)
+            if total_bytes > MAX_BYTES:
+                raise ValueError("Catalogue exceeds the 50 MiB capture limit")
+            # Preserve every original page, including malformed responses.
+            digest, artifact_uri = store_artifact(output, content)
+            relative = f"objects/sha256/{digest}.rdf"
+            artifact = {
+                "content_hash": f"sha256:{digest}", "artifact_path": relative,
+                "artifact_uri": storage_reference(storage_uri, relative) if storage_uri else artifact_uri,
+            }
+            record["pages"].append({**metadata, **artifact})
+            if len(seen) == 1:
+                record.update({**metadata, **artifact})
+            parse_catalogue(content)
+            page_graph = Graph().parse(data=content, format="xml")
+            combined += page_graph
+            next_url = next_catalogue_page(page_graph, endpoint)
+            if next_url:
+                current_page = int(parse_qs(urlsplit(url).query).get("page", ["1"])[0])
+                next_page = int(parse_qs(urlsplit(next_url).query)["page"][0])
+                if next_page <= current_page:
+                    raise ValueError("Catalogue pagination must advance")
+            url = next_url
+        if len(seen) > 1:
+            # A derived union for existing readers; raw evidence remains in pages.
+            content = combined.serialize(format="xml", encoding="utf-8")
+            digest, artifact_uri = store_artifact(output, content)
+            relative = f"objects/sha256/{digest}.rdf"
+            record.update({
+                "artifact_kind": "rdf-page-union",
+                "content_hash": f"sha256:{digest}", "artifact_path": relative,
+                "artifact_uri": storage_reference(storage_uri, relative) if storage_uri else artifact_uri,
+            })
         datasets, triple_count = parse_catalogue(content)
+        totals = {int(value) for value in combined.objects(None, HYDRA.totalItems)}
+        if totals and totals != {len(datasets)}:
+            raise ValueError("Catalogue dataset count does not match pagination total")
         record.update({
             "status": "success",
             "dataset_count": len(datasets),
@@ -151,9 +208,15 @@ def capture(graph, hashes, spec, output, storage_uri=None):
         })
         if previous:
             old, new = set(previous["dataset_iris"]), set(datasets)
+            # Compare original response bytes, not a union serialization whose
+            # blank-node labels/order may differ between otherwise equal runs.
+            old_hashes = [page["content_hash"] for page in previous.get("pages", [])]
+            new_hashes = [page["content_hash"] for page in record["pages"]]
+            bytes_changed = (old_hashes != new_hashes if old_hashes
+                             else previous["content_hash"] != record["content_hash"])
             record["comparison"] = {
                 "previous_observation_id": previous["observation_id"],
-                "bytes_changed": previous["content_hash"] != record["content_hash"],
+                "bytes_changed": bytes_changed,
                 "newly_listed": sorted(new - old),
                 "no_longer_listed": sorted(old - new),
             }
