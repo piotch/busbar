@@ -1231,7 +1231,7 @@
     dcat:prev <https://busbar.example/id/ukpn.substations.ukpn-grid-supply-points/2024-06-20> .
 
 id:enwl.boundary-flow.enwl-boundary-flow-gsp-xy a dcat:DatasetSeries ;
-    dct:publisher id:ENWL ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
     dct:spatial id:NorthWest ;
     dct:title "ENWL Substation register – enwl boundary flow gsp xy" ;
     dcat:first <https://busbar.example/id/enwl.boundary-flow.enwl-boundary-flow-gsp-xy/2026-03-19> ;
@@ -1250,7 +1250,7 @@ id:enwl.boundary-flow.enwl-boundary-flow-gsp-xy a dcat:DatasetSeries ;
     dcat:inSeries id:enwl.boundary-flow.enwl-boundary-flow-gsp-xy .
 
 id:enwl.boundary-flow.enwl-boundary-flow-merge a dcat:DatasetSeries ;
-    dct:publisher id:ENWL ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
     dct:spatial id:NorthWest ;
     dct:title "ENWL Network flows – enwl boundary flow merge" ;
     dcat:first <https://busbar.example/id/enwl.boundary-flow.enwl-boundary-flow-merge/2026-03-19> ;
@@ -1272,7 +1272,7 @@ id:enwl.boundary-flow.enwl-boundary-flow-merge a dcat:DatasetSeries ;
     dcat:inSeries id:enwl.boundary-flow.enwl-boundary-flow-merge .
 
 id:enwl.boundary-flow.gsp-boundary-flow a dcat:DatasetSeries ;
-    dct:publisher id:ENWL ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
     dct:spatial id:NorthWest ;
     dct:title "ENWL Network flows – gsp boundary flow" ;
     dcat:first <https://busbar.example/id/enwl.boundary-flow.gsp-boundary-flow/2023-11-17> ;
@@ -1292,7 +1292,7 @@ id:enwl.boundary-flow.gsp-boundary-flow a dcat:DatasetSeries ;
 
 id:enwl.cim a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:ENWL ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
     dct:spatial id:NorthWest ;
     dct:title "ENWL CIM network model" ;
     dcat:first <https://busbar.example/id/enwl.cim/2025-09-09> ;
@@ -1325,7 +1325,7 @@ id:enwl.cim a dcat:DatasetSeries ;
 id:enwl.ltds.table-1---circuit-data a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:ENWL ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
     dct:spatial id:NorthWest ;
     dct:title "ENWL LTDS – table 1 circuit data" ;
     dcat:first <https://busbar.example/id/enwl.ltds.table-1---circuit-data/2023-11-01> ;
@@ -1346,7 +1346,7 @@ id:enwl.ltds.table-1---circuit-data a dcat:DatasetSeries ;
 id:enwl.ltds.table-2---transformer-data a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:ENWL ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
     dct:spatial id:NorthWest ;
     dct:title "ENWL LTDS – table 2 transformer data" ;
     dcat:first <https://busbar.example/id/enwl.ltds.table-2---transformer-data/2023-11-01> ;
@@ -1367,7 +1367,7 @@ id:enwl.ltds.table-2---transformer-data a dcat:DatasetSeries ;
 id:enwl.ltds.table-3---load-data a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:ENWL ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
     dct:spatial id:NorthWest ;
     dct:title "ENWL LTDS – table 3 load data" ;
     dcat:first <https://busbar.example/id/enwl.ltds.table-3---load-data/2023-11-01> ;
@@ -1389,7 +1389,7 @@ id:enwl.ltds.table-3---load-data a dcat:DatasetSeries ;
 id:enwl.ltds.table-8a-distribution-substation-asset-data a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:ENWL ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
     dct:spatial id:NorthWest ;
     dct:title "ENWL LTDS – table 8a distribution substation asset data" ;
     dcat:first <https://busbar.example/id/enwl.ltds.table-8a-distribution-substation-asset-data/2025-11-01> ;
@@ -1407,7 +1407,7 @@ id:enwl.ltds.table-8a-distribution-substation-asset-data a dcat:DatasetSeries ;
     dcat:inSeries id:enwl.ltds.table-8a-distribution-substation-asset-data .
 
 id:enwl.polygons.enwl-substation-bsp-polygons a dcat:DatasetSeries ;
-    dct:publisher id:ENWL ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
     dct:spatial id:NorthWest ;
     dct:title "ENWL Service areas – enwl substation bsp polygons" ;
     dcat:first <https://busbar.example/id/enwl.polygons.enwl-substation-bsp-polygons/2026-03-19> ;
@@ -1426,7 +1426,7 @@ id:enwl.polygons.enwl-substation-bsp-polygons a dcat:DatasetSeries ;
     dcat:inSeries id:enwl.polygons.enwl-substation-bsp-polygons .
 
 id:enwl.polygons.enwl-substation-gsp-polygons a dcat:DatasetSeries ;
-    dct:publisher id:ENWL ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
     dct:spatial id:NorthWest ;
     dct:title "ENWL Service areas – enwl substation gsp polygons" ;
     dcat:first <https://busbar.example/id/enwl.polygons.enwl-substation-gsp-polygons/2026-03-19> ;
@@ -1517,7 +1517,7 @@ id:enwl.polygons.enwl-substation-gsp-polygons a dcat:DatasetSeries ;
     dcat:inSeries id:nged.ecr .
 
 id:nged.esa.east-midlands-bsp a dcat:DatasetSeries ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:EMids ;
     dct:title "NGED Service areas – east midlands bsp" ;
     dcat:first <https://busbar.example/id/nged.esa.east-midlands-bsp/2023-11-27> ;
@@ -1536,7 +1536,7 @@ id:nged.esa.east-midlands-bsp a dcat:DatasetSeries ;
     dcat:inSeries id:nged.esa.east-midlands-bsp .
 
 id:nged.esa.east-midlands-distribution a dcat:DatasetSeries ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:EMids ;
     dct:title "NGED Service areas – east midlands distribution" ;
     dcat:first <https://busbar.example/id/nged.esa.east-midlands-distribution/undated> ;
@@ -1554,7 +1554,7 @@ id:nged.esa.east-midlands-distribution a dcat:DatasetSeries ;
     dcat:inSeries id:nged.esa.east-midlands-distribution .
 
 id:nged.esa.east-midlands-gsp a dcat:DatasetSeries ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:EMids ;
     dct:title "NGED Service areas – east midlands gsp" ;
     dcat:first <https://busbar.example/id/nged.esa.east-midlands-gsp/2023-11-27> ;
@@ -1573,7 +1573,7 @@ id:nged.esa.east-midlands-gsp a dcat:DatasetSeries ;
     dcat:inSeries id:nged.esa.east-midlands-gsp .
 
 id:nged.esa.south-wales-bsp a dcat:DatasetSeries ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:SWales ;
     dct:title "NGED Service areas – south wales bsp" ;
     dcat:first <https://busbar.example/id/nged.esa.south-wales-bsp/2023-11-27> ;
@@ -1592,7 +1592,7 @@ id:nged.esa.south-wales-bsp a dcat:DatasetSeries ;
     dcat:inSeries id:nged.esa.south-wales-bsp .
 
 id:nged.esa.south-wales-distribution a dcat:DatasetSeries ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:SWales ;
     dct:title "NGED Service areas – south wales distribution" ;
     dcat:first <https://busbar.example/id/nged.esa.south-wales-distribution/undated> ;
@@ -1610,7 +1610,7 @@ id:nged.esa.south-wales-distribution a dcat:DatasetSeries ;
     dcat:inSeries id:nged.esa.south-wales-distribution .
 
 id:nged.esa.south-wales-gsp a dcat:DatasetSeries ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:SWales ;
     dct:title "NGED Service areas – south wales gsp" ;
     dcat:first <https://busbar.example/id/nged.esa.south-wales-gsp/2023-11-27> ;
@@ -1629,7 +1629,7 @@ id:nged.esa.south-wales-gsp a dcat:DatasetSeries ;
     dcat:inSeries id:nged.esa.south-wales-gsp .
 
 id:nged.esa.south-west-bsp a dcat:DatasetSeries ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:SWest ;
     dct:title "NGED Service areas – south west bsp" ;
     dcat:first <https://busbar.example/id/nged.esa.south-west-bsp/2023-11-27> ;
@@ -1648,7 +1648,7 @@ id:nged.esa.south-west-bsp a dcat:DatasetSeries ;
     dcat:inSeries id:nged.esa.south-west-bsp .
 
 id:nged.esa.south-west-distribution a dcat:DatasetSeries ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:SWest ;
     dct:title "NGED Service areas – south west distribution" ;
     dcat:first <https://busbar.example/id/nged.esa.south-west-distribution/undated> ;
@@ -1666,7 +1666,7 @@ id:nged.esa.south-west-distribution a dcat:DatasetSeries ;
     dcat:inSeries id:nged.esa.south-west-distribution .
 
 id:nged.esa.south-west-gsp a dcat:DatasetSeries ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:SWest ;
     dct:title "NGED Service areas – south west gsp" ;
     dcat:first <https://busbar.example/id/nged.esa.south-west-gsp/2023-11-27> ;
@@ -1685,7 +1685,7 @@ id:nged.esa.south-west-gsp a dcat:DatasetSeries ;
     dcat:inSeries id:nged.esa.south-west-gsp .
 
 id:nged.esa.west-midlands-bsp a dcat:DatasetSeries ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:WMids ;
     dct:title "NGED Service areas – west midlands bsp" ;
     dcat:first <https://busbar.example/id/nged.esa.west-midlands-bsp/2023-11-27> ;
@@ -1704,7 +1704,7 @@ id:nged.esa.west-midlands-bsp a dcat:DatasetSeries ;
     dcat:inSeries id:nged.esa.west-midlands-bsp .
 
 id:nged.esa.west-midlands-distribution a dcat:DatasetSeries ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:WMids ;
     dct:title "NGED Service areas – west midlands distribution" ;
     dcat:first <https://busbar.example/id/nged.esa.west-midlands-distribution/undated> ;
@@ -1722,7 +1722,7 @@ id:nged.esa.west-midlands-distribution a dcat:DatasetSeries ;
     dcat:inSeries id:nged.esa.west-midlands-distribution .
 
 id:nged.esa.west-midlands-gsp a dcat:DatasetSeries ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:WMids ;
     dct:title "NGED Service areas – west midlands gsp" ;
     dcat:first <https://busbar.example/id/nged.esa.west-midlands-gsp/2023-11-27> ;
@@ -1743,7 +1743,7 @@ id:nged.esa.west-midlands-gsp a dcat:DatasetSeries ;
 id:nged.ltds.attachment-8 a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:EMids,
         id:SWales,
         id:SWest,
@@ -1768,7 +1768,7 @@ id:nged.ltds.attachment-8 a dcat:DatasetSeries ;
 id:nged.ltds.table-1 a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:EMids,
         id:SWales,
         id:SWest,
@@ -1792,7 +1792,7 @@ id:nged.ltds.table-1 a dcat:DatasetSeries ;
 id:nged.ltds.table-2a a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:EMids,
         id:SWales,
         id:SWest,
@@ -2038,7 +2038,7 @@ id:npg.ltds.ltds-appendix-5 a dcat:DatasetSeries ;
 
 id:spen.cim.spd a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPD ;
     dct:title "SPEN CIM network model – spd" ;
     dcat:first <https://busbar.example/id/spen.cim.spd/2026-05-26> ;
@@ -2062,7 +2062,7 @@ id:spen.cim.spd a dcat:DatasetSeries ;
 
 id:spen.cim.spm a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN CIM network model – spm" ;
     dcat:first <https://busbar.example/id/spen.cim.spm/2026-06-05> ;
@@ -2093,7 +2093,7 @@ id:spen.cim.spm a dcat:DatasetSeries ;
     dcat:inSeries id:spen.ecr .
 
 id:spen.firm_capacity.historic_substation_utilisation_spd a dcat:DatasetSeries ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPD ;
     dct:title "SPEN Capacity data – historic substation utilisation spd" ;
     dcat:first <https://busbar.example/id/spen.firm_capacity.historic_substation_utilisation_spd/2025-12-15> ;
@@ -2113,7 +2113,7 @@ id:spen.firm_capacity.historic_substation_utilisation_spd a dcat:DatasetSeries ;
     dcat:inSeries id:spen.firm_capacity.historic_substation_utilisation_spd .
 
 id:spen.firm_capacity.historic_substation_utilisation_spm a dcat:DatasetSeries ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN Capacity data – historic substation utilisation spm" ;
     dcat:first <https://busbar.example/id/spen.firm_capacity.historic_substation_utilisation_spm/2025-12-15> ;
@@ -2132,7 +2132,7 @@ id:spen.firm_capacity.historic_substation_utilisation_spm a dcat:DatasetSeries ;
     dcat:inSeries id:spen.firm_capacity.historic_substation_utilisation_spm .
 
 id:spen.firm_capacity.spd-dg-connections-network-info a dcat:DatasetSeries ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPD ;
     dct:title "SPEN Capacity data – spd dg connections network info" ;
     dcat:first <https://busbar.example/id/spen.firm_capacity.spd-dg-connections-network-info/2025-10-08> ;
@@ -2151,7 +2151,7 @@ id:spen.firm_capacity.spd-dg-connections-network-info a dcat:DatasetSeries ;
     dcat:inSeries id:spen.firm_capacity.spd-dg-connections-network-info .
 
 id:spen.firm_capacity.spm-technical-limits a dcat:DatasetSeries ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN Capacity data – spm technical limits" ;
     dcat:first <https://busbar.example/id/spen.firm_capacity.spm-technical-limits/2024-04-10> ;
@@ -2170,7 +2170,7 @@ id:spen.firm_capacity.spm-technical-limits a dcat:DatasetSeries ;
     dcat:inSeries id:spen.firm_capacity.spm-technical-limits .
 
 id:spen.flows.network-flow-dataset-power-current-and-embedded-generation a dcat:DatasetSeries ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPD,
         id:SPM ;
     dct:title "SPEN Network flows – network flow dataset power current and embedded generation" ;
@@ -2193,7 +2193,7 @@ id:spen.flows.network-flow-dataset-power-current-and-embedded-generation a dcat:
     dcat:inSeries id:spen.flows.network-flow-dataset-power-current-and-embedded-generation .
 
 id:spen.groups.ndp-spm-grid-group-polygons a dcat:DatasetSeries ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN Service areas – ndp spm grid group polygons" ;
     dcat:first <https://busbar.example/id/spen.groups.ndp-spm-grid-group-polygons/2024-04-30> ;
@@ -2212,7 +2212,7 @@ id:spen.groups.ndp-spm-grid-group-polygons a dcat:DatasetSeries ;
     dcat:inSeries id:spen.groups.ndp-spm-grid-group-polygons .
 
 id:spen.groups.spd-dfes-substation-polygons-gsp a dcat:DatasetSeries ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPD ;
     dct:title "SPEN Service areas – spd dfes substation polygons gsp" ;
     dcat:first <https://busbar.example/id/spen.groups.spd-dfes-substation-polygons-gsp/undated> ;
@@ -2230,7 +2230,7 @@ id:spen.groups.spd-dfes-substation-polygons-gsp a dcat:DatasetSeries ;
     dcat:inSeries id:spen.groups.spd-dfes-substation-polygons-gsp .
 
 id:spen.groups.spm-dfes-substation-polygons-gsp a dcat:DatasetSeries ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN Service areas – spm dfes substation polygons gsp" ;
     dcat:first <https://busbar.example/id/spen.groups.spm-dfes-substation-polygons-gsp/2026-05-20> ;
@@ -2257,7 +2257,7 @@ id:spen.groups.spm-dfes-substation-polygons-gsp a dcat:DatasetSeries ;
     dcat:inSeries id:spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-grid-substations .
 
 id:spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-primary-substations a dcat:DatasetSeries ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPD ;
     dct:title "SPEN Capacity data – distributed generation sp distribution heat maps spd primary substations" ;
     dcat:first <https://busbar.example/id/spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-primary-substations/2024-06-17> ;
@@ -2276,7 +2276,7 @@ id:spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-primary-sub
     dcat:inSeries id:spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-primary-substations .
 
 id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-grid-substations a dcat:DatasetSeries ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN Capacity data – distributed generation sp manweb heat maps spm grid substations" ;
     dcat:first <https://busbar.example/id/spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-grid-substations/2024-05-30> ;
@@ -2295,7 +2295,7 @@ id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-grid-substations 
     dcat:inSeries id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-grid-substations .
 
 id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-primary-substations a dcat:DatasetSeries ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN Capacity data – distributed generation sp manweb heat maps spm primary substations" ;
     dcat:first <https://busbar.example/id/spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-primary-substations/2024-05-30> ;
@@ -2314,7 +2314,7 @@ id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-primary-substatio
     dcat:inSeries id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-primary-substations .
 
 id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-super-grid-substations a dcat:DatasetSeries ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN Capacity data – distributed generation sp manweb heat maps spm super grid substations" ;
     dcat:first <https://busbar.example/id/spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-super-grid-substations/2024-05-30> ;
@@ -2335,7 +2335,7 @@ id:spen.heatmap.distributed-generation-sp-manweb-heat-maps-spm-super-grid-substa
 id:spen.ltds.spd-ltds-appendix-1-circuit-data-table-1 a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPD ;
     dct:title "SPEN LTDS – spd ltds appendix 1 circuit data table 1" ;
     dcat:first <https://busbar.example/id/spen.ltds.spd-ltds-appendix-1-circuit-data-table-1/2023-11-01> ;
@@ -2356,7 +2356,7 @@ id:spen.ltds.spd-ltds-appendix-1-circuit-data-table-1 a dcat:DatasetSeries ;
 id:spen.ltds.spd-ltds-appendix-2-transformer-data-table-2 a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPD ;
     dct:title "SPEN LTDS – spd ltds appendix 2 transformer data table 2" ;
     dcat:first <https://busbar.example/id/spen.ltds.spd-ltds-appendix-2-transformer-data-table-2/2023-11-01> ;
@@ -2377,7 +2377,7 @@ id:spen.ltds.spd-ltds-appendix-2-transformer-data-table-2 a dcat:DatasetSeries ;
 id:spen.ltds.spd-ltds-appendix-3-system-loads-table-3 a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPD ;
     dct:title "SPEN LTDS – spd ltds appendix 3 system loads table 3" ;
     dcat:first <https://busbar.example/id/spen.ltds.spd-ltds-appendix-3-system-loads-table-3/2023-11-01> ;
@@ -2398,7 +2398,7 @@ id:spen.ltds.spd-ltds-appendix-3-system-loads-table-3 a dcat:DatasetSeries ;
 id:spen.ltds.spm-ltds-appendix-1-circuit-data-table-1 a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN LTDS – spm ltds appendix 1 circuit data table 1" ;
     dcat:first <https://busbar.example/id/spen.ltds.spm-ltds-appendix-1-circuit-data-table-1/2023-11-01> ;
@@ -2419,7 +2419,7 @@ id:spen.ltds.spm-ltds-appendix-1-circuit-data-table-1 a dcat:DatasetSeries ;
 id:spen.ltds.spm-ltds-appendix-2-transformer-data-table-2 a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN LTDS – spm ltds appendix 2 transformer data table 2" ;
     dcat:first <https://busbar.example/id/spen.ltds.spm-ltds-appendix-2-transformer-data-table-2/2023-11-01> ;
@@ -2432,7 +2432,7 @@ id:spen.ltds.spm-ltds-appendix-2-transformer-data-table-2 a dcat:DatasetSeries ;
 id:spen.ltds.spm-ltds-appendix-2-transformer-data-table-2-33-to-11kv a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN LTDS – spm ltds appendix 2 transformer data table 2 33 to 11kv" ;
     dcat:first <https://busbar.example/id/spen.ltds.spm-ltds-appendix-2-transformer-data-table-2-33-to-11kv/2023-11-01> ;
@@ -2461,7 +2461,7 @@ id:spen.ltds.spm-ltds-appendix-2-transformer-data-table-2-33-to-11kv a dcat:Data
 id:spen.ltds.spm-ltds-appendix-3-system-loads-table-3-ehv-forecast a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN LTDS – spm ltds appendix 3 system loads table 3 ehv forecast" ;
     dcat:first <https://busbar.example/id/spen.ltds.spm-ltds-appendix-3-system-loads-table-3-ehv-forecast/2023-11-01> ;
@@ -2482,7 +2482,7 @@ id:spen.ltds.spm-ltds-appendix-3-system-loads-table-3-ehv-forecast a dcat:Datase
 id:spen.ltds.spm-ltds-appendix-3-system-loads-table-3-hv-forecast a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN LTDS – spm ltds appendix 3 system loads table 3 hv forecast" ;
     dcat:first <https://busbar.example/id/spen.ltds.spm-ltds-appendix-3-system-loads-table-3-hv-forecast/2023-11-01> ;
@@ -2503,7 +2503,7 @@ id:spen.ltds.spm-ltds-appendix-3-system-loads-table-3-hv-forecast a dcat:Dataset
 id:spen.ltds.spm-ltds-appendix-9-system-schematics a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPM ;
     dct:title "SPEN LTDS – spm ltds appendix 9 system schematics" ;
     dcat:first <https://busbar.example/id/spen.ltds.spm-ltds-appendix-9-system-schematics/2023-11-01> ;
@@ -2532,7 +2532,7 @@ id:spen.ltds.spm-ltds-appendix-9-system-schematics a dcat:DatasetSeries ;
 
 id:sse.cim.southern a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:SSEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ssen> ;
     dct:spatial id:SEPD ;
     dct:title "SSEN CIM network model – southern" ;
     dcat:first <https://busbar.example/id/sse.cim.southern/2025-11-25> ;
@@ -2563,7 +2563,7 @@ id:sse.cim.southern a dcat:DatasetSeries ;
     dcat:inSeries id:sse.ecr .
 
 id:sse.groups.sepd_bulksupplypoint_esa a dcat:DatasetSeries ;
-    dct:publisher id:SSEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ssen> ;
     dct:spatial id:SEPD ;
     dct:title "SSEN Service areas – sepd bulksupplypoint esa" ;
     dcat:first <https://busbar.example/id/sse.groups.sepd_bulksupplypoint_esa/2025-12-23> ;
@@ -2582,7 +2582,7 @@ id:sse.groups.sepd_bulksupplypoint_esa a dcat:DatasetSeries ;
     dcat:inSeries id:sse.groups.sepd_bulksupplypoint_esa .
 
 id:sse.groups.sepd_gridsupplypoint_esa a dcat:DatasetSeries ;
-    dct:publisher id:SSEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ssen> ;
     dct:spatial id:SEPD ;
     dct:title "SSEN Service areas – sepd gridsupplypoint esa" ;
     dcat:first <https://busbar.example/id/sse.groups.sepd_gridsupplypoint_esa/2025-12-23> ;
@@ -2601,7 +2601,7 @@ id:sse.groups.sepd_gridsupplypoint_esa a dcat:DatasetSeries ;
     dcat:inSeries id:sse.groups.sepd_gridsupplypoint_esa .
 
 id:sse.groups.shepd_gridsupplypoint_esa a dcat:DatasetSeries ;
-    dct:publisher id:SSEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ssen> ;
     dct:spatial id:SHEPD ;
     dct:title "SSEN Service areas – shepd gridsupplypoint esa" ;
     dcat:first <https://busbar.example/id/sse.groups.shepd_gridsupplypoint_esa/2025-12-23> ;
@@ -2620,7 +2620,7 @@ id:sse.groups.shepd_gridsupplypoint_esa a dcat:DatasetSeries ;
     dcat:inSeries id:sse.groups.shepd_gridsupplypoint_esa .
 
 id:sse.heatmap.demand-heat-map-update-feb-24 a dcat:DatasetSeries ;
-    dct:publisher id:SSEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ssen> ;
     dct:spatial id:SEPD,
         id:SHEPD ;
     dct:title "SSEN Capacity data – demand heat map update feb 24" ;
@@ -2642,7 +2642,7 @@ id:sse.heatmap.demand-heat-map-update-feb-24 a dcat:DatasetSeries ;
     dcat:inSeries id:sse.heatmap.demand-heat-map-update-feb-24 .
 
 id:sse.heatmap.headroom-dashboard-data a dcat:DatasetSeries ;
-    dct:publisher id:SSEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ssen> ;
     dct:spatial id:SEPD,
         id:SHEPD ;
     dct:title "SSEN Capacity data – headroom dashboard data" ;
@@ -2664,7 +2664,7 @@ id:sse.heatmap.headroom-dashboard-data a dcat:DatasetSeries ;
     dcat:inSeries id:sse.heatmap.headroom-dashboard-data .
 
 id:sse.heatmap.scotland-demand-heat-map-august a dcat:DatasetSeries ;
-    dct:publisher id:SSEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ssen> ;
     dct:spatial id:SEPD,
         id:SHEPD ;
     dct:title "SSEN Capacity data – scotland demand heat map august" ;
@@ -2895,7 +2895,7 @@ id:ukpn.ltds.ltds-table-2a-transformer-2w a dcat:DatasetSeries ;
     dcat:inSeries id:ukpn.substations.ukpn-grid-supply-points .
 
 id:enwl.substation-numbers.substation-numbers a dcat:DatasetSeries ;
-    dct:publisher id:ENWL ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
     dct:spatial id:NorthWest ;
     dct:title "ENWL Substation register – substation numbers" ;
     dcat:first <https://busbar.example/id/enwl.substation-numbers.substation-numbers/2026-03-19> ;
@@ -2921,7 +2921,7 @@ id:eso.appendix-b a dcat:DatasetSeries ;
 
 id:nged.cim.emids a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:EMids ;
     dct:title "NGED CIM network model – emids" ;
     dcat:first <https://busbar.example/id/nged.cim.emids/2025-09-18> ;
@@ -2937,7 +2937,7 @@ id:nged.cim.emids a dcat:DatasetSeries ;
 
 id:nged.cim.swales a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:SWales ;
     dct:title "NGED CIM network model – swales" ;
     dcat:first <https://busbar.example/id/nged.cim.swales/2025-09-19> ;
@@ -2953,7 +2953,7 @@ id:nged.cim.swales a dcat:DatasetSeries ;
 
 id:nged.cim.swest a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:SWest ;
     dct:title "NGED CIM network model – swest" ;
     dcat:first <https://busbar.example/id/nged.cim.swest/2025-09-19> ;
@@ -2969,7 +2969,7 @@ id:nged.cim.swest a dcat:DatasetSeries ;
 
 id:nged.cim.wmids a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:WMids ;
     dct:title "NGED CIM network model – wmids" ;
     dcat:first <https://busbar.example/id/nged.cim.wmids/2025-09-18> ;
@@ -3026,7 +3026,7 @@ id:npg.dno-boundaries.all_dno_boundaries a dcat:DatasetSeries ;
     busbar:temporalNature busbar:snapshot .
 
 id:spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-grid-substations a dcat:DatasetSeries ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPD ;
     dct:title "SPEN Capacity data – distributed generation sp distribution heat maps spd grid substations" ;
     dcat:first <https://busbar.example/id/spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-grid-substations/2024-06-17> ;
@@ -3038,7 +3038,7 @@ id:spen.heatmap.distributed-generation-sp-distribution-heat-maps-spd-grid-substa
 
 id:sse.cim.scottish a dcat:DatasetSeries ;
     dct:conformsTo id:iec-61970-cim ;
-    dct:publisher id:SSEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ssen> ;
     dct:spatial id:SHEPD ;
     dct:title "SSEN CIM network model – scottish" ;
     dcat:first <https://busbar.example/id/sse.cim.scottish/2025-11-22> ;
@@ -3081,7 +3081,7 @@ id:ukpn.substations.ukpn-grid-supply-points a dcat:DatasetSeries ;
 id:nged.ltds.table-3 a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:EMids,
         id:SWales,
         id:SWest,
@@ -3139,7 +3139,7 @@ id:gov_uk.repd a dcat:DatasetSeries ;
 id:enwl.ecr a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:MONTHLY ;
     dct:conformsTo id:ena-ecr ;
-    dct:publisher id:ENWL ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
     dct:spatial id:NorthWest ;
     dct:title "ENWL Embedded Capacity Register" ;
     dcat:first <https://busbar.example/id/enwl.ecr/2024-06-14> ;
@@ -3154,7 +3154,7 @@ id:enwl.ecr a dcat:DatasetSeries ;
 id:sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:SSEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ssen> ;
     dct:spatial id:SHEPD ;
     dct:title "SSEN LTDS – scottish hydro electric power distribution long term development statement tables" ;
     dcat:first <https://busbar.example/id/sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-statement-tables/2023-05-01> ;
@@ -3170,7 +3170,7 @@ id:sse.ltds.scottish-hydro-electric-power-distribution-long-term-development-sta
 id:nged.ecr a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:MONTHLY ;
     dct:conformsTo id:ena-ecr ;
-    dct:publisher id:NGED ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/nged> ;
     dct:spatial id:EMids,
         id:SWales,
         id:SWest,
@@ -3188,7 +3188,7 @@ id:nged.ecr a dcat:DatasetSeries ;
 id:sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:ANNUAL_2 ;
     dct:conformsTo id:ofgem-ltds ;
-    dct:publisher id:SSEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ssen> ;
     dct:spatial id:SEPD ;
     dct:title "SSEN LTDS – southern electric power distribution long term development statement tables" ;
     dcat:first <https://busbar.example/id/sse.ltds.southern-electric-power-distribution-long-term-development-statement-tables/2023-05-01> ;
@@ -3222,7 +3222,7 @@ id:ukpn.ecr a dcat:DatasetSeries ;
 id:spen.ecr a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:MONTHLY ;
     dct:conformsTo id:ena-ecr ;
-    dct:publisher id:SPEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/spen> ;
     dct:spatial id:SPD,
         id:SPM ;
     dct:title "SPEN Embedded Capacity Register" ;
@@ -3266,7 +3266,7 @@ id:eso.tec a dcat:DatasetSeries ;
 id:sse.ecr a dcat:DatasetSeries ;
     dct:accrualPeriodicity freq:MONTHLY ;
     dct:conformsTo id:ena-ecr ;
-    dct:publisher id:SSEN ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ssen> ;
     dct:spatial id:SEPD,
         id:SHEPD ;
     dct:title "SSEN Embedded Capacity Register" ;

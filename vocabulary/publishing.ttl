@@ -38,6 +38,11 @@ pub:status a owl:DatatypeProperty ;
     rdfs:range xsd:string ;
     rdfs:label "Acquisition status"@en .
 
+pub:iriRepairCount a owl:DatatypeProperty ;
+    rdfs:domain pub:CatalogSnapshot ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Number of malformed publisher IRIs resolved and percent-encoded in the TriG projection. Original response bytes remain unchanged."@en .
+
 pub:datasetCount a owl:DatatypeProperty ;
     rdfs:domain pub:CatalogSnapshot ;
     rdfs:range xsd:integer ;
