@@ -149,6 +149,9 @@ SPARQL examples. Protégé's flat OWL export remains a separate viewer artifact.
 
 ## Scheduled capture with GitHub Actions
 
+For optional UK-based SSEN acquisition without changing source definitions, see
+[the London Lambda relay setup](docs/ssen-relay.md).
+
 The [Catalogue observations workflow](.github/workflows/catalogue-observations.yml)
 can capture public catalogues daily and on manual dispatch, persisting history in
 the S3-compatible bucket and publishing versioned exports. Pull requests only run

@@ -8,3 +8,5 @@ __pycache__/
 .venv/
 /dist/
 *.egg-info/
+.aws-sam/
+samconfig.toml

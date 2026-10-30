@@ -35,7 +35,9 @@ Use dedicated least-privilege credentials for this bucket/prefix. The workflow
 needs bucket listing for the history prefixes, object reads, and conditional
 object writes; it does not need remote deletion or bucket-administration access.
 Hetzner's access/secret keys are used here rather than assuming AWS OIDC support.
-The workflow itself has only `contents: read` GitHub permissions.
+Validation has only `contents: read`. The observation job also has `id-token: write`
+for the optional [London SSEN relay](ssen-relay.md). Its AWS role can invoke only
+the relay; Hetzner bucket authentication is unchanged.
 
 ## What a run does
 

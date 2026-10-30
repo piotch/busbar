@@ -18,6 +18,7 @@ from pyshacl import validate
 from rdflib import Graph, Namespace, RDF, URIRef
 
 from .artifact_store import storage_reference
+from .ssen_relay import relay_for, fetch as fetch_via_relay
 
 from .resources import data_root, load_graph, source_root, turtle_files
 PUB = Namespace("https://busbar.example/publishing#")
@@ -154,7 +155,16 @@ def capture(graph, hashes, spec, output, storage_uri=None):
                 "Accept": media_type,
                 "User-Agent": "Busbar-catalogue-observer/0.1",
             })
-            with urlopen(request, timeout=60) as response:
+            relay = relay_for(url)
+            if relay:
+                # Record the route before invocation, including failed acquisitions.
+                record["acquisition"] = {
+                    "transport": "aws-lambda", "region": "eu-west-2",
+                    "function_arn": relay,
+                }
+            response_context = (fetch_via_relay(url, relay) if relay
+                                else urlopen(request, timeout=60))
+            with response_context as response:
                 metadata = {
                     "source_url": url, "http_status": response.status,
                     "final_url": response.url,

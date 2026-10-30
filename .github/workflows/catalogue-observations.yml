@@ -38,6 +38,9 @@ jobs:
   observe:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     needs: validate
+    permissions:
+      contents: read
+      id-token: write
     runs-on: ubuntu-latest
     timeout-minutes: 30
     concurrency:
@@ -55,14 +58,23 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.12"
+      - name: Authenticate to the optional London SSEN relay
+        if: vars.BUSBAR_SSEN_RELAY_FUNCTION != ''
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.BUSBAR_SSEN_RELAY_ROLE_ARN }}
+          aws-region: eu-west-2
+          allowed-account-ids: ${{ vars.BUSBAR_SSEN_RELAY_ACCOUNT_ID }}
       - name: Restore durable history
         id: restore
         run: uv run --locked --extra s3 busbar bucket pull
       - name: Capture all declared public catalogues
         id: capture
         continue-on-error: true
+        env:
+          BUSBAR_SSEN_RELAY_FUNCTION: ${{ vars.BUSBAR_SSEN_RELAY_FUNCTION }}
         run: >-
-          uv run --locked busbar capture-all
+          uv run --locked --extra s3 busbar capture-all
           --storage-uri "s3://${BUCKET_NAME}/${BUCKET_PREFIX}"
       - name: Preserve observations, including acquisition failures
         id: archive
