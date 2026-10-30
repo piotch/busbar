@@ -1,0 +1,11 @@
+@prefix pub: <https://busbar.example/publishing#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<https://busbar.example/id/grid/uk/dno/ssen/portal>
+    a pub:Portal ;
+    dct:title "Scottish and Southern Electricity Networks Open Data Portal"@en ;
+    pub:portalOperator <https://busbar.example/id/grid/uk/dno/ssen> ;
+    pub:platform pub:CKAN ;
+    foaf:homepage <https://data.ssen.co.uk/> ;
+    pub:exposesCatalog <https://busbar.example/id/grid/uk/dno/ssen/catalogue> .

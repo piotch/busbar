@@ -65,6 +65,64 @@ class CaptureTests(unittest.TestCase):
         conforms, _, _ = capture.validate(graph, shacl_graph=shapes, inference="none")
         self.assertFalse(conforms)
 
+    def paged_rdf(self, next_page=None, total=2):
+        paging = f'<hydra:totalItems>{total}</hydra:totalItems>'
+        if next_page:
+            paging += f'<hydra:nextPage rdf:resource="{next_page}"/>'
+        return RDF.replace(
+            b'xmlns:dcat=', b'xmlns:hydra="http://www.w3.org/ns/hydra/core#" xmlns:dcat=',
+        ).replace(
+            b'<dcat:Catalog rdf:about="https://source.example/catalog"/>',
+            ('<dcat:Catalog rdf:about="https://source.example/catalog">'
+             + paging + '</dcat:Catalog>').encode(),
+        )
+
+    def test_paginated_capture_preserves_pages_and_combines_membership(self):
+        first = self.paged_rdf('https://frontend.example/catalog.rdf?page=2')
+        second = self.paged_rdf().replace(b'datasets/one', b'datasets/two')
+        spec = capture.DEFAULT_SPEC.replace('/ukpn/', '/nged/')
+        with tempfile.TemporaryDirectory() as output:
+            with patch.object(capture, 'urlopen', side_effect=[Response(first), Response(second)]) as mocked:
+                record, _ = capture.capture(self.graph, self.hashes, spec, Path(output))
+            self.assertEqual(record['status'], 'success')
+            self.assertEqual(record['dataset_count'], 2)
+            self.assertEqual(record['artifact_kind'], 'rdf-page-union')
+            self.assertEqual(mocked.call_args_list[1].args[0].full_url,
+                             'https://connecteddata.nationalgrid.co.uk/catalog.rdf?page=2')
+            for page, original in zip(record['pages'], [first, second]):
+                self.assertEqual((Path(output) / page['artifact_path']).read_bytes(), original)
+            self.assertEqual(len(capture.parse_catalogue(
+                (Path(output) / record['artifact_path']).read_bytes())[0]), 2)
+            with patch.object(capture, 'urlopen', side_effect=[Response(first), Response(second)]):
+                repeated, _ = capture.capture(self.graph, self.hashes, spec, Path(output))
+            self.assertFalse(repeated['comparison']['bytes_changed'])
+            self.assertEqual(repeated['comparison']['newly_listed'], [])
+
+    def test_failed_second_page_does_not_create_successful_partial_catalogue(self):
+        first = self.paged_rdf('https://source.example/catalog.rdf?page=2')
+        with tempfile.TemporaryDirectory() as output:
+            with patch.object(capture, 'urlopen', side_effect=[Response(first), URLError('offline')]):
+                record, _ = self.run_capture(output)
+            self.assertEqual(record['status'], 'failed')
+            self.assertNotIn('dataset_count', record)
+            self.assertIsNone(capture.previous_success(Path(output), capture.DEFAULT_SPEC))
+            self.assertEqual((Path(output) / record['pages'][0]['artifact_path']).read_bytes(), first)
+
+    def test_pagination_cycle_is_rejected(self):
+        page = self.paged_rdf('https://source.example/catalog.rdf?page=1')
+        with tempfile.TemporaryDirectory() as output:
+            with patch.object(capture, 'urlopen', return_value=Response(page)) as mocked:
+                record, _ = self.run_capture(output)
+            self.assertEqual(record['status'], 'failed')
+            self.assertEqual(mocked.call_count, 1)
+
+    def test_incomplete_catalogue_is_rejected(self):
+        with tempfile.TemporaryDirectory() as output:
+            with patch.object(capture, 'urlopen', return_value=Response(self.paged_rdf())):
+                record, _ = self.run_capture(output)
+            self.assertEqual(record['status'], 'failed')
+            self.assertNotIn('dataset_count', record)
+
     def test_unknown_spec_rejected(self):
         with self.assertRaises(ValueError):
             capture.capture_parameters(self.graph, "https://unknown.example/spec")

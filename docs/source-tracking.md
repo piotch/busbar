@@ -32,7 +32,21 @@ store, not a requirement to avoid a future Django database or Iceberg tables.
   source catalogue and an explicit DCAT capture specification.
 - `definitions/grid/uk/dno/npg/`: the equivalent organization, portal and catalogue
   declarations for Northern Powergrid.
+- `definitions/grid/uk/dno/{spen,ssen,nged,enwl}/`: equivalent declarations
+  for SP Energy Networks, SSEN, National Grid Electricity Distribution and Electricity North West.
 - `shapes/publishing.ttl`: SHACL constraints for these declarations.
+
+| DNO | Platform | DCAT RDF/XML endpoint |
+|---|---|---|
+| UKPN | OpenDataSoft | https://ukpowernetworks.opendatasoft.com/api/explore/v2.1/catalog/exports/dcat |
+| NPG | OpenDataSoft | https://northernpowergrid.opendatasoft.com/api/explore/v2.1/catalog/exports/dcat |
+| SPEN | OpenDataSoft | https://spenergynetworks.opendatasoft.com/api/explore/v2.1/catalog/exports/dcat |
+| SSEN | CKAN | https://data-api.ssen.co.uk/catalog.rdf |
+| NGED | CKAN | https://connecteddata.nationalgrid.co.uk/catalog.rdf |
+| ENWL | OpenDataSoft | https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/exports/dcat |
+
+Run `uv run scripts/capture_all.py` to capture every declared source.
+SSEN's frontend is https://data.ssen.co.uk/; RDF is served by its CKAN backend.
 
 The canonical entity path is:
 
@@ -65,11 +79,11 @@ A software migration changes the platform attribute, not the portal identity.
 Only the shorter identities are supported; the initial experimental history was
 reset rather than migrated. No broker, retained state publisher or JSON-LD serializer is implemented.
 
-UKPN and Northern Powergrid have shared `org:Organization` identities. Their DNO
+All six DNO groups have shared `org:Organization` identities. Their DNO
 classification uses `org:classification` and the local SKOS concept
 `grid:DistributionNetworkOperator`, not a publishing-specific OWL class. The
 original grid ontology and curated catalogue now reference those same organization
-URIs directly; the old uppercase UKPN/NPG identifiers are not retained as aliases.
+URIs directly; the old uppercase DNO identifiers are not retained as aliases.
 Both original and publishing-specific DNO OWL classes are removed. All six
 DNOs in the original domain reference data use the shared classification concept.
 The broader network/system/transmission operator classes remain domain modelling,
@@ -105,12 +119,26 @@ Python 3.11 or newer is required. The script:
 1. Parses all `definitions/**/*.ttl` and `vocabulary/**/*.ttl` files.
 2. Validates them with SHACL before any network access.
 3. Resolves the selected capture specification (UKPN DCAT by default).
-4. Fetches the complete export URL with a timeout and 50 MiB response limit.
+4. Fetches the export with a timeout and 50 MiB total response limit, following CKAN Hydra pagination (up to 1,000 pages).
 5. Archives the exact response bytes, deduplicated by SHA-256.
 6. Parses RDF/XML and requires a `dcat:Catalog` and IRI-identified dataset entries.
 7. Writes a unique observation, even when the response bytes are unchanged.
 8. Compares dataset IRIs against the preceding successful observation of this
    specification. It reports `newly_listed` and `no_longer_listed`, not deletion.
+
+Paginated captures preserve each exact response and its HTTP metadata in
+the observation's `pages` array. The main artifact is a derived RDF/XML union
+(`artifact_kind: rdf-page-union`) so existing viewers and comparisons see the
+complete catalogue. Single-page artifacts remain byte-for-byte responses.
+Page numbers must advance and are requested on the declared endpoint, even if
+Hydra links advertise a different frontend host. Failed pages or a mismatch with
+`hydra:totalItems` fail the whole observation, never a successful partial snapshot.
+
+NGED currently publishes malformed IRIs such as `rdf:resource="GIS Data"`.
+Raw artifacts are unchanged. The TriG projection resolves these malformed IRIs
+against the request URL and percent-encodes illegal characters, recording
+`pub:iriRepairCount` on the observation. This is a serialization repair, not
+a business-concept mapping.
 
 Observations written with `--storage-uri s3://bucket/prefix` retain portable
 `artifact_path`, `artifact_uri` and `manifest_uri` references. Restored files can be
@@ -182,7 +210,7 @@ UKPN ← portalOperator — Portal → exposesCatalog → Catalogue → dataset 
 ```
 
 The viewer has one canonical source catalogue individual per DNO, plus the
-separate Busbar curated-catalogue identity (without its curated membership). Both portals reference
+separate Busbar curated-catalogue identity (without its curated membership). All portals reference
 the same OpenDataSoft platform resource. Dataset identities and membership stay
 publisher-scoped; similarly named datasets or themes are not automatically treated
 as equivalent. No cross-DNO business-concept mappings are asserted by this merge.
