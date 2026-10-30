@@ -3,13 +3,11 @@ import io
 import json
 import os
 from pathlib import Path
-import sys
 import tempfile
 import unittest
 from unittest.mock import patch
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-import bucket_store as store
+from busbar import bucket_store as store
 
 
 class S3Error(Exception):

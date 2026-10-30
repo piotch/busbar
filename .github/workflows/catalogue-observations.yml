@@ -21,11 +21,19 @@ jobs:
         with:
           python-version: "3.12"
       - name: Validate source declarations
-        run: uv run scripts/capture_catalogue.py --validate-only
+        run: uv run --locked busbar capture --validate-only
       - name: Test (no network or bucket credentials)
-        run: >-
-          uv run --with 'rdflib>=7.1,<8' --with 'pyshacl>=0.30,<1'
-          python -m unittest discover -s tests -v
+        run: uv run --locked python -m unittest discover -s tests -v
+      - name: Build source distribution and wheel
+        run: uv build
+      - name: Test installed wheel outside the checkout
+        run: |
+          uv venv /tmp/busbar-wheel
+          uv pip install --python /tmp/busbar-wheel/bin/python dist/*.whl
+          cd "$(mktemp -d)"
+          /tmp/busbar-wheel/bin/python -c 'from busbar.resources import source_root; assert source_root() is None'
+          /tmp/busbar-wheel/bin/busbar capture --validate-only
+          /tmp/busbar-wheel/bin/python -m unittest discover -s "$GITHUB_WORKSPACE/tests" -v
 
   observe:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
@@ -49,24 +57,24 @@ jobs:
           python-version: "3.12"
       - name: Restore durable history
         id: restore
-        run: uv run scripts/bucket_store.py pull
+        run: uv run --locked --extra s3 busbar bucket pull
       - name: Capture all declared public catalogues
         id: capture
         continue-on-error: true
         run: >-
-          uv run scripts/capture_all.py
+          uv run --locked busbar capture-all
           --storage-uri "s3://${BUCKET_NAME}/${BUCKET_PREFIX}"
       - name: Preserve observations, including acquisition failures
         id: archive
         if: always() && steps.restore.outcome == 'success' && steps.capture.outcome != 'skipped'
-        run: uv run scripts/bucket_store.py push
+        run: uv run --locked --extra s3 busbar bucket push
       - name: Build queryable history and viewer exports
         id: export
         if: always() && steps.archive.outcome == 'success'
         continue-on-error: true
         run: |
-          uv run scripts/build_observations.py
-          uv run scripts/build_ontology.py
+          uv run --locked busbar build-observations
+          uv run --locked busbar build-ontology
       - name: Publish exports only for a fully successful capture run
         id: publish
         if: >-
@@ -74,7 +82,7 @@ jobs:
           steps.archive.outcome == 'success' &&
           steps.export.outcome == 'success'
         run: >-
-          uv run scripts/bucket_store.py publish
+          uv run --locked --extra s3 busbar bucket publish
           --run-id "${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
       - name: Attach diagnostic summary and exports (not the permanent archive)
         if: always() && steps.restore.outcome == 'success'

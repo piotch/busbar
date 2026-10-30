@@ -1,13 +1,11 @@
 import hashlib
 import json
 from pathlib import Path
-import sys
 import tempfile
 import unittest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-import build_observations as export
-from capture_catalogue import DEFAULT_SPEC
+from busbar import build_observations as export
+from busbar.capture_catalogue import DEFAULT_SPEC
 from rdflib import BNode, Dataset, Literal, RDF, URIRef
 from rdflib.compare import isomorphic
 
@@ -76,7 +74,8 @@ class ObservationExportTests(unittest.TestCase):
         metadata = dataset.graph(export.METADATA)
         by_id = {str(node).rsplit('/', 1)[-1]: node
                  for node in metadata.subjects(RDF.type, export.PUB.CatalogSnapshot)}
-        query_dir = export.ROOT / 'queries'
+        from busbar.resources import data_root
+        query_dir = data_root().joinpath('queries')
         observations = list(dataset.query((query_dir / 'list-observations.rq').read_text()))
         self.assertEqual(len(observations), 2)
         added = list(dataset.query((query_dir / 'newly-listed-datasets.rq').read_text(),

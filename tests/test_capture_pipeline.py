@@ -1,17 +1,15 @@
 import json
 from pathlib import Path
 import shutil
-import sys
 import tempfile
 import unittest
 from unittest.mock import patch
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-import artifact_store
-import build_observations
-import build_ontology
-import capture_all
-import capture_catalogue as capture
+from busbar import artifact_store
+from busbar import build_observations
+from busbar import build_ontology
+from busbar import capture_all
+from busbar import capture_catalogue as capture
 from rdflib import URIRef
 
 RDF_XML = b'''<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
