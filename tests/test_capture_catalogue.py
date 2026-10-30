@@ -1,13 +1,11 @@
 import json
 from pathlib import Path
-import sys
 import tempfile
 import unittest
 from unittest.mock import patch
 from urllib.error import URLError
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-import capture_catalogue as capture
+from busbar import capture_catalogue as capture
 
 RDF = b"""<?xml version="1.0"?>
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -59,9 +57,7 @@ class CaptureTests(unittest.TestCase):
         for triple in self.graph:
             graph.add(triple)
         graph.remove((None, capture.PUB.portalOperator, None))
-        shapes = capture.Graph().parse(
-            capture.ROOT / "shapes/publishing.ttl", format="turtle",
-        )
+        shapes = capture.load_graph("shapes/publishing.ttl")
         conforms, _, _ = capture.validate(graph, shacl_graph=shapes, inference="none")
         self.assertFalse(conforms)
 

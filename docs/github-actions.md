@@ -115,13 +115,13 @@ environment variables. Start with `.env.example` and real private credentials.
 Read-only credential check (does not test write permission):
 
 ```bash
-uv run scripts/bucket_store.py check
+uv run --extra s3 busbar bucket check
 ```
 
 Restore the shared archive and rebuild (no remote writes):
 
 ```bash
-uv run scripts/bucket_store.py pull --captures captures-shared
+uv run --extra s3 busbar bucket pull --captures captures-shared
 uv run scripts/build_observations.py --captures captures-shared
 uv run scripts/build_ontology.py --captures captures-shared
 ```
@@ -135,10 +135,10 @@ push/publish steps):
 ```bash
 uv run scripts/capture_all.py --output captures-shared \
   --storage-uri s3://busbar/catalogue-history
-uv run scripts/bucket_store.py push --captures captures-shared
+uv run --extra s3 busbar bucket push --captures captures-shared
 uv run scripts/build_observations.py --captures captures-shared
 uv run scripts/build_ontology.py --captures captures-shared
-uv run scripts/bucket_store.py publish --run-id manual-unique-run-id
+uv run --extra s3 busbar bucket publish --run-id manual-unique-run-id
 ```
 
 `capture_all.py` prints and writes a compact source summary with status, dataset

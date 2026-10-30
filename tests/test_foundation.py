@@ -1,9 +1,8 @@
-import sys
 from pathlib import Path
 import unittest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from capture_catalogue import ROOT, load_declarations
+from busbar import load_catalogue, load_ontology, load_declarations
+from busbar.resources import load_graph
 from rdflib import Graph, Namespace, RDF, URIRef
 from pyshacl import validate
 
@@ -22,8 +21,8 @@ class FoundationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.definitions, _ = load_declarations()
-        cls.curated = Graph().parse(ROOT / "catalogue.ttl", format="turtle")
-        cls.domain = Graph().parse(ROOT / "busbar-ontology.ttl", format="turtle")
+        cls.curated = load_catalogue()
+        cls.domain = load_ontology()
 
     def test_referenceworks_publishes_and_maintains_busbar(self):
         self.assertIn((REFERENCEWORKS, RDF.type, ORG.Organization), self.definitions)
@@ -90,7 +89,7 @@ class FoundationTests(unittest.TestCase):
         for triple in self.definitions:
             graph.add(triple)
         graph.remove((BUSBAR, PUB.maintainedBy, None))
-        shapes = Graph().parse(ROOT / "shapes/publishing.ttl", format="turtle")
+        shapes = load_graph("shapes/publishing.ttl")
         conforms, _, _ = validate(graph, shacl_graph=shapes, inference="none")
         self.assertFalse(conforms)
 

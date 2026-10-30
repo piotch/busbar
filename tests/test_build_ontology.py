@@ -1,13 +1,11 @@
 import hashlib
 import json
 from pathlib import Path
-import sys
 import tempfile
 import unittest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-import build_ontology as builder
-import capture_catalogue as capture
+from busbar import build_ontology as builder
+from busbar import capture_catalogue as capture
 
 RDF = b"""<?xml version="1.0"?>
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
