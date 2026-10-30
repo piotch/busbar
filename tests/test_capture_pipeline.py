@@ -72,9 +72,10 @@ class CapturePipelineTests(unittest.TestCase):
             root = Path(directory)
             with patch.object(capture_all, "capture", side_effect=mock_capture) as mocked:
                 results = capture_all.run(root / "captures", root / "summary.json")
-            self.assertEqual(mocked.call_count, 2)
+            self.assertEqual(mocked.call_count, 6)
+            self.assertEqual(len({r["specification"] for r in results}), 6)
             self.assertEqual({r["status"] for r in results}, {"success", "failed"})
-            self.assertEqual(len(json.loads((root / "summary.json").read_text())["sources"]), 2)
+            self.assertEqual(len(json.loads((root / "summary.json").read_text())["sources"]), 6)
 
 
 if __name__ == "__main__":

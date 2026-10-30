@@ -36,7 +36,7 @@ class FoundationTests(unittest.TestCase):
     def test_dno_is_a_domain_classification_not_a_publishing_class(self):
         self.assertIn((GRID.DistributionNetworkOperator, RDF.type, SKOS.Concept), self.definitions)
         self.assertNotIn((PUB.DistributionNetworkOperator, None, None), self.definitions)
-        for dno in ("ukpn", "npg"):
+        for dno in ("ukpn", "npg", "spen", "ssen", "nged", "enwl"):
             organization = URIRef(BASE + "grid/uk/dno/" + dno)
             catalog = URIRef(str(organization) + "/catalogue")
             self.assertIn((organization, RDF.type, ORG.Organization), self.definitions)
@@ -44,10 +44,25 @@ class FoundationTests(unittest.TestCase):
             self.assertIn((catalog, DCT.publisher, organization), self.definitions)
             self.assertNotIn((catalog, PUB.maintainedBy, REFERENCEWORKS), self.definitions)
 
+    def test_all_six_dnos_have_portals_and_capture_specifications(self):
+        expected = {URIRef(BASE + 'grid/uk/dno/' + dno)
+                    for dno in ('ukpn', 'npg', 'spen', 'ssen', 'nged', 'enwl')}
+        self.assertEqual(set(self.definitions.subjects(
+            ORG.classification, GRID.DistributionNetworkOperator)), expected)
+        self.assertEqual(set(self.definitions.subjects(RDF.type, PUB.CaptureSpecification)),
+                         {URIRef(str(org) + '/catalogue/captures/dcat') for org in expected})
+        for organization in expected:
+            portal = URIRef(str(organization) + '/portal')
+            catalog = URIRef(str(organization) + '/catalogue')
+            spec = URIRef(str(catalog) + '/captures/dcat')
+            self.assertIn((portal, PUB.portalOperator, organization), self.definitions)
+            self.assertIn((portal, PUB.exposesCatalog, catalog), self.definitions)
+            self.assertIn((spec, PUB.catalog, catalog), self.definitions)
+
     def test_curated_and_domain_graphs_reuse_the_shared_organization_ids(self):
         self.assertEqual(len(set(self.curated.objects(BUSBAR, DCAT.dataset))), 96)
         self.assertEqual(len(set(self.curated.subjects(RDF.type, DCAT.Dataset))), 220)
-        for old, dno in (("UKPN", "ukpn"), ("NPG", "npg")):
+        for old, dno in ((name.upper(), name) for name in ("ukpn", "npg", "spen", "ssen", "nged", "enwl")):
             organization = URIRef(BASE + "grid/uk/dno/" + dno)
             self.assertTrue(any(self.curated.subjects(DCT.publisher, organization)))
             self.assertIn((organization, None, None), self.domain)

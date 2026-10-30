@@ -1,0 +1,16 @@
+@prefix pub: <https://busbar.example/publishing#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<https://busbar.example/id/grid/uk/dno/ssen/catalogue>
+    a dcat:Catalog, pub:TrackedCatalog ;
+    dct:title "Scottish and Southern Electricity Networks Open Data Catalogue"@en ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/ssen> ;
+    foaf:homepage <https://data.ssen.co.uk/> .
+
+<https://busbar.example/id/grid/uk/dno/ssen/catalogue/captures/dcat>
+    a pub:CaptureSpecification ;
+    pub:catalog <https://busbar.example/id/grid/uk/dno/ssen/catalogue> ;
+    pub:endpoint <https://data-api.ssen.co.uk/catalog.rdf> ;
+    pub:mediaType "application/rdf+xml" .
