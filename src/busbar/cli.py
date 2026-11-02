@@ -6,6 +6,7 @@ COMMANDS = {
     "capture": ("capture_catalogue", "Capture one source or validate declarations"),
     "capture-all": ("capture_all", "Capture all declared sources"),
     "build-observations": ("build_observations", "Export named observation graphs as TriG"),
+    "investigate": ("investigate", "Draft and approve evidence-backed investigation issues/comments"),
     "report-changes": ("report_changes", "Report observed dataset changes from TriG"),
     "build-ontology": ("build_ontology", "Export a flat RDF/XML viewer ontology"),
     "bucket": ("bucket_store", "Manage optional S3-compatible storage"),

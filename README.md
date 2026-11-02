@@ -28,6 +28,13 @@ The ontology defines network concepts such as `busbar:GridSupplyPoint`, and the 
 For a changeset handover, see [catalogues, observations and archives](docs/catalogues-and-archives.md).
 It distinguishes implemented source observation from future archive/source mappings.
 
+For the next steps after a change report, see the
+[investigation workflow](docs/investigation-workflow.md): artifacts for evidence,
+issues for investigation, comments for progress and PRs for proposed changes.
+The [investigation agent](docs/investigation-agent.md) is a manually started,
+approval-gated Pi runner for issue triage and evidence-based findings. Journal
+and catalogue PR automation remain future work.
+
 ## Shared organizations and catalogue identities
 
 - All six GB DNO groups are `org:Organization` instances, classified as DNOs
@@ -189,6 +196,23 @@ publisher modification times.
 report graph. The scheduled workflow attaches the RDF/XML and Markdown reports
 as CI artifacts after publishing a successful capture run. It does not create
 issues, PRs or blog entries automatically.
+
+### Investigate selected changes
+
+With Pi configured and GitHub CLI authenticated, prepare up to three issue/comment
+proposals (no GitHub writes):
+
+```bash
+uv run busbar investigate triage --report build/changes.rdf \
+  --repo piotch/busbar --run build/investigations/triage-001
+```
+
+Review the run's `proposal.md` and `proposal.json`. A separate `investigate apply`
+command requires the exact reviewed proposal hash before posting. `inspect-data`
+summarises local CSV/JSON/RDF shapes, and `inspect` drafts findings from explicit
+evidence files. See the [agent guide](docs/investigation-agent.md) for approval,
+retry, security and data-handling instructions. These tasks do not push, open PRs
+or merge changes.
 
 ## Scheduled capture with GitHub Actions
 
