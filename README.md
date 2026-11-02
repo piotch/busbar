@@ -147,6 +147,49 @@ linked through the metadata, not merged across historical states.
 See [source tracking](docs/source-tracking.md#trig-observation-history) for
 SPARQL examples. Protégé's flat OWL export remains a separate viewer artifact.
 
+### Observed dataset changes
+
+```bash
+uv run --extra s3 busbar report-changes \
+  --output build/changes.rdf --markdown build/changes.md
+
+# Explicitly use a local export instead:
+uv run busbar report-changes --input build/observations.trig --output build/local-changes.rdf
+```
+
+By default this reads the bucket's `exports/latest.json`, downloads its published
+TriG export, and verifies its SHA-256 checksum. Bucket settings and credentials use
+the environment and `.env` (or `--env-file`), just like `busbar bucket`. Access is
+read-only; errors never fall back to local captures. Install the `s3` extra for
+bucket access. `--input` explicitly selects a local file without accessing the bucket.
+
+The RDF/XML report (stdout unless `--output` is supplied) uses DCAT/Dublin Core,
+PROV-O and the documented [Busbar change vocabulary](vocabulary/changes.ttl).
+It compares the latest two successful snapshots per catalogue for newly listed,
+dropped and metadata-updated dataset IRIs. A first capture is a baseline, not
+proof of newly published datasets. Failed captures are ignored.
+
+Unchanged datasets are omitted. Metadata updates are also omitted if a change
+was observed on the UTC calendar day before the latest snapshot. Remaining updates
+carry `NotObserved` recurrence when there is a previous-day successful comparison
+at most 36 hours apart, or `Unknown` when coverage is insufficient. Unknown findings
+remain visible, not labelled non-routine. Recurrence history never crosses a gap
+in dataset membership. Listing additions/removals are retained independently of
+this filter. Declared update frequencies and daily/infrequent classifications are
+not used.
+
+Comparison includes dataset statements, linked distributions and recursive
+blank-node descriptions. Blank-node renaming and unrelated catalogue statements
+do not count as changes. RDF findings include snapshot provenance, observation
+windows, changed predicates and reified added/removed statements. This records
+catalogue-metadata changes, not necessarily underlying data changes or exact
+publisher modification times.
+
+`--markdown` writes a compact DNO / dataset ID / dataset name table from the same
+report graph. The scheduled workflow attaches the RDF/XML and Markdown reports
+as CI artifacts after publishing a successful capture run. It does not create
+issues, PRs or blog entries automatically.
+
 ## Scheduled capture with GitHub Actions
 
 For optional UK-based SSEN acquisition without changing source definitions, see
