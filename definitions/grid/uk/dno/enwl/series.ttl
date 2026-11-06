@@ -4,7 +4,7 @@
 
 <https://busbar.example/id/grid/uk/dno/enwl/series/ecr>
     a dcat:DatasetSeries ;
-    dct:title "ENWL Embedded Capacity Register" ;
+    dct:title "ENWL Embedded Capacity Register, 1 MW and above"@en ;
     dct:description "Part 2 of the ECR provides information to electricity network stakeholders on generation and storage resources (rated ≥1MW) that are connected, or accepted to connect, to SP Electricity North West’s distribution network."@en ;
     dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
     pub:tracksSourceDataset <https://electricitynorthwest.opendatasoft.com/explore/dataset/enwl-embedded-capacity-register-2-1mw-and-above/> ;

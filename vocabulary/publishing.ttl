@@ -93,6 +93,12 @@ pub:tracksSourceDataset a owl:ObjectProperty ;
     rdfs:label "tracks source dataset"@en ;
     rdfs:comment "The publisher's catalogue entry that a curated series follows; not an identity statement."@en .
 
+pub:apiKeyVariable a owl:DatatypeProperty ;
+    rdfs:domain pub:Portal ;
+    rdfs:range xsd:string ;
+    rdfs:label "API key variable"@en ;
+    rdfs:comment "Name of the environment variable holding the portal's API key. Never the key itself."@en .
+
 pub:CaptureSpecification a owl:Class ;
     rdfs:comment "Git-managed instructions for observing a source catalogue; not an observation or a publisher edition."@en .
 

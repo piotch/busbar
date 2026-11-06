@@ -28,9 +28,10 @@ packages = ["src/busbar"]
 "catalogue.ttl" = "busbar/data/catalogue.ttl"
 "busbar-ontology.ttl" = "busbar/data/busbar-ontology.ttl"
 "definitions" = "busbar/data/definitions"
+"editions" = "busbar/data/editions"
 "vocabulary" = "busbar/data/vocabulary"
 "shapes" = "busbar/data/shapes"
 "queries" = "busbar/data/queries"
 
 [tool.hatch.build.targets.sdist]
-include = ["/src", "/tests", "/definitions", "/vocabulary", "/shapes", "/queries", "/*.ttl", "/pyproject.toml", "/uv.lock", "/README.md", "/LICENSE"]
+include = ["/src", "/tests", "/definitions", "/editions", "/vocabulary", "/shapes", "/queries", "/*.ttl", "/pyproject.toml", "/uv.lock", "/README.md", "/LICENSE"]

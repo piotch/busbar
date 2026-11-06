@@ -32,7 +32,8 @@ pub:PortalShape a sh:NodeShape ;
         sh:nodeKind sh:IRI ; sh:node pub:OrganizationShape ] ;
     sh:property [ sh:path pub:platform ; sh:minCount 1 ; sh:maxCount 1 ; sh:class pub:Platform ] ;
     sh:property [ sh:path foaf:homepage ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ; sh:pattern "^https://" ] ;
-    sh:property [ sh:path pub:exposesCatalog ; sh:minCount 1 ; sh:class pub:TrackedCatalog ] .
+    sh:property [ sh:path pub:exposesCatalog ; sh:minCount 1 ; sh:class pub:TrackedCatalog ] ;
+    sh:property [ sh:path pub:apiKeyVariable ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:pattern "^[A-Z][A-Z0-9_]*$" ] .
 
 pub:CatalogShape a sh:NodeShape ;
     sh:targetClass pub:TrackedCatalog ;
