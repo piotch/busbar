@@ -87,6 +87,12 @@ pub:TrackedCatalog a owl:Class ;
     rdfs:subClassOf dcat:Catalog ;
     rdfs:comment "A source catalogue whose representation Busbar captures."@en .
 
+pub:tracksSourceDataset a owl:ObjectProperty ;
+    rdfs:domain dcat:DatasetSeries ;
+    rdfs:range dcat:Dataset ;
+    rdfs:label "tracks source dataset"@en ;
+    rdfs:comment "The publisher's catalogue entry that a curated series follows; not an identity statement."@en .
+
 pub:CaptureSpecification a owl:Class ;
     rdfs:comment "Git-managed instructions for observing a source catalogue; not an observation or a publisher edition."@en .
 

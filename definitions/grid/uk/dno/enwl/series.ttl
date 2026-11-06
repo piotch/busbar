@@ -1,0 +1,17 @@
+@prefix pub: <https://busbar.example/publishing#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+<https://busbar.example/id/grid/uk/dno/enwl/series/ecr>
+    a dcat:DatasetSeries ;
+    dct:title "ENWL Embedded Capacity Register" ;
+    dct:description "Part 2 of the ECR provides information to electricity network stakeholders on generation and storage resources (rated ≥1MW) that are connected, or accepted to connect, to SP Electricity North West’s distribution network."@en ;
+    dct:publisher <https://busbar.example/id/grid/uk/dno/enwl> ;
+    pub:tracksSourceDataset <https://electricitynorthwest.opendatasoft.com/explore/dataset/enwl-embedded-capacity-register-2-1mw-and-above/> ;
+    dcat:distribution <https://busbar.example/id/grid/uk/dno/enwl/series/ecr/distributions/latest-csv> .
+
+# The publisher's URL always serves the most recent file.
+<https://busbar.example/id/grid/uk/dno/enwl/series/ecr/distributions/latest-csv>
+    a dcat:Distribution ;
+    dcat:downloadURL <https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/datasets/enwl-embedded-capacity-register-2-1mw-and-above/exports/csv?use_labels=true> ;
+    dcat:mediaType <https://www.iana.org/assignments/media-types/text/csv> .
