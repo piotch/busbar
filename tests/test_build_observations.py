@@ -65,6 +65,23 @@ class ObservationExportTests(unittest.TestCase):
             for identifier, _, _ in summary:
                 self.assertTrue(isomorphic(dataset.graph(URIRef(identifier)), reloaded.graph(URIRef(identifier))))
 
+    def test_recorded_editions_have_their_own_graph(self):
+        with tempfile.TemporaryDirectory() as directory:
+            dataset, _ = export.build([self.write(Path(directory), "a")])
+            series = URIRef('https://busbar.example/id/grid/uk/dno/enwl/series/ecr')
+            edition = URIRef('https://busbar.example/id/grid/uk/dno/enwl/editions/ecr/2026-10-20')
+            self.assertIn((edition, export.DCAT.inSeries, series), dataset.graph(export.EDITIONS))
+            for name in (export.DEFINITIONS, export.CURATED, export.METADATA):
+                self.assertNotIn((edition, None, None), dataset.graph(name))
+            rows = list(dataset.query('''
+                PREFIX dcat: <http://www.w3.org/ns/dcat#>
+                SELECT ?edition WHERE {
+                  GRAPH <https://busbar.example/graphs/editions> {
+                    ?edition dcat:inSeries <https://busbar.example/id/grid/uk/dno/enwl/series/ecr>
+                  }
+                }'''))
+            self.assertEqual([row.edition for row in rows], [edition])
+
     def test_sparql_queries_observations_and_membership_change(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

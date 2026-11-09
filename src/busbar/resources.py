@@ -41,6 +41,16 @@ def load_ontology():
     return load_graph("busbar-ontology.ttl")
 
 
+def load_recorded_editions():
+    """Return every series edition recorded by captures as one new rdflib.Graph."""
+    graph = Graph()
+    directory = data_root().joinpath("editions")
+    if directory.is_dir():
+        for _, resource in turtle_files(directory):
+            graph.parse(data=resource.read_bytes(), format="turtle")
+    return graph
+
+
 def turtle_files(directory, prefix=""):
     """Yield stable relative names and resources, including zip Traversables."""
     for child in sorted(directory.iterdir(), key=lambda entry: entry.name):

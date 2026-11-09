@@ -261,6 +261,10 @@ The derived `build/observations.trig` has these named graph boundaries:
   claims or observation snapshots. Organization and catalogue identities are
   shared with the definitions graph. The original grid-domain ontology is not
   automatically included.
+- `https://busbar.example/graphs/editions`: series editions recorded by
+  `busbar capture-series` under `editions/`, with their distributions and
+  checksums. They are capture results, kept apart from the definitions; join them
+  to their series in the definitions graph through the series URI.
 - `https://busbar.example/graphs/observations`: observation records, canonical
   catalogue identity, specification, acquisition time/status, count, content hash,
   manifest and artifact references, and publisher catalogue identity.
