@@ -142,6 +142,21 @@ class FoundationTests(unittest.TestCase):
         conforms, _, _ = validate(graph, shacl_graph=shapes, inference="none")
         self.assertFalse(conforms)
 
+    def test_enwl_ecr_series_is_about_distribution_projects_of_1mw_and_above(self):
+        theme = GRID.DistributionProject1MWAndAbove
+        self.assertIn((ENWL_ECR, DCAT.theme, theme), self.definitions)
+        self.assertIn((theme, SKOS.broader, GRID.DistributionProject), self.definitions)
+        self.assertIn((GRID.DistributionProject, SKOS.broader, GRID.Project), self.definitions)
+
+    def test_series_theme_must_be_a_concept(self):
+        graph = Graph()
+        for triple in self.definitions:
+            graph.add(triple)
+        graph.set((ENWL_ECR, DCAT.theme, URIRef("https://busbar.example/grid#Unknown")))
+        shapes = load_graph("shapes/publishing.ttl")
+        conforms, _, _ = validate(graph, shacl_graph=shapes, inference="none")
+        self.assertFalse(conforms)
+
 
 if __name__ == "__main__":
     unittest.main()

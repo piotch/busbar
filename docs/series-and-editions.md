@@ -31,8 +31,23 @@ flowchart LR
 ```turtle
 <https://busbar.example/id/grid/uk/dno/enwl/series/ecr>
     a dcat:DatasetSeries ;
-    pub:tracksSourceDataset <https://electricitynorthwest.opendatasoft.com/explore/dataset/enwl-embedded-capacity-register-2-1mw-and-above/> .
+    pub:tracksSourceDataset <https://electricitynorthwest.opendatasoft.com/explore/dataset/enwl-embedded-capacity-register-2-1mw-and-above/> ;
+    dcat:theme grid:DistributionProject1MWAndAbove .
 ```
+
+`dcat:theme` says what the records are about, using the project types of
+`vocabulary/grid-concepts.ttl`:
+
+```text
+Project
+├─ Distribution project ("ECR project")
+│  ├─ Distribution project, 1 MW and above   (threshold included; ENWL ECR part 2)
+│  └─ Distribution project, below 1 MW       (ENWL ECR part 1)
+└─ Transmission project ("TEC project")
+```
+
+Definitions come from `busbar-ontology.ttl`. These are local concepts: no CIM or
+LTDS equivalence is asserted yet.
 
 From the dataset page the capture derives:
 

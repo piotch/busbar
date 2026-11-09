@@ -47,6 +47,7 @@ pub:SeriesShape a sh:NodeShape ;
     sh:targetClass dcat:DatasetSeries ;
     sh:nodeKind sh:IRI ;
     sh:property [ sh:path dct:title ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dcat:theme ; sh:class skos:Concept ] ;
     sh:property [ sh:path pub:tracksSourceDataset ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ; sh:pattern "^https://" ] .
 
 pub:CaptureShape a sh:NodeShape ;
