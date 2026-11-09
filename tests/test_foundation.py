@@ -124,13 +124,14 @@ class FoundationTests(unittest.TestCase):
         self.assertIn((last, RDF.type, DCAT.Dataset), editions)
         self.assertIn((last, DCAT.inSeries, ENWL_ECR), editions)
 
-    def test_enwl_ecr_series_describes_its_latest_csv(self):
-        distribution = self.definitions.value(ENWL_ECR, DCAT.distribution)
-        self.assertIn((distribution, RDF.type, DCAT.Distribution), self.definitions)
+    def test_enwl_ecr_latest_csv_is_recorded_by_the_capture(self):
+        # Declarations hold only our choice; the publisher's address comes from the capture.
+        self.assertNotIn((ENWL_ECR, DCAT.distribution, None), self.definitions)
+        editions = load_graph("editions/grid/uk/dno/enwl/ecr.ttl")
+        distribution = editions.value(ENWL_ECR, DCAT.distribution)
         self.assertIn((distribution, DCAT.downloadURL, URIRef(
             "https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/datasets/"
-            "enwl-embedded-capacity-register-2-1mw-and-above/exports/csv?use_labels=true")),
-            self.definitions)
+            "enwl-embedded-capacity-register-2-1mw-and-above/exports/csv?use_labels=true")), editions)
 
     def test_series_without_source_dataset_is_invalid(self):
         graph = Graph()

@@ -6,7 +6,8 @@ from unittest.mock import patch
 from urllib.error import HTTPError
 
 from busbar import capture_series as capture
-from rdflib import Graph, URIRef
+from rdflib import Graph, Literal, URIRef
+from rdflib.compare import isomorphic
 
 SERIES = URIRef("https://busbar.example/id/grid/uk/dno/enwl/series/ecr")
 EDITIONS = "https://busbar.example/id/grid/uk/dno/enwl/editions/ecr"
@@ -16,6 +17,7 @@ SECOND = "﻿Name;Capacity\nA;1\nB;3\n".encode()
 MAY = "2026-05-01T06:00:00+00:00"
 JUNE = "2026-06-01T06:00:00+00:00"
 KEY = "secret-test-key"
+PUBLISHER_TITLE = "SP ENW - Embedded Capacity Register 2 - 1MW & Above"
 
 
 class Response:
@@ -53,7 +55,7 @@ class SeriesCaptureTests(unittest.TestCase):
         return capture.capture(self.graph, self.hashes, SERIES, self.root / "captures",
                                self.root / "editions", self.root / ".env")
 
-    def run_capture(self, content, modified, rows=2, modified_after=None):
+    def run_capture(self, content, modified, rows=2, modified_after=None, graph=None, title=PUBLISHER_TITLE):
         states = [modified, modified_after or modified]
         self.downloads = 0
 
@@ -63,30 +65,80 @@ class SeriesCaptureTests(unittest.TestCase):
                 self.downloads += 1
                 return Response(content)
             self.assertTrue(url.endswith("/datasets/enwl-embedded-capacity-register-2-1mw-and-above"))
-            return Response(json.dumps({"metas": {"default": {"modified": states.pop(0), "records_count": rows}}}).encode())
+            return Response(json.dumps({"metas": {"default": {
+                "modified": states.pop(0), "records_count": rows,
+                "title": title, "description": "<p>Portal boilerplate</p>"}}}).encode())
 
         with patch.object(capture, "fetch", side_effect=answer), patch.object(capture, "git_revision", return_value="test"):
-            return self.direct_capture()
+            if graph is None:
+                return self.direct_capture()
+            return capture.capture(graph, self.hashes, SERIES, self.root / "captures",
+                                   self.root / "editions", self.root / ".env")
 
     def editions(self):
         return capture.load_editions(self.editions_file)
 
-    def test_every_series_with_a_distribution_is_captured(self):
+    def declarations_with(self, predicate, value):
+        graph = Graph()
+        for triple in self.graph:
+            graph.add(triple)
+        graph.remove((SERIES, predicate, None))
+        if value is not None:
+            graph.add((SERIES, predicate, value))
+        return graph
+
+    def test_every_series_tracking_a_source_dataset_is_captured(self):
         self.assertEqual(capture.capturable_series(self.graph), [SERIES])
 
-    def test_parameters_come_from_the_series_and_its_portal(self):
-        _, download, metadata, variable = capture.series_parameters(self.graph, SERIES)
-        self.assertEqual(download, metadata + "/exports/csv?use_labels=true")
-        self.assertEqual(variable, "ENWL_API_KEY")
+    def test_parameters_are_derived_from_the_tracked_page_and_its_portal(self):
+        parameters = capture.series_parameters(self.graph, SERIES)
+        api = ("https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/datasets/"
+               "enwl-embedded-capacity-register-2-1mw-and-above")
+        self.assertEqual(parameters["metadata"], api)
+        self.assertEqual(parameters["download"], api + "/exports/csv?use_labels=true")
+        self.assertEqual(parameters["variable"], "ENWL_API_KEY")
+        self.assertEqual(parameters["publisher"], URIRef("https://busbar.example/id/grid/uk/dno/enwl"))
 
     def test_key_is_not_sent_outside_the_declared_portal(self):
-        graph = Graph()
-        for subject, predicate, value in self.graph:
-            if predicate == capture.DCAT.downloadURL:
-                value = URIRef("https://other.example/api/datasets/x/exports/csv")
-            graph.add((subject, predicate, value))
+        graph = self.declarations_with(capture.PUB.tracksSourceDataset,
+                                       URIRef("https://other.example/explore/dataset/x/"))
         with self.assertRaisesRegex(ValueError, "declared portal"):
             capture.series_parameters(graph, SERIES)
+
+    def test_only_opendatasoft_dataset_pages_are_understood(self):
+        graph = self.declarations_with(capture.PUB.tracksSourceDataset,
+                                       URIRef("https://electricitynorthwest.opendatasoft.com/pages/map/"))
+        with self.assertRaisesRegex(ValueError, "Not an OpenDataSoft dataset page"):
+            capture.series_parameters(graph, SERIES)
+
+    def test_publisher_and_latest_file_are_recorded_with_the_editions(self):
+        self.run_capture(FIRST, MAY)
+        graph = self.editions()
+        self.assertIsNone(graph.value(SERIES, capture.DCTERMS.description))
+        self.assertEqual(graph.value(SERIES, capture.DCTERMS.publisher),
+                         URIRef("https://busbar.example/id/grid/uk/dno/enwl"))
+        latest = graph.value(SERIES, capture.DCAT.distribution)
+        self.assertTrue(str(graph.value(latest, capture.DCAT.downloadURL)).endswith("/exports/csv?use_labels=true"))
+
+    def test_publisher_title_is_used_without_a_declared_title(self):
+        self.run_capture(FIRST, MAY)
+        graph = self.editions()
+        self.assertEqual(str(graph.value(SERIES, capture.DCTERMS.title)), PUBLISHER_TITLE)
+        edition = graph.value(SERIES, capture.DCAT.last)
+        self.assertTrue(str(graph.value(edition, capture.DCTERMS.title)).startswith(PUBLISHER_TITLE))
+
+    def test_declared_title_overrides_the_publisher_title(self):
+        self.run_capture(FIRST, MAY, graph=self.declarations_with(capture.DCTERMS.title, Literal("Ours")))
+        graph = self.editions()
+        self.assertIsNone(graph.value(SERIES, capture.DCTERMS.title))
+        edition = graph.value(SERIES, capture.DCAT.last)
+        self.assertTrue(str(graph.value(edition, capture.DCTERMS.title)).startswith("Ours"))
+
+    def test_new_publisher_title_is_recorded_without_a_download(self):
+        self.run_capture(FIRST, MAY)
+        self.run_capture(FIRST, MAY, title="Renamed")
+        self.assertEqual(self.downloads, 0)
+        self.assertEqual(str(self.editions().value(SERIES, capture.DCTERMS.title)), "Renamed")
 
     def test_first_capture_records_an_edition(self):
         record, path = self.run_capture(FIRST, MAY)
@@ -145,6 +197,20 @@ class SeriesCaptureTests(unittest.TestCase):
         self.assertEqual(set(graph.objects(SERIES, capture.DCAT.last)), {june})
         self.assertIn((SERIES, capture.DCAT.first, may), graph)
         self.assertIn((june, capture.DCAT.prev, may), graph)
+
+    def test_editions_file_reads_in_chronological_order(self):
+        self.run_capture(FIRST, MAY)
+        self.run_capture(SECOND, JUNE)
+        text = self.editions_file.read_text()
+        may, june = f"<{EDITIONS}/2026-05-01>", f"<{EDITIONS}/2026-06-01>"
+        positions = [text.index(f"\n{subject} ") for subject in
+                     (f"<{SERIES}>", f"<{SERIES}/distributions/latest-csv>", may,
+                      f"<{EDITIONS}/2026-05-01/csv>", june, f"<{EDITIONS}/2026-06-01/csv>")]
+        self.assertEqual(positions, sorted(positions))
+        # Writing in our own order loses nothing.
+        graph = self.editions()
+        capture.write_editions(graph, self.root / "copy.ttl")
+        self.assertTrue(isomorphic(graph, capture.load_editions(self.root / "copy.ttl")))
 
     def test_new_date_with_same_file_is_not_an_edition(self):
         self.run_capture(FIRST, MAY)

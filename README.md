@@ -41,7 +41,7 @@ It distinguishes implemented source observation from future archive/source mappi
   `grid/uk/dno/{dno}/catalogue` and their publisher responsibilities.
 
 See [shared foundation](docs/shared-foundation.md). ENWL's ECR is the only
-series linked to a source entry so far (`definitions/grid/uk/dno/enwl/series.ttl`).
+series linked to a source entry so far; see [series and editions](docs/series-and-editions.md).
 No DNO/DSO equivalence has been asserted yet.
 
 ## Install and use from Python

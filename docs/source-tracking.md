@@ -169,10 +169,13 @@ avoid comparing unlike scopes.
 - Standalone commands do not schedule themselves. The repository now includes an
   optional GitHub Actions workflow for daily/manual capture with durable bucket
   storage; see [workflow setup](github-actions.md).
-- No dataset content download, Django integration, Iceberg loading or UNS publication.
+- Catalogue captures never download dataset contents. Files of the series you
+  declare are archived separately by `busbar capture-series`; see
+  [series and editions](series-and-editions.md).
+- No Django integration, Iceberg loading or UNS publication.
 - No native API field-schema or glossary capture yet; DCAT alone does not preserve
   all the useful metadata identified in the UKPN exploration.
-- No automatic linking of source dataset entries to existing Busbar dataset series.
+- No automatic linking of source dataset entries to series: each link is declared.
 - No inference that every capture is a new publisher edition.
 - No RDF-semantic change diff. `bytes_changed` is only a byte comparison: XML
   ordering, prefixes and blank-node labels can change without meaning changing.
@@ -263,7 +266,7 @@ The derived `build/observations.trig` has these named graph boundaries:
   automatically included.
 - `https://busbar.example/graphs/editions`: series editions recorded by
   `busbar capture-series` under `editions/`, with their distributions and
-  checksums. They are capture results, kept apart from the definitions; join them
+  checksums, and each series' publisher title and latest-file address. They are capture results, kept apart from the definitions; join them
   to their series in the definitions graph through the series URI.
 - `https://busbar.example/graphs/observations`: observation records, canonical
   catalogue identity, specification, acquisition time/status, count, content hash,

@@ -1,10 +1,13 @@
 """Archive the latest CSV of declared OpenDataSoft series and record new editions.
 
-Every series with a distribution is captured, using the API key variable declared
-on its publisher's portal. Every run leaves an observation. The file is downloaded
-only when the publisher's update date is new, and an edition is added only if the
-file differs. Files stay in a private local store, apart from catalogue captures:
-they can hold personal data and are never published.
+A declared series only names the publisher's dataset page it tracks. The
+publisher's title and the download address are read at capture time and written
+with the editions, never into the declarations. The key
+named on the publisher's portal is sent to that portal only. Every run leaves an
+observation. The file is downloaded only when the publisher's update date is new,
+and an edition is added only if the file differs. Files stay in a private local
+store, apart from catalogue captures: they can hold personal data and are never
+published.
 """
 import argparse
 import csv
@@ -60,26 +63,33 @@ def read_limited(url, key):
 
 def capturable_series(graph):
     return sorted(series for series in graph.subjects(RDF.type, DCAT.DatasetSeries)
-                  if (series, DCAT.distribution, None) in graph)
+                  if (series, PUB.tracksSourceDataset, None) in graph)
 
 
 def series_parameters(graph, series):
-    distributions = list(graph.objects(series, DCAT.distribution))
-    if len(distributions) != 1:
-        raise ValueError(f"Expected one distribution on {series}")
-    distribution = distributions[0]
-    download = str(graph.value(distribution, DCAT.downloadURL))
-    # An OpenDataSoft export lives below its dataset's metadata URL.
-    metadata, separator, _ = download.partition("/exports/")
-    if not separator:
-        raise ValueError(f"Not an OpenDataSoft export: {download}")
-    portal = graph.value(predicate=PUB.portalOperator, object=graph.value(series, DCTERMS.publisher))
-    variable = graph.value(portal, PUB.apiKeyVariable) if portal else None
+    """Derive the publisher, key variable and OpenDataSoft addresses from the tracked page."""
+    source = str(graph.value(series, PUB.tracksSourceDataset))
+    address = urlsplit(source)
+    before, separator, identifier = address.path.partition("/explore/dataset/")
+    identifier = identifier.strip("/")
+    if address.scheme != "https" or before or not separator or not identifier or "/" in identifier:
+        raise ValueError(f"Not an OpenDataSoft dataset page: {source}")
+    portals = [portal for portal in graph.subjects(PUB.platform, PUB.OpenDataSoft)
+               if urlsplit(str(graph.value(portal, FOAF.homepage))).hostname == address.hostname]
+    if len(portals) != 1:
+        raise ValueError(f"No declared portal serves {source}; the API key is only sent to declared portals")
+    portal = portals[0]
+    variable = graph.value(portal, PUB.apiKeyVariable)
     if variable is None:
-        raise ValueError(f"The publisher's portal declares no API key variable for {series}")
-    if not download.startswith("https://") or urlsplit(download).hostname != urlsplit(str(graph.value(portal, FOAF.homepage))).hostname:
-        raise ValueError("The API key is only sent over HTTPS to the publisher's declared portal")
-    return distribution, download, metadata, str(variable)
+        raise ValueError(f"The portal serving {source} declares no API key variable")
+    metadata = f"https://{address.hostname}/api/explore/v2.1/catalog/datasets/{identifier}"
+    return {
+        "publisher": graph.value(portal, PUB.portalOperator),
+        "variable": str(variable),
+        "metadata": metadata,
+        "download": metadata + "/exports/csv?use_labels=true",
+        "distribution": URIRef(f"{series}/distributions/latest-csv"),
+    }
 
 
 def read_api_key(variable, env_file):
@@ -97,7 +107,31 @@ def read_api_key(variable, env_file):
 def publisher_state(url, key):
     content, _ = read_limited(url, key)
     metadata = json.loads(content)["metas"]["default"]
-    return datetime.fromisoformat(metadata["modified"]), int(metadata["records_count"])
+    return {
+        "modified": datetime.fromisoformat(metadata["modified"]),
+        "rows": int(metadata["records_count"]),
+        "title": metadata.get("title"),
+    }
+
+
+def describe_series(recorded, graph, series, parameters, state):
+    """Record the publisher's current title and the address of its latest file.
+
+    The publisher's description is left out: it is mostly portal boilerplate, and
+    catalogue captures already preserve it verbatim.
+    """
+    distribution = parameters["distribution"]
+    for predicate in (DCTERMS.title, DCTERMS.description, DCTERMS.publisher, DCAT.distribution):
+        recorded.remove((series, predicate, None))
+    recorded.remove((distribution, None, None))
+    # A title declared by the curator wins over the publisher's.
+    if graph.value(series, DCTERMS.title) is None and state["title"]:
+        recorded.add((series, DCTERMS.title, Literal(state["title"])))
+    recorded.add((series, DCTERMS.publisher, parameters["publisher"]))
+    recorded.add((series, DCAT.distribution, distribution))
+    recorded.add((distribution, RDF.type, DCAT.Distribution))
+    recorded.add((distribution, DCAT.downloadURL, URIRef(parameters["download"])))
+    recorded.add((distribution, DCAT.mediaType, CSV_MEDIA_TYPE))
 
 
 def measure_csv(content):
@@ -170,12 +204,50 @@ def add_edition(graph, series, title, distribution, modified, digest, size, rela
     return edition
 
 
+PREFIXES = (("dcat", DCAT), ("dct", DCTERMS), ("prov", PROV), ("spdx", SPDX), ("xsd", XSD))
+
+
+def reading_order(graph):
+    """Series first with its latest-file address, then each edition from oldest to
+    newest followed by its files. Anything else comes last, by IRI."""
+    order = []
+    for series in sorted(graph.subjects(DCAT.last, None)):
+        order.append(series)
+        order.extend(sorted(graph.objects(series, DCAT.distribution)))
+        edition = graph.value(series, DCAT.first)
+        while edition is not None and edition not in order:
+            order.append(edition)
+            order.extend(sorted(graph.objects(edition, DCAT.distribution)))
+            edition = graph.value(predicate=DCAT.prev, object=edition)
+    subjects = {subject for subject in graph.subjects() if isinstance(subject, URIRef)}
+    return order + sorted(subjects - set(order))
+
+
+def block(graph, subject):
+    """One subject's statements, with its anonymous nodes inlined, without prefixes."""
+    part = Graph()
+    for prefix, namespace in PREFIXES:
+        part.bind(prefix, namespace)
+    pending = [subject]
+    while pending:
+        node = pending.pop()
+        for triple in graph.triples((node, None, None)):
+            part.add(triple)
+            if isinstance(triple[2], BNode):
+                pending.append(triple[2])
+    text = part.serialize(format="turtle")
+    return "\n".join(line for line in text.splitlines() if not line.startswith("@prefix")).strip()
+
+
 def write_editions(graph, path):
-    for prefix, namespace in (("dcat", DCAT), ("dct", DCTERMS), ("prov", PROV), ("spdx", SPDX), ("xsd", XSD)):
+    for prefix, namespace in PREFIXES:
         graph.bind(prefix, namespace)
+    # rdflib orders subjects by how often they are referenced; a reader expects a story.
+    header = [line for line in graph.serialize(format="turtle").splitlines() if line.startswith("@prefix")]
+    blocks = [block(graph, subject) for subject in reading_order(graph)]
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(".tmp")
-    temporary.write_text(HEADER + graph.serialize(format="turtle"))
+    temporary.write_text(HEADER + "\n".join(header) + "\n\n" + "\n\n".join(blocks) + "\n")
     temporary.replace(path)
 
 
@@ -192,21 +264,23 @@ def capture(graph, hashes, series, output, editions, env_file):
     }
     key = None
     try:
-        distribution, download, metadata_url, variable = series_parameters(graph, series)
+        parameters = series_parameters(graph, series)
+        download, metadata_url = parameters["download"], parameters["metadata"]
         record["source_url"] = download
-        key = read_api_key(variable, env_file)
+        key = read_api_key(parameters["variable"], env_file)
         before = publisher_state(metadata_url, key)
-        modified, expected_rows = before
+        modified, expected_rows = before["modified"], before["rows"]
         record.update({"publisher_modified": modified.isoformat(), "publisher_row_count": expected_rows})
 
         path = editions_path(editions, series)
         recorded = load_editions(path)
+        unchanged = set(recorded)
+        describe_series(recorded, graph, series, parameters, before)
         last, last_digest, last_modified = last_edition(recorded, series)
         record["previous_edition"] = str(last) if last else None
         record["new_edition"] = False
         if modified == last_modified:
             record["downloaded"] = False
-            record["status"] = "success"
         else:
             content, response = read_limited(download, key)
             record.update(response)
@@ -220,7 +294,7 @@ def capture(graph, hashes, series, output, editions, env_file):
                 "content_hash": f"sha256:{digest}", "artifact_path": relative,
                 "artifact_uri": artifact_uri, "byte_size": len(content),
             })
-            if before != after:
+            if (after["modified"], after["rows"]) != (modified, expected_rows):
                 raise ValueError("The publisher updated the dataset during the download")
             rows, columns = measure_csv(content)
             record.update({"row_count": rows, "column_count": columns})
@@ -228,12 +302,13 @@ def capture(graph, hashes, series, output, editions, env_file):
             if rows == 0 or rows != expected_rows:
                 raise ValueError(f"Expected {expected_rows} rows from the publisher, received {rows}")
             if digest != last_digest:
-                title = str(graph.value(series, DCTERMS.title))
-                edition = add_edition(recorded, series, title, distribution, modified, digest,
-                                      len(content), relative, retrieved_at)
-                write_editions(recorded, path)
+                title = graph.value(series, DCTERMS.title) or recorded.value(series, DCTERMS.title) or series
+                edition = add_edition(recorded, series, str(title), parameters["distribution"], modified,
+                                      digest, len(content), relative, retrieved_at)
                 record.update({"new_edition": True, "edition": str(edition)})
-            record["status"] = "success"
+        if set(recorded) != unchanged:
+            write_editions(recorded, path)
+        record["status"] = "success"
     except Exception as exc:
         message = f"{type(exc).__name__}: {exc}"
         record["error"] = message.replace(key, "[API key]") if key else message
@@ -244,7 +319,7 @@ def capture(graph, hashes, series, output, editions, env_file):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--series", help="Capture one series IRI (default: every series with a distribution)")
+    parser.add_argument("--series", help="Capture one series IRI (default: every series tracking a source dataset)")
     parser.add_argument("--output", type=Path, default=Path.cwd() / "captures" / "series")
     parser.add_argument("--editions", type=Path, default=Path.cwd() / "editions")
     parser.add_argument("--env-file", type=Path, default=Path.cwd() / ".env")
@@ -253,7 +328,7 @@ def main(argv=None):
     declared = capturable_series(graph)
     selected = [URIRef(args.series)] if args.series else declared
     if not selected or not set(selected) <= set(declared):
-        parser.error("No matching series with a distribution is declared")
+        parser.error("No matching series tracking a source dataset is declared")
     succeeded = True
     for series in selected:
         record, destination = capture(graph, hashes, series, args.output, args.editions, args.env_file)

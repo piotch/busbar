@@ -86,8 +86,10 @@ Curated Busbar dataset series
 
 We must first confirm dataset scope (for example ECR capacity thresholds), date
 meaning and whether files are original publisher releases or transformed copies.
-Matching titles or months is not enough. No ECR mappings, automatic archive import,
-or automatic download of the listed dataset distributions have been implemented.
+Matching titles or months is not enough. ENWL's ECR (part 2) is the first reviewed
+link; its files are now archived by `busbar capture-series`, see
+[series and editions](series-and-editions.md). No other ECR mapping or automatic
+import of the private archive exists yet.
 
 ## 4. What this changeset introduces
 

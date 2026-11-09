@@ -46,8 +46,7 @@ pub:CatalogShape a sh:NodeShape ;
 pub:SeriesShape a sh:NodeShape ;
     sh:targetClass dcat:DatasetSeries ;
     sh:nodeKind sh:IRI ;
-    sh:property [ sh:path dct:title ; sh:minCount 1 ] ;
-    sh:property [ sh:path dct:publisher ; sh:minCount 1 ; sh:nodeKind sh:IRI ; sh:node pub:OrganizationShape ] ;
+    sh:property [ sh:path dct:title ; sh:maxCount 1 ] ;
     sh:property [ sh:path pub:tracksSourceDataset ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ; sh:pattern "^https://" ] .
 
 pub:CaptureShape a sh:NodeShape ;

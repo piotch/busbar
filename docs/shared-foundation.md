@@ -86,9 +86,10 @@ entity URIs. The current curated graph is not a historical reconstruction of
 Busbar at each capture time.
 
 Publisher-assigned organization identifiers in raw DCAT remain unchanged. They
-are not automatically equated to curated organization identities. No ECR series
-is yet linked to a particular publisher entry; scope and evidence must be reviewed
-before adding those mappings.
+are not automatically equated to curated organization identities. Only ENWL's ECR
+(part 2) is linked to a publisher entry so far, by a reviewed declaration; see
+[series and editions](series-and-editions.md). Other ECR series still need their
+scope and evidence reviewed.
 
 ## Query
 
