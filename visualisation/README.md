@@ -14,6 +14,15 @@ Visit **http://localhost:8000/visualisation/**. Do not open `index.html` via `fi
 
 No JavaScript build step is needed. Three.js **0.170.0** and its controls/label renderer load from jsDelivr; optional fonts load from Google Fonts, with local fallbacks. Internet access is needed for Three.js. The RDF projection is local; there is no analytics or external dataset fetching.
 
+## Publish on GitHub Pages
+
+[The publishing guide](../docs/github-pages.md) covers the automatic workflow and
+one-time repository setup. The staging builder publishes this atlas at the site
+root (including a project path such as `/busbar/`), regenerates the public RDF
+projection, and pins inspector source links to the deployed commit. It never
+copies captures, credentials or the rest of the repository into the site.
+Local development retains local RDF source links through `site.json`.
+
 ## Explore
 
 - Drag to orbit, scroll/pinch to zoom, right-drag to pan (two-finger drag on touch).

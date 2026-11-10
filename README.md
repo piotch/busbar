@@ -122,7 +122,9 @@ python3 -m http.server 8000 --bind 127.0.0.1
 Orbit, pan and zoom; focus layers, search entities and inspect asserted links and
 source files. Internet access is needed for the pinned Three.js CDN dependency.
 See [the atlas guide](visualisation/README.md) for controls, projection scope and
-how to refresh the RDF export.
+how to refresh the RDF export. The [GitHub Pages publishing guide](docs/github-pages.md)
+explains automatic deployment, the public artifact boundary and the one-time
+repository settings needed to publish the atlas.
 
 ## Viewing in Protégé
 

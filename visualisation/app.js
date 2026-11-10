@@ -6,9 +6,16 @@ import { buildCatalogueLayout } from './atlas-layout.js';
 import { buildGridLayout } from './grid-layout.js';
 
 const $ = id => document.getElementById(id);
-const response = await fetch('./graph.json', { cache: 'no-store' });
+const [response, siteResponse] = await Promise.all([
+  fetch('./graph.json', { cache: 'no-store' }),
+  fetch('./site.json', { cache: 'no-store' }),
+]);
 if (!response.ok) throw new Error(`graph.json: HTTP ${response.status}`);
+if (!siteResponse.ok) throw new Error(`site.json: HTTP ${siteResponse.status}`);
 const data = await response.json();
+const site = await siteResponse.json();
+const sourceBase = new URL(site.sourceBaseUrl, location.href);
+document.querySelector('.brand').href = site.repositoryUrl;
 const byId = new Map(data.nodes.map(node => [node.id, node]));
 const layerIndex = new Map(data.layers.map((layer, i) => [layer.id, i]));
 const catalogueLayout = buildCatalogueLayout(data.nodes, data.links);
@@ -154,7 +161,8 @@ function rebuild() {
   const highlight = lineObject([], '#637e54', 0.85);
   drawing.add(highlight); lineSets.push(highlight);
   updateSelection();
-  $('stats').title = 'Local RDF projection (not build/news-catalogues.owl)\n' +
+  $('stats').title = 'RDF projection (not build/news-catalogues.owl)\n' +
+    (site.revision ? `Built from commit ${site.revision}\n` : 'Local checkout\n') +
     (data.inputs || []).map(input => `${input.path} · SHA-256 ${input.sha256}`).join('\n');
   updateButtons();
   dirty = true;
@@ -471,7 +479,7 @@ function choose(id, center = false) {
   }));
   $('entity-description').textContent = node.description || 'No description is asserted in the local source files.';
   $('entity-sources').replaceChildren(...node.sources.map(source => {
-    const a = document.createElement('a'); a.textContent = source; a.href = '../' + source;
+    const a = document.createElement('a'); a.textContent = source; a.href = new URL(source, sourceBase).href;
     a.target = '_blank'; a.rel = 'noopener'; return a;
   }));
   $('inspector').hidden = false;
