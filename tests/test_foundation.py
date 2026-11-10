@@ -15,6 +15,7 @@ PUB = Namespace("https://busbar.example/publishing#")
 BASE = "https://busbar.example/id/"
 BUSBAR = URIRef(BASE + "grid/catalogues/busbar")
 REFERENCEWORKS = URIRef(BASE + "organisations/referenceworks")
+ENWL_ECR = URIRef(BASE + "grid/uk/dno/enwl/series/ecr")
 
 
 class FoundationTests(unittest.TestCase):
@@ -104,6 +105,54 @@ class FoundationTests(unittest.TestCase):
         for triple in self.definitions:
             graph.add(triple)
         graph.remove((BUSBAR, PUB.maintainedBy, None))
+        shapes = load_graph("shapes/publishing.ttl")
+        conforms, _, _ = validate(graph, shacl_graph=shapes, inference="none")
+        self.assertFalse(conforms)
+
+    def test_enwl_ecr_series_tracks_its_publisher_entry(self):
+        entry = URIRef("https://electricitynorthwest.opendatasoft.com/explore/dataset/"
+                       "enwl-embedded-capacity-register-2-1mw-and-above/")
+        self.assertIn((ENWL_ECR, PUB.tracksSourceDataset, entry), self.definitions)
+        self.assertIn((ENWL_ECR, RDF.type, DCAT.DatasetSeries), self.definitions)
+        # The source catalogue lists the publisher's entry, not the series.
+        self.assertNotIn((None, DCAT.dataset, ENWL_ECR), self.definitions)
+
+    def test_editions_are_kept_apart_from_declarations(self):
+        self.assertNotIn((None, RDF.type, DCAT.Dataset), self.definitions)
+        editions = load_graph("editions/grid/uk/dno/enwl/ecr.ttl")
+        last = editions.value(ENWL_ECR, DCAT.last)
+        self.assertIn((last, RDF.type, DCAT.Dataset), editions)
+        self.assertIn((last, DCAT.inSeries, ENWL_ECR), editions)
+
+    def test_enwl_ecr_latest_csv_is_recorded_by_the_capture(self):
+        # Declarations hold only our choice; the publisher's address comes from the capture.
+        self.assertNotIn((ENWL_ECR, DCAT.distribution, None), self.definitions)
+        editions = load_graph("editions/grid/uk/dno/enwl/ecr.ttl")
+        distribution = editions.value(ENWL_ECR, DCAT.distribution)
+        self.assertIn((distribution, DCAT.downloadURL, URIRef(
+            "https://electricitynorthwest.opendatasoft.com/api/explore/v2.1/catalog/datasets/"
+            "enwl-embedded-capacity-register-2-1mw-and-above/exports/csv?use_labels=true")), editions)
+
+    def test_series_without_source_dataset_is_invalid(self):
+        graph = Graph()
+        for triple in self.definitions:
+            graph.add(triple)
+        graph.remove((ENWL_ECR, PUB.tracksSourceDataset, None))
+        shapes = load_graph("shapes/publishing.ttl")
+        conforms, _, _ = validate(graph, shacl_graph=shapes, inference="none")
+        self.assertFalse(conforms)
+
+    def test_enwl_ecr_series_is_about_distribution_projects_of_1mw_and_above(self):
+        theme = GRID.DistributionProject1MWAndAbove
+        self.assertIn((ENWL_ECR, DCAT.theme, theme), self.definitions)
+        self.assertIn((theme, SKOS.broader, GRID.DistributionProject), self.definitions)
+        self.assertIn((GRID.DistributionProject, SKOS.broader, GRID.Project), self.definitions)
+
+    def test_series_theme_must_be_a_concept(self):
+        graph = Graph()
+        for triple in self.definitions:
+            graph.add(triple)
+        graph.set((ENWL_ECR, DCAT.theme, URIRef("https://busbar.example/grid#Unknown")))
         shapes = load_graph("shapes/publishing.ttl")
         conforms, _, _ = validate(graph, shacl_graph=shapes, inference="none")
         self.assertFalse(conforms)

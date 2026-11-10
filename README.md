@@ -40,8 +40,9 @@ It distinguishes implemented source observation from future archive/source mappi
 - DNO source catalogues keep their separate identities under
   `grid/uk/dno/{dno}/catalogue` and their publisher responsibilities.
 
-See [shared foundation](docs/shared-foundation.md). No curated ECR-to-source mapping
-or DNO/DSO equivalence has been asserted yet.
+See [shared foundation](docs/shared-foundation.md). ENWL's ECR is the only
+series linked to a source entry so far; see [series and editions](docs/series-and-editions.md).
+No DNO/DSO equivalence has been asserted yet.
 
 ## Install and use from Python
 
@@ -80,6 +81,7 @@ for explicit bucket operations; the core library has no boto3 dependency.
 uv run busbar capture --validate-only
 uv run busbar capture
 uv run busbar capture-all
+uv run busbar capture-series  # Needs ENWL_API_KEY; files stay local, in captures/series/.
 uv run busbar build-observations
 uv run busbar build-ontology
 uv run --extra s3 busbar bucket check  # From this repository.

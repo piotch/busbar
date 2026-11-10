@@ -1,0 +1,41 @@
+@prefix grid: <https://busbar.example/grid#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+grid:project-types a skos:ConceptScheme ;
+    dct:title "Grid project types"@en ;
+    skos:hasTopConcept grid:Project .
+
+grid:Project a skos:Concept ;
+    skos:inScheme grid:project-types ;
+    skos:topConceptOf grid:project-types ;
+    skos:prefLabel "Project"@en ;
+    skos:definition "A generation, storage or demand project connected (or contracted to connect) to the network, at a substation or directly onto a circuit."@en .
+
+grid:DistributionProject a skos:Concept ;
+    skos:inScheme grid:project-types ;
+    skos:broader grid:Project ;
+    skos:prefLabel "Distribution project"@en ;
+    skos:altLabel "ECR project"@en ;
+    skos:definition "A project connected to a distribution network; one row of a DNO's Embedded Capacity Register."@en .
+
+grid:TransmissionProject a skos:Concept ;
+    skos:inScheme grid:project-types ;
+    skos:broader grid:Project ;
+    skos:prefLabel "Transmission project"@en ;
+    skos:altLabel "TEC project"@en ;
+    skos:definition "A project holding a Transmission Entry Capacity (TEC) agreement with the system operator; listed in the TEC register."@en .
+
+grid:DistributionProject1MWAndAbove a skos:Concept ;
+    skos:inScheme grid:project-types ;
+    skos:broader grid:DistributionProject ;
+    skos:prefLabel "Distribution project, 1 MW and above"@en ;
+    skos:definition "A distribution project of 1 MW and above."@en ;
+    skos:scopeNote "Threshold included: a 1 MW project belongs here. ENWL lists these in part 2 of its register."@en .
+
+grid:DistributionProjectBelow1MW a skos:Concept ;
+    skos:inScheme grid:project-types ;
+    skos:broader grid:DistributionProject ;
+    skos:prefLabel "Distribution project, below 1 MW"@en ;
+    skos:definition "A distribution project of less than 1 MW."@en ;
+    skos:scopeNote "ENWL lists these in part 1 of its register."@en .

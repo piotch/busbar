@@ -10,7 +10,7 @@ from rdflib.namespace import XSD
 
 from .capture_catalogue import load_declarations
 from .artifact_store import artifact_bytes, manifest_reference
-from .resources import load_catalogue
+from .resources import load_catalogue, load_recorded_editions
 
 PUB = Namespace("https://busbar.example/publishing#")
 PROV = Namespace("http://www.w3.org/ns/prov#")
@@ -19,6 +19,7 @@ DCT = Namespace("http://purl.org/dc/terms/")
 DEFINITIONS = URIRef("https://busbar.example/graphs/current-definitions")
 METADATA = URIRef("https://busbar.example/graphs/observations")
 CURATED = URIRef("https://busbar.example/graphs/busbar-catalogue")
+EDITIONS = URIRef("https://busbar.example/graphs/editions")
 
 
 def build(observation_paths):
@@ -35,6 +36,9 @@ def build(observation_paths):
     # Curator assertions remain separate from definitions and publisher snapshots.
     for triple in load_catalogue():
         dataset.graph(CURATED).add(triple)
+    # Editions are capture results, so they stay apart from the declarations.
+    for triple in load_recorded_editions():
+        dataset.graph(EDITIONS).add(triple)
     metadata = dataset.graph(METADATA)
     seen = set()
     summary = []

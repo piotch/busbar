@@ -1,0 +1,9 @@
+@prefix pub: <https://busbar.example/publishing#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix grid: <https://busbar.example/grid#> .
+
+<https://busbar.example/id/grid/uk/dno/enwl/series/ecr>
+    a dcat:DatasetSeries ;
+    pub:tracksSourceDataset <https://electricitynorthwest.opendatasoft.com/explore/dataset/enwl-embedded-capacity-register-2-1mw-and-above/> ;
+    dcat:theme grid:DistributionProject1MWAndAbove .

@@ -8,4 +8,5 @@
     pub:portalOperator <https://busbar.example/id/grid/uk/dno/enwl> ;
     pub:platform pub:OpenDataSoft ;
     foaf:homepage <https://electricitynorthwest.opendatasoft.com/> ;
-    pub:exposesCatalog <https://busbar.example/id/grid/uk/dno/enwl/catalogue> .
+    pub:exposesCatalog <https://busbar.example/id/grid/uk/dno/enwl/catalogue> ;
+    pub:apiKeyVariable "ENWL_API_KEY" .

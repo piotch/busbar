@@ -17,6 +17,7 @@ foaf:Document a owl:Class ; rdfs:label "Document"@en .
 prov:Entity a owl:Class ; rdfs:label "Provenance entity"@en .
 dcat:Catalog a owl:Class ; rdfs:subClassOf dcat:Dataset ; rdfs:label "Catalogue"@en .
 dcat:Dataset a owl:Class ; rdfs:label "Dataset"@en .
+dcat:DatasetSeries a owl:Class ; rdfs:subClassOf dcat:Dataset ; rdfs:label "Dataset series"@en .
 dcat:Distribution a owl:Class ; rdfs:label "Distribution"@en .
 dcat:DataService a owl:Class ; rdfs:label "Data service"@en .
 skos:Concept a owl:Class ; rdfs:label "Concept"@en .

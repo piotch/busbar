@@ -89,9 +89,9 @@ def parse_catalogue(content):
     return sorted(map(str, datasets)), len(graph)
 
 
-def store_artifact(output, content):
+def store_artifact(output, content, suffix=".rdf"):
     digest = hashlib.sha256(content).hexdigest()
-    path = output / "objects" / "sha256" / f"{digest}.rdf"
+    path = output / "objects" / "sha256" / f"{digest}{suffix}"
     path.parent.mkdir(parents=True, exist_ok=True)
     try:
         with path.open("xb") as stream:
@@ -100,6 +100,21 @@ def store_artifact(output, content):
         if path.read_bytes() != content:
             raise ValueError(f"Existing artifact does not match its hash: {path}")
     return digest, path.resolve().as_uri()
+
+
+def write_observation(output, record, storage_uri=None):
+    record["completed_at"] = datetime.now(timezone.utc).isoformat()
+    directory = output / "observations"
+    directory.mkdir(parents=True, exist_ok=True)
+    filename = record["completed_at"].replace(":", "-") + "-" + record["observation_id"] + ".json"
+    destination = directory / filename
+    if storage_uri:
+        record["manifest_uri"] = storage_reference(storage_uri, "observations/" + filename)
+    # Readers never see a partially written observation.
+    temporary = destination.with_suffix(".tmp")
+    temporary.write_text(json.dumps(record, indent=2) + "\n")
+    temporary.replace(destination)
+    return destination
 
 
 def previous_success(output, spec):
@@ -234,18 +249,7 @@ def capture(graph, hashes, spec, output, storage_uri=None):
         record["error"] = f"{type(exc).__name__}: {exc}"
         if hasattr(exc, "code"):
             record["http_status"] = exc.code
-    record["completed_at"] = datetime.now(timezone.utc).isoformat()
-    directory = output / "observations"
-    directory.mkdir(parents=True, exist_ok=True)
-    filename = record["completed_at"].replace(":", "-") + "-" + record["observation_id"] + ".json"
-    destination = directory / filename
-    if storage_uri:
-        record["manifest_uri"] = storage_reference(storage_uri, "observations/" + filename)
-    # Readers never see a partially written observation.
-    temporary = destination.with_suffix(".tmp")
-    temporary.write_text(json.dumps(record, indent=2) + "\n")
-    temporary.replace(destination)
-    return record, destination
+    return record, write_observation(output, record, storage_uri)
 
 
 def main(argv=None):
