@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Busbar — Ontology atlas</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}
+  </script>
+</head>
+<body>
+  <div id="scene" aria-label="Interactive three-dimensional ontology diagram"></div>
+  <header>
+    <div class="heading">
+      <a class="brand" href="https://github.com/piotch/busbar">BUSBAR</a>
+      <h1>Ontology atlas</h1>
+    </div>
+    <button id="reset" title="Restore the exploded isometric view">Reset view ↗</button>
+  </header>
+  <nav id="layers" aria-label="Focus a conceptual layer">
+    <div class="eyebrow">THE STACK</div>
+    <div id="layer-count-key" class="eyebrow" hidden>RELATED NODES BY LAYER</div>
+    <div id="layer-buttons"></div>
+    <div id="grid-neighbourhoods" aria-label="Focus a grid domain neighbourhood" hidden><div class="eyebrow">GRID NEIGHBOURHOODS</div></div>
+    <p>Conceptual viewing layers,<br>not an asserted hierarchy.<br>Groups are layout aids.</p>
+  </nav>
+  <aside id="inspector" aria-label="Entity details" hidden>
+    <button id="close" aria-label="Close entity details">×</button>
+    <div class="eyebrow" id="entity-layer"></div>
+    <h2 id="entity-title"></h2>
+    <p class="identifier" id="entity-id"></p>
+    <div class="tags" id="entity-types"></div>
+    <p id="entity-description"></p>
+    <div class="eyebrow">DEFINED IN</div><div id="entity-sources"></div>
+    <button id="fit-selection" class="fit-selection" title="Frame this entity and its visible, filtered neighbours">Fit selection + neighbours ↗</button>
+    <div class="eyebrow relations-heading">ASSERTED CONNECTIONS <span id="relation-count"></span></div>
+    <div id="relations"></div>
+  </aside>
+  <section class="toolbar" aria-label="Diagram controls">
+    <label class="search"><span>⌕</span><input id="search" type="search" aria-label="Find an entity" placeholder="Find a class, publisher, series…" autocomplete="off"><kbd>/</kbd></label>
+    <div id="search-results" hidden></div>
+    <label class="option"><input type="checkbox" id="details" checked> All editions & files</label>
+    <label class="option"><input type="checkbox" id="links" checked> Cross-layer links</label>
+    <label class="relationship-filter">Relationships <select id="predicate-filter" aria-label="Filter relationships by predicate"><option value="">All relationships</option></select></label>
+    <label class="spacing">Spacing <input id="spacing" aria-label="Layer spacing" type="range" min="3" max="10" value="6" step="0.1"></label>
+    <button id="plan" title="Look down on the focused layer">Plan view ↓</button>
+  </section>
+  <footer><span><i></i> <span id="stats">Loading local RDF projection…</span></span><span>DRAG TO ORBIT <b>·</b> SCROLL TO ZOOM <b>·</b> RIGHT-DRAG TO PAN</span><span>RDF / OWL / SKOS</span></footer>
+  <div id="tooltip" hidden></div>
+  <div id="notice" role="status">Preparing the atlas…</div>
+  <script type="module">
+    import('./app.js').catch(error => {
+      document.getElementById('notice').textContent = 'Unable to load the atlas. Serve this folder over HTTP and check your internet connection (Three.js loads from jsDelivr). ' + error.message;
+      console.error(error);
+    });
+  </script>
+</body>
+</html>

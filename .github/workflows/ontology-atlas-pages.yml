@@ -1,0 +1,64 @@
+name: Publish ontology atlas
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Do not interrupt an in-progress deployment. PR builds have separate groups.
+concurrency:
+  group: ontology-atlas-pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Refresh the local RDF projection
+        run: uv run --locked python visualisation/export_graph.py
+      - name: Test Python code and RDF projection
+        run: uv run --locked python -m unittest discover -s tests -v
+      - name: Test atlas layout and interaction calculations
+        run: node --test visualisation/*.test.mjs
+      - name: Stage only public atlas assets and metadata
+        run: >-
+          uv run --locked python visualisation/build_pages.py
+          --output _site
+          --repository "$GITHUB_REPOSITORY"
+          --revision "$GITHUB_SHA"
+      - name: Upload Pages artifact (also available for PR inspection)
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    # PRs and manual runs on feature branches may build, but cannot deploy.
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Deploy ontology atlas
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -110,6 +110,22 @@ release builds bundle those same files without maintaining a second copy.
 Commit `uv.lock` for reproducible repository development; consuming projects
 resolve their own dependency versions. PyPI publishing is not configured yet.
 
+## Interactive ontology atlas
+
+Explore the local ontologies and catalogue as a layered Three.js line drawing:
+
+```bash
+python3 -m http.server 8000 --bind 127.0.0.1
+# Open http://localhost:8000/visualisation/
+```
+
+Orbit, pan and zoom; focus layers, search entities and inspect asserted links and
+source files. Internet access is needed for the pinned Three.js CDN dependency.
+See [the atlas guide](visualisation/README.md) for controls, projection scope and
+how to refresh the RDF export. The [GitHub Pages publishing guide](docs/github-pages.md)
+explains automatic deployment, the public artifact boundary and the one-time
+repository settings needed to publish the atlas.
+
 ## Viewing in Protégé
 
 Generate an independent RDF/XML ontology containing the news/source vocabulary,
