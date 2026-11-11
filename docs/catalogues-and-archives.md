@@ -43,8 +43,11 @@ are separate observations even if the response bytes are identical. Failed reque
 are recorded but never interpreted as empty catalogues.
 
 This lets us ask **"What did the publisher expose when we looked?"** and compare
-catalogue membership. Full semantic metadata comparison and dataset-content
-comparison are not yet implemented.
+catalogue membership. The [change report](../README.md#observed-dataset-changes)
+also compares dataset descriptions and filters previous-day recurring metadata
+updates. Dataset-content comparison is not yet implemented; the
+[investigation workflow](investigation-workflow.md) describes how selected findings
+can lead to deeper inspection and reviewed catalogue changes.
 
 ## 2. Busbar and the private archive
 

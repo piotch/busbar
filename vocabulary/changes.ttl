@@ -1,0 +1,35 @@
+@prefix change: <https://busbar.example/changes#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+<https://busbar.example/changes> a owl:Ontology ;
+    dct:title "Busbar observed catalogue change reports"@en ;
+    rdfs:comment "Findings about captured catalogue descriptions, not assertions that underlying dataset contents changed. Uses DCAT/Dublin Core for datasets and PROV-O for comparison provenance."@en .
+
+change:Report a owl:Class ; rdfs:comment "A filtered report generated from archived snapshots; may contain no findings."@en .
+change:ListingAdded a owl:Class ; rdfs:comment "Dataset IRI present in the latest successful snapshot but absent in its predecessor. Not a claim of dataset creation."@en .
+change:ListingRemoved a owl:Class ; rdfs:comment "Dataset IRI absent in the latest successful snapshot but present in its predecessor. Not a claim of dataset deletion."@en .
+change:MetadataUpdated a owl:Class ; rdfs:comment "Dataset description changed between the latest two successful snapshots. Includes distributions and recursive blank-node descriptions, not arbitrary URI-linked resources. Blank-node renaming alone is ignored."@en .
+
+change:comparison a owl:ObjectProperty ; rdfs:comment "Comparison activity belonging to a report."@en .
+change:change a owl:ObjectProperty ; rdfs:comment "Retained finding in a report."@en .
+change:catalog a owl:ObjectProperty ; rdfs:comment "Observed source catalogue."@en .
+change:dataset a owl:ObjectProperty ; rdfs:comment "Publisher dataset IRI affected by a finding."@en .
+change:latestSnapshot a owl:ObjectProperty ; rdfs:comment "Latest successful snapshot used for this catalogue."@en .
+change:previousSnapshot a owl:ObjectProperty ; rdfs:comment "Successful snapshot immediately preceding the latest."@en .
+change:snapshotCount a owl:DatatypeProperty ; rdfs:comment "Number of successful archived snapshots for this catalogue."@en .
+change:comparisonStatus a owl:ObjectProperty ; rdfs:comment "Compared or BaselineOnly; a first capture is not evidence of newly listed datasets."@en .
+change:Compared a owl:NamedIndividual ; rdfs:comment "At least two successful snapshots were available for comparison."@en .
+change:BaselineOnly a owl:NamedIndividual ; rdfs:comment "Only one successful snapshot exists; no membership or update findings emitted."@en .
+
+change:windowStart a owl:DatatypeProperty ; rdfs:comment "Earlier observation time bounding a finding; not the publisher's change timestamp."@en .
+change:windowEnd a owl:DatatypeProperty ; rdfs:comment "Later observation time bounding a finding."@en .
+change:previousDayRecurrence a owl:ObjectProperty ; rdfs:comment "Recurrence evidence on the UTC calendar day before the latest observation. Updates observed changing on that day are suppressed. Unknown findings remain visible. No declared frequencies are used."@en .
+change:NotObserved a owl:NamedIndividual ; rdfs:comment "No change was observed in previous-day comparisons, with at least one successful pair ending on that day at most 36 hours apart. Dataset must be continuously present through the latest snapshot. This is limited observation coverage, not proof of no change throughout the day."@en .
+change:Unknown a owl:NamedIndividual ; rdfs:comment "Insufficient previous-day comparison coverage to assess recurrence."@en .
+change:NotApplicable a owl:NamedIndividual ; rdfs:comment "Previous-day metadata recurrence filtering does not apply to membership additions/removals."@en .
+
+change:changedPredicate a owl:ObjectProperty ; rdfs:comment "Predicate occurring in the canonical dataset-description diff, including nested descriptions."@en .
+change:addedStatement a owl:ObjectProperty ; rdfs:comment "Reified RDF statement added to the compared description. Reification records evidence without asserting the statement in the report graph. Canonical blank nodes are scoped to this finding and are not source identifiers."@en .
+change:removedStatement a owl:ObjectProperty ; rdfs:comment "Reified RDF statement removed from the compared description; blank nodes are scoped as for addedStatement."@en .

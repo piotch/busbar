@@ -96,6 +96,12 @@ jobs:
         run: >-
           uv run --locked --extra s3 busbar bucket publish
           --run-id "${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+      - name: Report noteworthy changes from the latest published bucket export
+        id: report
+        if: steps.publish.outcome == 'success'
+        run: >-
+          uv run --locked --extra s3 busbar report-changes
+          --output build/changes.rdf --markdown build/changes.md
       - name: Attach diagnostic summary and exports (not the permanent archive)
         if: always() && steps.restore.outcome == 'success'
         uses: actions/upload-artifact@v4
@@ -105,6 +111,8 @@ jobs:
             build/capture-summary.json
             build/observations.trig
             build/news-catalogues.owl
+            build/changes.rdf
+            build/changes.md
           retention-days: 14
           if-no-files-found: warn
       - name: Report incomplete runs as failures
@@ -115,8 +123,9 @@ jobs:
           ARCHIVE: ${{ steps.archive.outcome }}
           EXPORT: ${{ steps.export.outcome }}
           PUBLISH: ${{ steps.publish.outcome }}
+          REPORT: ${{ steps.report.outcome }}
         run: |
-          for outcome in "$RESTORE" "$CAPTURE" "$ARCHIVE" "$EXPORT" "$PUBLISH"; do
+          for outcome in "$RESTORE" "$CAPTURE" "$ARCHIVE" "$EXPORT" "$PUBLISH" "$REPORT"; do
             if [[ "$outcome" != "success" ]]; then
               echo "::error::Observation run incomplete; inspect the source summary and storage steps."
               exit 1
