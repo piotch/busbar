@@ -15,8 +15,7 @@ uv add "busbar @ git+https://github.com/piotch/busbar.git"
 uv add "busbar[s3] @ git+https://github.com/piotch/busbar.git"
 ```
 
-These commands require a revision containing the Python package. Until this branch
-is merged, append `@feat/python-package` to the Git URL. Standard pip also works:
+Standard pip also works:
 
 ```bash
 pip install "busbar @ git+https://github.com/piotch/busbar.git"
@@ -30,8 +29,8 @@ ontology = busbar.load_ontology()
 declarations, hashes = busbar.load_declarations()  # Includes SHACL validation.
 ```
 
-The wheel includes the curated catalogue, ontology, source definitions,
-vocabularies, SHACL shapes and example SPARQL queries. Installing Busbar does not
+The wheel includes the curated catalogue, ontology, source definitions, recorded
+series editions, vocabularies, SHACL shapes and example SPARQL queries. Installing Busbar does not
 capture remote catalogues or download datasets. S3 credentials are only needed
 for explicit bucket operations; the core library has no boto3 dependency.
 
@@ -114,9 +113,10 @@ uv run busbar build-observations
 ```
 
 This writes ignored `build/observations.trig`: one named graph per successful
-capture, an observation metadata graph, a current-definitions graph, and a separate
-Busbar curated-catalogue graph. These can be queried together without merging
-publisher assertions with curator assertions.
+capture, an observation metadata graph, a current-definitions graph, a separate
+Busbar curated-catalogue graph, and an editions graph holding what
+`busbar capture-series` recorded under `editions/`. These can be queried together
+without merging publisher assertions with curator assertions.
 Repeated observations remain separate even when their content is identical.
 Failed acquisitions have metadata but no snapshot graph. Original publisher
 identifiers are preserved inside each snapshot; canonical source identities are
