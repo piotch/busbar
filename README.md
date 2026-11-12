@@ -52,7 +52,12 @@ this is not yet a harmonised UK grid model or a connection-assessment tool.
 3. **In parallel, establish automated collection.** Build on the existing capture
    tools and optional scheduled workflow to collect catalogue metadata and
    selected dataset files reliably, with provenance and change tracking.
-4. **Then relate the grid-domain model to CIM** (the Common Information Model),
+4. **Run and publish dataset quality checks.** Develop repeatable tests for
+   completeness, consistency, identifier uniqueness, freshness and cross-dataset
+   compatibility. Publish versioned results linked to the dataset editions
+   tested, distinguishing general checks from use-case-specific requirements
+   and explaining each check's limitations.
+5. **Then relate the grid-domain model to CIM** (the Common Information Model),
    including relevant LTDS profiles. Review mappings concept by concept, recording
    evidence and limitations rather than claiming equivalence from names alone.
 
