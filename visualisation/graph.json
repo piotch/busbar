@@ -3735,6 +3735,246 @@
       ]
     },
     {
+      "id": "https://busbar.example/grid#AcceptedExportCapacity",
+      "short": "grid:AcceptedExportCapacity",
+      "label": "Accepted export capacity",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Change to maximum export capacity accepted but not yet connected, in MVA.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#AcceptedImportCapacity",
+      "short": "grid:AcceptedImportCapacity",
+      "label": "Accepted import capacity",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Change to maximum import capacity accepted but not yet connected, in MVA.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#AcceptedProject",
+      "short": "grid:AcceptedProject",
+      "label": "Accepted project",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "A project that has accepted a connection offer and is not yet connected.",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#AddressLine1",
+      "short": "grid:AddressLine1",
+      "label": "Address line 1",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "First line of the site address.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#AddressLine2",
+      "short": "grid:AddressLine2",
+      "label": "Address line 2",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Second line of the site address.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#BulkSupplyPoint",
+      "short": "grid:BulkSupplyPoint",
+      "label": "Bulk supply point",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "A distribution substation fed from a grid supply point, supplying primary substations.",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#City",
+      "short": "grid:City",
+      "label": "Town or city",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Town or city of the site address.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#ConnectedExportCapacity",
+      "short": "grid:ConnectedExportCapacity",
+      "label": "Connected export capacity",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Maximum export capacity already connected, in MVA.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#ConnectedProject",
+      "short": "grid:ConnectedProject",
+      "label": "Connected project",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "A project already connected to the network.",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#ConnectionStatus",
+      "short": "grid:ConnectionStatus",
+      "label": "Connection status",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Whether the project is connected or has accepted a connection offer.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#ConnectionVoltage",
+      "short": "grid:ConnectionVoltage",
+      "label": "Connection voltage",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Voltage at the project's point of connection, in kV.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#County",
+      "short": "grid:County",
+      "label": "County",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "County of the site address.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#CustomerName",
+      "short": "grid:CustomerName",
+      "label": "Customer name",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Name of the customer holding the connection agreement.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#CustomerSite",
+      "short": "grid:CustomerSite",
+      "label": "Customer site",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Name of the site where the project is located.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#DateAccepted",
+      "short": "grid:DateAccepted",
+      "label": "Date accepted",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Date the connection offer was accepted.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#DateConnected",
+      "short": "grid:DateConnected",
+      "label": "Date connected",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Date the project was connected.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
       "id": "https://busbar.example/grid#DistributionNetworkOperator",
       "short": "grid:DistributionNetworkOperator",
       "label": "Distribution network operator",
@@ -3795,6 +4035,111 @@
       ]
     },
     {
+      "id": "https://busbar.example/grid#Easting",
+      "short": "grid:Easting",
+      "label": "Easting",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Easting of the site on the British National Grid (EPSG:27700), in metres.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#EnergySource",
+      "short": "grid:EnergySource",
+      "label": "Energy source",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "The project's main energy source.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#GridSupplyPoint",
+      "short": "grid:GridSupplyPoint",
+      "label": "Grid supply point",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "A substation where the transmission network supplies a distribution network.",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#LicenceArea",
+      "short": "grid:LicenceArea",
+      "label": "Licence area",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "The distribution licence area the project is in.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#Northing",
+      "short": "grid:Northing",
+      "label": "Northing",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Northing of the site on the British National Grid (EPSG:27700), in metres.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#Postcode",
+      "short": "grid:Postcode",
+      "label": "Postcode",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "Postcode of the site address.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#PrimarySubstation",
+      "short": "grid:PrimarySubstation",
+      "label": "Primary substation",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "A distribution substation fed from a bulk supply point, supplying the high-voltage distribution network.",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
       "id": "https://busbar.example/grid#Project",
       "short": "grid:Project",
       "label": "Project",
@@ -3805,6 +4150,21 @@
       "kind": "concept",
       "detail": false,
       "description": "A generation, storage or demand project connected (or contracted to connect) to the network, at a substation or directly onto a circuit.",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#Substation",
+      "short": "grid:Substation",
+      "label": "Substation",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "A site where the network's voltage is transformed or its circuits are switched.",
       "sources": [
         "vocabulary/grid-concepts.ttl"
       ]
@@ -3825,6 +4185,51 @@
       ]
     },
     {
+      "id": "https://busbar.example/grid#UpstreamBulkSupplyPoint",
+      "short": "grid:UpstreamBulkSupplyPoint",
+      "label": "Upstream bulk supply point",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "The bulk supply point upstream of the project.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#UpstreamGridSupplyPoint",
+      "short": "grid:UpstreamGridSupplyPoint",
+      "label": "Upstream grid supply point",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "The grid supply point upstream of the project.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#UpstreamPrimarySubstation",
+      "short": "grid:UpstreamPrimarySubstation",
+      "label": "Upstream primary substation",
+      "layer": "grid",
+      "types": [
+        "skos:Concept"
+      ],
+      "kind": "concept",
+      "detail": false,
+      "description": "The primary substation the project connects at or below.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
       "id": "https://busbar.example/grid#organization-classifications",
       "short": "grid:organization-classifications",
       "label": "Grid organization classifications",
@@ -3840,9 +4245,39 @@
       ]
     },
     {
+      "id": "https://busbar.example/grid#project-attributes",
+      "short": "grid:project-attributes",
+      "label": "Project attributes",
+      "layer": "grid",
+      "types": [
+        "skos:ConceptScheme"
+      ],
+      "kind": "scheme",
+      "detail": false,
+      "description": "What a field of a project register says about a project, whatever the file or publisher. A concept's skos:notation is its standard field name. An attribute applies to every project unless skos:related names the project types it is for.",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
       "id": "https://busbar.example/grid#project-types",
       "short": "grid:project-types",
       "label": "Grid project types",
+      "layer": "grid",
+      "types": [
+        "skos:ConceptScheme"
+      ],
+      "kind": "scheme",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/grid#substation-types",
+      "short": "grid:substation-types",
+      "label": "Substation types",
       "layer": "grid",
       "types": [
         "skos:ConceptScheme"
@@ -5432,6 +5867,322 @@
       "description": "",
       "sources": [
         "definitions/grid/uk/dno/enwl/portal.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1",
+      "label": "ENWL Embedded Capacity Register 2 file layout, version 1",
+      "layer": "sources",
+      "types": [
+        "dct:Standard",
+        "http://www.w3.org/ns/csvw#Schema"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/address-line-1",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/address-line-1",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/address-line-1",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/address-line-2",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/address-line-2",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/address-line-2",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/bulk-supply-point",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/bulk-supply-point",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/bulk-supply-point",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/change-to-maximum-export-capacity-mva",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/change-to-maximum-export-capacity-mva",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/change-to-maximum-export-capacity-mva",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/change-to-maximum-import-capacity-mva",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/change-to-maximum-import-capacity-mva",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/change-to-maximum-import-capacity-mva",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/connection-status",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/connection-status",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/connection-status",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/connection-voltage",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/connection-voltage",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/connection-voltage",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/county",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/county",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/county",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/customer-name",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/customer-name",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/customer-name",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/customer-site",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/customer-site",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/customer-site",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/date-accepted",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/date-accepted",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/date-accepted",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/date-connected",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/date-connected",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/date-connected",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/eastings",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/eastings",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/eastings",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/energy-source-1",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/energy-source-1",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/energy-source-1",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/grid-supply-point",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/grid-supply-point",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/grid-supply-point",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/maximum-export-capacity-mva",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/maximum-export-capacity-mva",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/maximum-export-capacity-mva",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/northings",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/northings",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/northings",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/postcode",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/postcode",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/postcode",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/primary",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/primary",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/primary",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/town-city",
+      "short": "id:grid/uk/dno/enwl/schemas/ecr/v1/columns/town-city",
+      "label": "grid/uk/dno/enwl/schemas/ecr/v1/columns/town-city",
+      "layer": "sources",
+      "types": [
+        "http://www.w3.org/ns/csvw#Column"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
       ]
     },
     {
@@ -14348,6 +15099,326 @@
       ]
     },
     {
+      "source": "https://busbar.example/grid#AcceptedExportCapacity",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#AcceptedExportCapacity",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#AcceptedExportCapacity",
+      "target": "https://busbar.example/grid#AcceptedProject",
+      "predicate": "skos:related",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#AcceptedImportCapacity",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#AcceptedImportCapacity",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#AcceptedImportCapacity",
+      "target": "https://busbar.example/grid#AcceptedProject",
+      "predicate": "skos:related",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#AcceptedProject",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#AcceptedProject",
+      "target": "https://busbar.example/grid#Project",
+      "predicate": "skos:broader",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#AcceptedProject",
+      "target": "https://busbar.example/grid#project-types",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#AddressLine1",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#AddressLine1",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#AddressLine2",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#AddressLine2",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#BulkSupplyPoint",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#BulkSupplyPoint",
+      "target": "https://busbar.example/grid#Substation",
+      "predicate": "skos:broader",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#BulkSupplyPoint",
+      "target": "https://busbar.example/grid#substation-types",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#City",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#City",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#ConnectedExportCapacity",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#ConnectedExportCapacity",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#ConnectedExportCapacity",
+      "target": "https://busbar.example/grid#ConnectedProject",
+      "predicate": "skos:related",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#ConnectedProject",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#ConnectedProject",
+      "target": "https://busbar.example/grid#Project",
+      "predicate": "skos:broader",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#ConnectedProject",
+      "target": "https://busbar.example/grid#project-types",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#ConnectionStatus",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#ConnectionStatus",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#ConnectionVoltage",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#ConnectionVoltage",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#County",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#County",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#CustomerName",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#CustomerName",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#CustomerSite",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#CustomerSite",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#DateAccepted",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#DateAccepted",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#DateAccepted",
+      "target": "https://busbar.example/grid#AcceptedProject",
+      "predicate": "skos:related",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#DateConnected",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#DateConnected",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#DateConnected",
+      "target": "https://busbar.example/grid#ConnectedProject",
+      "predicate": "skos:related",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
       "source": "https://busbar.example/grid#DistributionNetworkOperator",
       "target": "https://busbar.example/id/references/ltds-grid-modelling-v2-1-1/annex-2-v7",
       "predicate": "dct:source",
@@ -14452,6 +15523,134 @@
       ]
     },
     {
+      "source": "https://busbar.example/grid#Easting",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#Easting",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#EnergySource",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#EnergySource",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#GridSupplyPoint",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#GridSupplyPoint",
+      "target": "https://busbar.example/grid#Substation",
+      "predicate": "skos:broader",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#GridSupplyPoint",
+      "target": "https://busbar.example/grid#substation-types",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#LicenceArea",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#LicenceArea",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#Northing",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#Northing",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#Postcode",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#Postcode",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#PrimarySubstation",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#PrimarySubstation",
+      "target": "https://busbar.example/grid#Substation",
+      "predicate": "skos:broader",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#PrimarySubstation",
+      "target": "https://busbar.example/grid#substation-types",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
       "source": "https://busbar.example/grid#Project",
       "target": "http://www.w3.org/2004/02/skos/core#Concept",
       "predicate": "rdf:type",
@@ -14470,6 +15669,30 @@
     {
       "source": "https://busbar.example/grid#Project",
       "target": "https://busbar.example/grid#project-types",
+      "predicate": "skos:topConceptOf",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#Substation",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#Substation",
+      "target": "https://busbar.example/grid#substation-types",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#Substation",
+      "target": "https://busbar.example/grid#substation-types",
       "predicate": "skos:topConceptOf",
       "sources": [
         "vocabulary/grid-concepts.ttl"
@@ -14500,6 +15723,78 @@
       ]
     },
     {
+      "source": "https://busbar.example/grid#UpstreamBulkSupplyPoint",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#UpstreamBulkSupplyPoint",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#UpstreamBulkSupplyPoint",
+      "target": "https://busbar.example/grid#BulkSupplyPoint",
+      "predicate": "skos:related",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#UpstreamGridSupplyPoint",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#UpstreamGridSupplyPoint",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#UpstreamGridSupplyPoint",
+      "target": "https://busbar.example/grid#GridSupplyPoint",
+      "predicate": "skos:related",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#UpstreamPrimarySubstation",
+      "target": "http://www.w3.org/2004/02/skos/core#Concept",
+      "predicate": "rdf:type",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#UpstreamPrimarySubstation",
+      "target": "https://busbar.example/grid#project-attributes",
+      "predicate": "skos:inScheme",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#UpstreamPrimarySubstation",
+      "target": "https://busbar.example/grid#PrimarySubstation",
+      "predicate": "skos:related",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
       "source": "https://busbar.example/grid#organization-classifications",
       "target": "https://busbar.example/grid#DistributionNetworkOperator",
       "predicate": "skos:hasTopConcept",
@@ -14508,8 +15803,24 @@
       ]
     },
     {
+      "source": "https://busbar.example/grid#project-attributes",
+      "target": "https://busbar.example/grid#Project",
+      "predicate": "dct:subject",
+      "sources": [
+        "vocabulary/grid-attributes/project.ttl"
+      ]
+    },
+    {
       "source": "https://busbar.example/grid#project-types",
       "target": "https://busbar.example/grid#Project",
+      "predicate": "skos:hasTopConcept",
+      "sources": [
+        "vocabulary/grid-concepts.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/grid#substation-types",
+      "target": "https://busbar.example/grid#Substation",
       "predicate": "skos:hasTopConcept",
       "sources": [
         "vocabulary/grid-concepts.ttl"
@@ -18752,6 +20063,14 @@
     },
     {
       "source": "https://busbar.example/id/grid/uk/dno/enwl/editions/ecr/2026-10-20/csv",
+      "target": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1",
+      "predicate": "dct:conformsTo",
+      "sources": [
+        "editions/grid/uk/dno/enwl/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/editions/ecr/2026-10-20/csv",
       "target": "http://www.w3.org/ns/dcat#Distribution",
       "predicate": "rdf:type",
       "sources": [
@@ -18796,6 +20115,166 @@
       "predicate": "pub:portalOperator",
       "sources": [
         "definitions/grid/uk/dno/enwl/portal.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/address-line-1",
+      "target": "https://busbar.example/grid#AddressLine1",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/address-line-2",
+      "target": "https://busbar.example/grid#AddressLine2",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/bulk-supply-point",
+      "target": "https://busbar.example/grid#UpstreamBulkSupplyPoint",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/change-to-maximum-export-capacity-mva",
+      "target": "https://busbar.example/grid#AcceptedExportCapacity",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/change-to-maximum-import-capacity-mva",
+      "target": "https://busbar.example/grid#AcceptedImportCapacity",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/connection-status",
+      "target": "https://busbar.example/grid#ConnectionStatus",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/connection-voltage",
+      "target": "https://busbar.example/grid#ConnectionVoltage",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/county",
+      "target": "https://busbar.example/grid#County",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/customer-name",
+      "target": "https://busbar.example/grid#CustomerName",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/customer-site",
+      "target": "https://busbar.example/grid#CustomerSite",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/date-accepted",
+      "target": "https://busbar.example/grid#DateAccepted",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/date-connected",
+      "target": "https://busbar.example/grid#DateConnected",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/eastings",
+      "target": "https://busbar.example/grid#Easting",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/energy-source-1",
+      "target": "https://busbar.example/grid#EnergySource",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/grid-supply-point",
+      "target": "https://busbar.example/grid#UpstreamGridSupplyPoint",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/maximum-export-capacity-mva",
+      "target": "https://busbar.example/grid#ConnectedExportCapacity",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/northings",
+      "target": "https://busbar.example/grid#Northing",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/postcode",
+      "target": "https://busbar.example/grid#Postcode",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/primary",
+      "target": "https://busbar.example/grid#UpstreamPrimarySubstation",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/town-city",
+      "target": "https://busbar.example/grid#City",
+      "predicate": "dct:subject",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/schemas/ecr.ttl"
       ]
     },
     {
@@ -34285,6 +35764,7 @@
     "busbar-ontology.ttl",
     "catalogue.ttl",
     "vocabulary/catalogue-view.ttl",
+    "vocabulary/grid-attributes/project.ttl",
     "vocabulary/grid-concepts.ttl",
     "vocabulary/grid-roles.ttl",
     "vocabulary/publishing.ttl",
@@ -34292,6 +35772,7 @@
     "definitions/grid/uk/dno/enwl/catalogue.ttl",
     "definitions/grid/uk/dno/enwl/organization.ttl",
     "definitions/grid/uk/dno/enwl/portal.ttl",
+    "definitions/grid/uk/dno/enwl/schemas/ecr.ttl",
     "definitions/grid/uk/dno/enwl/series.ttl",
     "definitions/grid/uk/dno/nged/catalogue.ttl",
     "definitions/grid/uk/dno/nged/organization.ttl",
@@ -34326,8 +35807,12 @@
       "sha256": "c04f2589969c9728415d0b0dbb5fe9612604f844cce87a75c39d34caf3f2f493"
     },
     {
+      "path": "vocabulary/grid-attributes/project.ttl",
+      "sha256": "4c97c53270e1546bd0f30a0cf8fd69748d8d75b445e726529e50702f39af19df"
+    },
+    {
       "path": "vocabulary/grid-concepts.ttl",
-      "sha256": "f4cd50001d6b5431fb1213a67cc4f4c4de9721f1d38c9337a5b31bc917feddfa"
+      "sha256": "f18563fbcc7c0f55e17da39d8dd1818e55a7b0481b31ccf7aaf4deae4a181f2f"
     },
     {
       "path": "vocabulary/grid-roles.ttl",
@@ -34352,6 +35837,10 @@
     {
       "path": "definitions/grid/uk/dno/enwl/portal.ttl",
       "sha256": "81350772e7cdaae7c5f39e3862b15154c26b7364aa3c8806ab9ed1cb51c27d67"
+    },
+    {
+      "path": "definitions/grid/uk/dno/enwl/schemas/ecr.ttl",
+      "sha256": "7fa9809fe24a1cf5dadd5f362dbf00510608f51b63e560037bd54a5f9e302c74"
     },
     {
       "path": "definitions/grid/uk/dno/enwl/series.ttl",
@@ -34427,7 +35916,7 @@
     },
     {
       "path": "editions/grid/uk/dno/enwl/ecr.ttl",
-      "sha256": "b10a2c1623ce4aec905b1f17c476152b606cb9e68784b86a574d5337b52bdb8b"
+      "sha256": "da007ce6fdc62c7a2c17f486f969caf21e1f7249db598416c9d092087d603406"
     }
   ]
 }

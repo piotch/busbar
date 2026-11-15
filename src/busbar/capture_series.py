@@ -25,6 +25,7 @@ from rdflib import BNode, Graph, Literal, Namespace, RDF, URIRef
 from rdflib.namespace import DCTERMS, FOAF, PROV, XSD
 
 from .capture_catalogue import DCAT, MAX_BYTES, PUB, git_revision, load_declarations, store_artifact, write_observation
+from .check_edition import CSVW, check, load_schema
 
 SPDX = Namespace("http://spdx.org/rdf/terms#")
 CSV_MEDIA_TYPE = URIRef("https://www.iana.org/assignments/media-types/text/csv")
@@ -204,6 +205,25 @@ def add_edition(graph, series, title, distribution, modified, digest, size, rela
     return edition
 
 
+def record_conformance(recorded, graph, output):
+    """State which declared file layouts each stored edition file follows.
+
+    Every stored file is checked again against every declared schema, so the
+    statements follow the schemas as they are now. A file missing from the local
+    store keeps what was recorded about it.
+    """
+    schemas = [load_schema(graph, schema) for schema in sorted(graph.subjects(RDF.type, CSVW.Schema))]
+    for file in sorted(recorded.subjects(DCTERMS.identifier, None)):
+        stored = output / str(recorded.value(file, DCTERMS.identifier))
+        if not stored.is_file():
+            continue
+        content = stored.read_bytes()
+        recorded.remove((file, DCTERMS.conformsTo, None))
+        for schema in schemas:
+            if check(schema, content)["conforms"]:
+                recorded.add((file, DCTERMS.conformsTo, URIRef(schema["schema"])))
+
+
 PREFIXES = (("dcat", DCAT), ("dct", DCTERMS), ("prov", PROV), ("spdx", SPDX), ("xsd", XSD))
 
 
@@ -306,6 +326,7 @@ def capture(graph, hashes, series, output, editions, env_file):
                 edition = add_edition(recorded, series, str(title), parameters["distribution"], modified,
                                       digest, len(content), relative, retrieved_at)
                 record.update({"new_edition": True, "edition": str(edition)})
+        record_conformance(recorded, graph, output)
         if set(recorded) != unchanged:
             write_editions(recorded, path)
         record["status"] = "success"

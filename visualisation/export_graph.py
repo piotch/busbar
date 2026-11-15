@@ -47,7 +47,7 @@ def build():
     origins = defaultdict(set)
     triple_origins = defaultdict(set)
     paths = [ROOT / 'busbar-ontology.ttl', ROOT / 'catalogue.ttl']
-    paths += sorted((ROOT / 'vocabulary').glob('*.ttl'))
+    paths += sorted((ROOT / 'vocabulary').rglob('*.ttl'))
     paths += sorted((ROOT / 'definitions').rglob('*.ttl'))
     paths += sorted((ROOT / 'editions').rglob('*.ttl'))
     for path in paths:
