@@ -11,6 +11,7 @@ from rdflib.compare import isomorphic
 
 SERIES = URIRef("https://busbar.example/id/grid/uk/dno/enwl/series/ecr")
 EDITIONS = "https://busbar.example/id/grid/uk/dno/enwl/editions/ecr"
+SCHEMA = URIRef("https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1")
 HEADER_ONLY = "﻿Name;Capacity\n".encode()
 FIRST = "﻿Name;Capacity\nA;1\nB;2\n".encode()
 SECOND = "﻿Name;Capacity\nA;1\nB;3\n".encode()
@@ -153,6 +154,23 @@ class SeriesCaptureTests(unittest.TestCase):
         self.assertEqual(capture.last_edition(graph, SERIES)[1], record["content_hash"].removeprefix("sha256:"))
         self.assertTrue((self.root / "captures" / record["artifact_path"]).is_file())
         self.assertNotIn(KEY, path.read_text())
+
+    def test_file_following_a_declared_schema_is_recorded_as_conforming(self):
+        schema = capture.load_schema(self.graph, SCHEMA)
+        header = ";".join(sorted(column["titles"])[0] for column in schema["columns"])
+        status = [column["name"] for column in schema["columns"]].index("connection_status")
+        cells = [""] * len(schema["columns"])
+        cells[status] = "CONNECTED"
+        content = f"﻿{header}\n{';'.join(cells)}\n".encode()
+        self.run_capture(content, MAY, rows=1)
+        graph = self.editions()
+        file = graph.value(graph.value(SERIES, capture.DCAT.last), capture.DCAT.distribution)
+        self.assertEqual(list(graph.objects(file, capture.DCTERMS.conformsTo)), [SCHEMA])
+
+    def test_file_following_no_declared_schema_conforms_to_nothing(self):
+        self.run_capture(FIRST, MAY)
+        graph = self.editions()
+        self.assertNotIn(capture.DCTERMS.conformsTo, set(graph.predicates()))
 
     def test_header_only_file_fails_without_an_edition(self):
         record, _ = self.run_capture(HEADER_ONLY, MAY, rows=568)

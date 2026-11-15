@@ -6,6 +6,7 @@ COMMANDS = {
     "capture": ("capture_catalogue", "Capture one source or validate declarations"),
     "capture-all": ("capture_all", "Capture all declared sources"),
     "capture-series": ("capture_series", "Archive a series' latest file and record new editions"),
+    "check-edition": ("check_edition", "Check a series file against a declared schema version"),
     "build-observations": ("build_observations", "Export named observation graphs as TriG"),
     "build-ontology": ("build_ontology", "Export a flat RDF/XML viewer ontology"),
     "bucket": ("bucket_store", "Manage optional S3-compatible storage"),

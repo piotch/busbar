@@ -1,0 +1,154 @@
+@prefix csvw: <http://www.w3.org/ns/csvw#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix grid: <https://busbar.example/grid#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1>
+    a csvw:Schema, dct:Standard ;
+    dct:title "ENWL Embedded Capacity Register 2 file layout, version 1"@en ;
+    dcat:version "1" ;
+    csvw:null "", "-", "N/A", "Data not available", "Data not applicable" ;
+    csvw:column (
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/customer-name>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/customer-site>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/address-line-1>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/address-line-2>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/town-city>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/county>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/postcode>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/eastings>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/northings>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/grid-supply-point>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/bulk-supply-point>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/primary>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/connection-voltage>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/energy-source-1>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/connection-status>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/maximum-export-capacity-mva>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/date-connected>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/change-to-maximum-export-capacity-mva>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/change-to-maximum-import-capacity-mva>
+        <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/date-accepted>
+    ) .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/customer-name> a csvw:Column ;
+    dct:subject grid:CustomerName ;
+    csvw:titles "Customer Name" ;
+    csvw:datatype xsd:string .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/customer-site> a csvw:Column ;
+    dct:subject grid:CustomerSite ;
+    csvw:titles "Customer Site" ;
+    csvw:datatype xsd:string .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/address-line-1> a csvw:Column ;
+    dct:subject grid:AddressLine1 ;
+    csvw:titles "Address Line 1" ;
+    csvw:datatype xsd:string .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/address-line-2> a csvw:Column ;
+    dct:subject grid:AddressLine2 ;
+    csvw:titles "Address Line 2" ;
+    csvw:datatype xsd:string .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/town-city> a csvw:Column ;
+    dct:subject grid:City ;
+    csvw:titles "Town/ City" ;
+    csvw:datatype xsd:string .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/county> a csvw:Column ;
+    dct:subject grid:County ;
+    csvw:titles "County" ;
+    csvw:datatype xsd:string .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/postcode> a csvw:Column ;
+    dct:subject grid:Postcode ;
+    csvw:titles "Postcode" ;
+    csvw:datatype xsd:string .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/eastings> a csvw:Column ;
+    dct:subject grid:Easting ;
+    csvw:titles "Location (X-coordinate): Eastings (where data is held)" ;
+    csvw:datatype xsd:decimal ;
+    qudt:hasUnit unit:M ;
+    dct:conformsTo <http://www.opengis.net/def/crs/EPSG/0/27700> ;
+    sh:minInclusive 0 ;
+    sh:maxInclusive 700000 .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/northings> a csvw:Column ;
+    dct:subject grid:Northing ;
+    csvw:titles "Location (y-coordinate): Northings (where data is held)" ;
+    csvw:datatype xsd:decimal ;
+    qudt:hasUnit unit:M ;
+    dct:conformsTo <http://www.opengis.net/def/crs/EPSG/0/27700> ;
+    sh:minInclusive 0 ;
+    sh:maxInclusive 1300000 .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/grid-supply-point> a csvw:Column ;
+    dct:subject grid:UpstreamGridSupplyPoint ;
+    csvw:titles "Grid Supply Point" ;
+    csvw:datatype xsd:string .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/bulk-supply-point> a csvw:Column ;
+    dct:subject grid:UpstreamBulkSupplyPoint ;
+    csvw:titles "Bulk Supply Point" ;
+    csvw:datatype xsd:string .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/primary> a csvw:Column ;
+    dct:subject grid:UpstreamPrimarySubstation ;
+    csvw:titles "Primary" ;
+    csvw:datatype xsd:string .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/connection-voltage> a csvw:Column ;
+    dct:subject grid:ConnectionVoltage ;
+    csvw:titles "Point of Connection (POC) Voltage (kV)" ;
+    csvw:datatype xsd:decimal ;
+    qudt:hasUnit unit:KiloV ;
+    sh:in ( 0.415 6.6 11 25 33 132 ) .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/energy-source-1> a csvw:Column ;
+    dct:subject grid:EnergySource ;
+    csvw:titles "Energy Source 1" ;
+    csvw:datatype xsd:string .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/connection-status> a csvw:Column ;
+    dct:subject grid:ConnectionStatus ;
+    csvw:titles "Connection Status" ;
+    csvw:datatype xsd:string ;
+    csvw:required true ;
+    sh:in ( "CONNECTED" "ACCEPTED TO CONNECT" ) .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/maximum-export-capacity-mva> a csvw:Column ;
+    dct:subject grid:ConnectedExportCapacity ;
+    csvw:titles "Maximum Export Capacity (MVA)" ;
+    csvw:datatype xsd:decimal ;
+    qudt:hasUnit unit:MegaV-A ;
+    sh:minInclusive 0 .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/date-connected> a csvw:Column ;
+    dct:subject grid:DateConnected ;
+    csvw:titles "Date Connected" ;
+    csvw:datatype [ csvw:base "date" ; csvw:format "yyyy-MM-dd" ] .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/change-to-maximum-export-capacity-mva> a csvw:Column ;
+    dct:subject grid:AcceptedExportCapacity ;
+    csvw:titles "Change to Maximum Export Capacity (MVA)" ;
+    csvw:datatype xsd:decimal ;
+    qudt:hasUnit unit:MegaV-A ;
+    sh:minInclusive 0 .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/change-to-maximum-import-capacity-mva> a csvw:Column ;
+    dct:subject grid:AcceptedImportCapacity ;
+    csvw:titles "Change to Maximum Import Capacity (MVA)" ;
+    csvw:datatype xsd:decimal ;
+    qudt:hasUnit unit:MegaV-A ;
+    sh:minInclusive 0 .
+
+<https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1/columns/date-accepted> a csvw:Column ;
+    dct:subject grid:DateAccepted ;
+    csvw:titles "Date Accepted" ;
+    csvw:datatype [ csvw:base "date" ; csvw:format "yyyy-MM-dd" ] .

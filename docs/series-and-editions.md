@@ -80,6 +80,40 @@ Only OpenDataSoft dataset pages are understood so far.
 
 Every run, successful or not, writes a JSON record in `captures/series/observations/`.
 
+## File schemas and checks
+
+A file's layout is a decision, so it lives in `definitions/`, in W3C
+[CSVW](https://www.w3.org/TR/tabular-metadata/): for ENWL,
+`definitions/grid/uk/dno/enwl/schemas/ecr.ttl`.
+
+- Only the columns Busbar uses are declared, found by title in any order; the
+  others are ignored, so their changes need no new version.
+- A version (`…/schemas/ecr/v1`) lists its columns and the "no value" markers
+  (`csvw:null`). Columns belong to their version (`…/v1/columns/<name>`). When a
+  declared column changes, add a version (`dcat:previousVersion`); never edit
+  one in use.
+- Each column has its header (`csvw:titles`), its type (`csvw:datatype`) and the
+  concept it is about (`dct:subject`), whose `skos:notation` is the standard
+  name (concepts in `vocabulary/grid-attributes/project.ttl`).
+- `csvw:required true` forbids empty cells; `sh:in` (SHACL) lists the allowed
+  values as written in the file.
+- A numeric column states the unit the publisher writes in, with `qudt:hasUnit`
+(for example `unit:KiloV` or `unit:MegaV-A`). Coordinate columns also name their
+reference system with `dct:conformsTo`, as in GeoDCAT-AP; ENWL eastings and
+northings are British National Grid (`EPSG/0/27700`), in metres. The check does
+not use these: they describe the file, they do not test it. What it does test is
+`sh:minInclusive` / `sh:maxInclusive`: eastings must lie within 0–700 000 and
+northings within 0–1 300 000, the extent of the grid.
+
+`uv run busbar check-edition <file.csv>` checks a file against the schema,
+ignoring case and repeated spaces in titles, null markers and values. It only
+reads, prints a JSON report and exits with 1 if the file does not conform; what
+to do then is the pipeline's decision.
+
+At every run, `capture-series` checks each stored edition file against every
+declared schema. It records `dct:conformsTo <schema version>` on each file that
+conforms, in `editions/`.
+
 ## Querying
 
 `busbar build-observations` puts everything under `editions/` in the
