@@ -22,6 +22,33 @@ The supplied release's Stage 2 publication notes identify it as governing the Ma
 2026 cycle; this is a version-specific citation, not a claim that the release is
 the latest for every later cycle.
 
+## Completed: CIM declared as reference standards
+
+`definitions/references/cim.ttl` declares the two CIM standards as `dct:Standard`
+resources published by the IEC (`definitions/organisations/iec.ttl`):
+
+| Resource | Standard |
+|---|---|
+| `id:references/iec-61970-301` | IEC 61970-301, CIM base |
+| `id:references/iec-61968-11` | IEC 61968-11, CIM extensions for distribution (`dct:references` the base) |
+
+The LTDS release is also typed `dct:Standard` and `dct:references` the CIM base.
+The evidence is in the same Annex 2 v7 as the DNO definition:
+
+- Section 3.1, LTDS layered information model: "Its content is periodically
+  snapshotted and published as the IEC 61970-301 standard, the current version of
+  which is IEC 61970-301:2022." The CIM forms the base on which the European, Network
+  Codes and Great Britain extensions are layered.
+- Section 6, Terms, Definitions and Abbreviated Terms: "The CIM is an information
+  model described by IEC 61970-301:2020 and expressed in UML. Its classes,
+  attributes and associations provide the semantic model on which profiles are
+  based."
+
+The two passages name different editions (2022 and 2020), so no edition is pinned
+on `id:references/iec-61970-301`: the link is to the standard, not to one edition. These resources are citation targets for later `dct:source`,
+`dct:conformsTo` or mapping evidence. They map nothing by themselves: no SKOS
+mapping exists in the definitions, and a test checks this.
+
 ## Completed inspection, not ontology alignment
 
 The supplied release was inspected for organization, role and ownership concepts:

@@ -7431,6 +7431,21 @@
       ]
     },
     {
+      "id": "https://busbar.example/id/organisations/iec",
+      "short": "id:organisations/iec",
+      "label": "International Electrotechnical Commission",
+      "layer": "identities",
+      "types": [
+        "org:Organization"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/organisations/iec.ttl"
+      ]
+    },
+    {
       "id": "https://busbar.example/id/organisations/referenceworks",
       "short": "id:organisations/referenceworks",
       "label": "ReferenceWorks",
@@ -7593,6 +7608,36 @@
       "description": "",
       "sources": [
         "busbar-ontology.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/references/iec-61968-11",
+      "short": "id:references/iec-61968-11",
+      "label": "Application integration at electric utilities - System interfaces for distribution management - Part 11: Common information model (CIM) extensions for distribution",
+      "layer": "sources",
+      "types": [
+        "dct:Standard"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/references/cim.ttl"
+      ]
+    },
+    {
+      "id": "https://busbar.example/id/references/iec-61970-301",
+      "short": "id:references/iec-61970-301",
+      "label": "Energy management system application program interface (EMS-API) - Part 301: Common information model (CIM) base",
+      "layer": "sources",
+      "types": [
+        "dct:Standard"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/references/cim.ttl"
       ]
     },
     {
@@ -12559,6 +12604,21 @@
       "description": "The publisher's catalogue entry that a curated series follows; not an identity statement.",
       "sources": [
         "vocabulary/publishing.ttl"
+      ]
+    },
+    {
+      "id": "https://cim.bsigroup.com/releases/ltds/ltds-grid-modelling-v2-1-1-r15/",
+      "short": "https://cim.bsigroup.com/releases/ltds/ltds-grid-modelling-v2-1-1-r15/",
+      "label": "LTDS Grid Modelling v2-1-1",
+      "layer": "sources",
+      "types": [
+        "dct:Standard"
+      ],
+      "kind": "entity",
+      "detail": false,
+      "description": "",
+      "sources": [
+        "definitions/references/ltds-grid-modelling-v2-1-1.ttl"
       ]
     }
   ],
@@ -24833,6 +24893,14 @@
       ]
     },
     {
+      "source": "https://busbar.example/id/organisations/iec",
+      "target": "http://www.w3.org/ns/org#Organization",
+      "predicate": "rdf:type",
+      "sources": [
+        "definitions/organisations/iec.ttl"
+      ]
+    },
+    {
       "source": "https://busbar.example/id/organisations/referenceworks",
       "target": "http://www.w3.org/ns/org#Organization",
       "predicate": "rdf:type",
@@ -25222,6 +25290,38 @@
       "predicate": "busbar:substationType",
       "sources": [
         "busbar-ontology.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/references/iec-61968-11",
+      "target": "https://busbar.example/id/organisations/iec",
+      "predicate": "dct:publisher",
+      "sources": [
+        "definitions/references/cim.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/references/iec-61968-11",
+      "target": "https://busbar.example/id/references/iec-61970-301",
+      "predicate": "dct:references",
+      "sources": [
+        "definitions/references/cim.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/references/iec-61970-301",
+      "target": "https://busbar.example/id/organisations/iec",
+      "predicate": "dct:publisher",
+      "sources": [
+        "definitions/references/cim.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/references/ltds-grid-modelling-v2-1-1/annex-2-v7",
+      "target": "https://cim.bsigroup.com/releases/ltds/ltds-grid-modelling-v2-1-1-r15/",
+      "predicate": "dct:isPartOf",
+      "sources": [
+        "definitions/references/ltds-grid-modelling-v2-1-1.ttl"
       ]
     },
     {
@@ -34279,6 +34379,14 @@
       "sources": [
         "vocabulary/publishing.ttl"
       ]
+    },
+    {
+      "source": "https://cim.bsigroup.com/releases/ltds/ltds-grid-modelling-v2-1-1-r15/",
+      "target": "https://busbar.example/id/references/iec-61970-301",
+      "predicate": "dct:references",
+      "sources": [
+        "definitions/references/ltds-grid-modelling-v2-1-1.ttl"
+      ]
     }
   ],
   "files": [
@@ -34308,7 +34416,9 @@
     "definitions/grid/uk/dno/ukpn/catalogue.ttl",
     "definitions/grid/uk/dno/ukpn/organization.ttl",
     "definitions/grid/uk/dno/ukpn/portal.ttl",
+    "definitions/organisations/iec.ttl",
     "definitions/organisations/referenceworks.ttl",
+    "definitions/references/cim.ttl",
     "definitions/references/ltds-grid-modelling-v2-1-1.ttl",
     "editions/grid/uk/dno/enwl/ecr.ttl"
   ],
@@ -34418,12 +34528,20 @@
       "sha256": "c4a1650b0ebe7633143dd10c32d62ae927becb295e1ee71903311644272e10f1"
     },
     {
+      "path": "definitions/organisations/iec.ttl",
+      "sha256": "d906783f329250dfe99da09271f06e63533e6f772ecfbca32959568d99fbf0f1"
+    },
+    {
       "path": "definitions/organisations/referenceworks.ttl",
       "sha256": "4d1da414c5f80f42a8a2d78368bac27522e96b2cda6ee5bfe9b90dc1c4cd78e6"
     },
     {
+      "path": "definitions/references/cim.ttl",
+      "sha256": "88f828c610f6303acd368ea75cf4af98b5df30df3ffe7e99de9b296543fd0f33"
+    },
+    {
       "path": "definitions/references/ltds-grid-modelling-v2-1-1.ttl",
-      "sha256": "d500d45ad6912ea5d30049d63b55e563730f27eac8857495d58259657eeca153"
+      "sha256": "462d2f11068bad173ff19095f9d361f9ec4fdf76629cf9af0487f5b380b4428c"
     },
     {
       "path": "editions/grid/uk/dno/enwl/ecr.ttl",

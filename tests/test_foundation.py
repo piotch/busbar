@@ -100,6 +100,24 @@ class FoundationTests(unittest.TestCase):
         self.assertNotIn((concept, SKOS.exactMatch, None), self.definitions)
         self.assertNotIn((concept, URIRef('http://www.w3.org/2002/07/owl#equivalentClass'), None), self.definitions)
 
+    def test_cim_standards_are_declared_without_mappings(self):
+        base = URIRef(BASE + 'references/iec-61970-301')
+        distribution = URIRef(BASE + 'references/iec-61968-11')
+        iec = URIRef(BASE + 'organisations/iec')
+        ltds = URIRef('https://cim.bsigroup.com/releases/ltds/ltds-grid-modelling-v2-1-1-r15/')
+        self.assertIn((iec, RDF.type, ORG.Organization), self.definitions)
+        for standard, identifier in ((base, 'IEC 61970-301'), (distribution, 'IEC 61968-11')):
+            self.assertIn((standard, RDF.type, DCT.Standard), self.definitions)
+            self.assertEqual(str(self.definitions.value(standard, DCT.identifier)), identifier)
+            self.assertIn((standard, DCT.publisher, iec), self.definitions)
+        self.assertIn((distribution, DCT.references, base), self.definitions)
+        self.assertIn((ltds, RDF.type, DCT.Standard), self.definitions)
+        self.assertIn((ltds, DCT.references, base), self.definitions)
+        # Declaring the standards maps nothing to them.
+        for mapping in (SKOS.exactMatch, SKOS.closeMatch, SKOS.broadMatch,
+                        SKOS.narrowMatch, SKOS.relatedMatch):
+            self.assertNotIn((None, mapping, None), self.definitions)
+
     def test_missing_curator_is_invalid(self):
         graph = Graph()
         for triple in self.definitions:

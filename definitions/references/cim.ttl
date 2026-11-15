@@ -1,0 +1,17 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+
+# The IEC Common Information Model (CIM), declared as reference standards so that
+# concepts, profiles and file schemas can cite them.
+
+<https://busbar.example/id/references/iec-61970-301>
+    a dct:Standard ;
+    dct:identifier "IEC 61970-301" ;
+    dct:title "Energy management system application program interface (EMS-API) - Part 301: Common information model (CIM) base"@en ;
+    dct:publisher <https://busbar.example/id/organisations/iec> .
+
+<https://busbar.example/id/references/iec-61968-11>
+    a dct:Standard ;
+    dct:identifier "IEC 61968-11" ;
+    dct:title "Application integration at electric utilities - System interfaces for distribution management - Part 11: Common information model (CIM) extensions for distribution"@en ;
+    dct:publisher <https://busbar.example/id/organisations/iec> ;
+    dct:references <https://busbar.example/id/references/iec-61970-301> .

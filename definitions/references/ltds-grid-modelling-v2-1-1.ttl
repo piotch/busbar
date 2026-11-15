@@ -8,5 +8,8 @@
     dct:isPartOf <https://cim.bsigroup.com/releases/ltds/ltds-grid-modelling-v2-1-1-r15/> ;
     dct:bibliographicCitation "LTDS Grid Modelling v2-1-1, Annex 2: Data Exchange Specifications v7, section 6, Terms, Definitions and Abbreviated Terms, page 75; entry: Distribution Network Operator (DNO)."@en .
 
+# The release builds on the CIM base model.
 <https://cim.bsigroup.com/releases/ltds/ltds-grid-modelling-v2-1-1-r15/>
-    dct:title "LTDS Grid Modelling v2-1-1"@en .
+    a dct:Standard ;
+    dct:title "LTDS Grid Modelling v2-1-1"@en ;
+    dct:references <https://busbar.example/id/references/iec-61970-301> .
