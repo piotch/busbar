@@ -39,3 +39,47 @@ grid:DistributionProjectBelow1MW a skos:Concept ;
     skos:prefLabel "Distribution project, below 1 MW"@en ;
     skos:definition "A distribution project of less than 1 MW."@en ;
     skos:scopeNote "ENWL lists these in part 1 of its register."@en .
+
+grid:ConnectedProject a skos:Concept ;
+    skos:inScheme grid:project-types ;
+    skos:broader grid:Project ;
+    skos:prefLabel "Connected project"@en ;
+    skos:definition "A project already connected to the network."@en .
+
+grid:AcceptedProject a skos:Concept ;
+    skos:inScheme grid:project-types ;
+    skos:broader grid:Project ;
+    skos:prefLabel "Accepted project"@en ;
+    skos:altLabel "Accepted to connect project"@en ;
+    skos:definition "A project that has accepted a connection offer and is not yet connected."@en .
+
+grid:substation-types a skos:ConceptScheme ;
+    dct:title "Substation types"@en ;
+    skos:hasTopConcept grid:Substation .
+
+grid:Substation a skos:Concept ;
+    skos:inScheme grid:substation-types ;
+    skos:topConceptOf grid:substation-types ;
+    skos:prefLabel "Substation"@en ;
+    skos:definition "A site where the network's voltage is transformed or its circuits are switched."@en .
+
+grid:GridSupplyPoint a skos:Concept ;
+    skos:inScheme grid:substation-types ;
+    skos:broader grid:Substation ;
+    skos:prefLabel "Grid supply point"@en ;
+    skos:altLabel "GSP"@en ;
+    skos:definition "A substation where the transmission network supplies a distribution network."@en .
+
+grid:BulkSupplyPoint a skos:Concept ;
+    skos:inScheme grid:substation-types ;
+    skos:broader grid:Substation ;
+    skos:prefLabel "Bulk supply point"@en ;
+    skos:altLabel "BSP"@en ;
+    skos:definition "A distribution substation fed from a grid supply point, supplying primary substations."@en .
+
+grid:PrimarySubstation a skos:Concept ;
+    skos:inScheme grid:substation-types ;
+    skos:broader grid:Substation ;
+    skos:prefLabel "Primary substation"@en ;
+    skos:altLabel "Primary"@en ;
+    skos:definition "A distribution substation fed from a bulk supply point, supplying the high-voltage distribution network."@en .

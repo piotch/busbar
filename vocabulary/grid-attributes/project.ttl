@@ -1,0 +1,142 @@
+@prefix grid: <https://busbar.example/grid#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+grid:project-attributes a skos:ConceptScheme ;
+    dct:title "Project attributes"@en ;
+    dct:subject grid:Project ;
+    dct:description "What a field of a project register says about a project, whatever the file or publisher. A concept's skos:notation is its standard field name. An attribute applies to every project unless skos:related names the project types it is for."@en .
+
+grid:CustomerName a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Customer name"@en ;
+    skos:notation "customer_name" ;
+    skos:definition "Name of the customer holding the connection agreement."@en .
+
+grid:CustomerSite a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Customer site"@en ;
+    skos:notation "customer_site" ;
+    skos:definition "Name of the site where the project is located."@en .
+
+grid:AddressLine1 a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Address line 1"@en ;
+    skos:notation "address_line_1" ;
+    skos:definition "First line of the site address."@en .
+
+grid:AddressLine2 a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Address line 2"@en ;
+    skos:notation "address_line_2" ;
+    skos:definition "Second line of the site address."@en .
+
+grid:City a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Town or city"@en ;
+    skos:notation "city" ;
+    skos:definition "Town or city of the site address."@en .
+
+grid:County a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "County"@en ;
+    skos:notation "county" ;
+    skos:definition "County of the site address."@en .
+
+grid:Postcode a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Postcode"@en ;
+    skos:notation "postcode" ;
+    skos:definition "Postcode of the site address."@en .
+
+grid:Easting a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Easting"@en ;
+    skos:notation "easting" ;
+    skos:definition "Easting of the site on the British National Grid (EPSG:27700), in metres."@en .
+
+grid:Northing a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Northing"@en ;
+    skos:notation "northing" ;
+    skos:definition "Northing of the site on the British National Grid (EPSG:27700), in metres."@en .
+
+grid:UpstreamGridSupplyPoint a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Upstream grid supply point"@en ;
+    skos:notation "gsp" ;
+    skos:related grid:GridSupplyPoint ;
+    skos:definition "The grid supply point upstream of the project."@en .
+
+grid:UpstreamBulkSupplyPoint a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Upstream bulk supply point"@en ;
+    skos:notation "bsp" ;
+    skos:related grid:BulkSupplyPoint ;
+    skos:definition "The bulk supply point upstream of the project."@en .
+
+grid:UpstreamPrimarySubstation a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Upstream primary substation"@en ;
+    skos:notation "primary" ;
+    skos:related grid:PrimarySubstation ;
+    skos:definition "The primary substation the project connects at or below."@en .
+
+grid:ConnectionVoltage a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Connection voltage"@en ;
+    skos:notation "voltage" ;
+    skos:definition "Voltage at the project's point of connection, in kV."@en .
+
+grid:LicenceArea a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Licence area"@en ;
+    skos:notation "licence" ;
+    skos:definition "The distribution licence area the project is in."@en .
+
+grid:EnergySource a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Energy source"@en ;
+    skos:notation "energy_source" ;
+    skos:definition "The project's main energy source."@en .
+
+grid:ConnectionStatus a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Connection status"@en ;
+    skos:notation "connection_status" ;
+    skos:definition "Whether the project is connected or has accepted a connection offer."@en .
+
+grid:ConnectedExportCapacity a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Connected export capacity"@en ;
+    skos:notation "connected_export" ;
+    skos:related grid:ConnectedProject ;
+    skos:definition "Maximum export capacity already connected, in MVA."@en .
+
+grid:DateConnected a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Date connected"@en ;
+    skos:notation "date_connected" ;
+    skos:related grid:ConnectedProject ;
+    skos:definition "Date the project was connected."@en .
+
+grid:AcceptedExportCapacity a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Accepted export capacity"@en ;
+    skos:notation "accepted_export" ;
+    skos:related grid:AcceptedProject ;
+    skos:definition "Change to maximum export capacity accepted but not yet connected, in MVA."@en .
+
+grid:AcceptedImportCapacity a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Accepted import capacity"@en ;
+    skos:notation "accepted_import" ;
+    skos:related grid:AcceptedProject ;
+    skos:definition "Change to maximum import capacity accepted but not yet connected, in MVA."@en .
+
+grid:DateAccepted a skos:Concept ;
+    skos:inScheme grid:project-attributes ;
+    skos:prefLabel "Date accepted"@en ;
+    skos:notation "date_accepted" ;
+    skos:related grid:AcceptedProject ;
+    skos:definition "Date the connection offer was accepted."@en .

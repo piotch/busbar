@@ -6,11 +6,11 @@ export const GRID_GROUPS = [
     'busbar:Site', 'busbar:Substation', 'busbar:TransformerSubstation',
     'busbar:SwitchingStation', 'busbar:GridSupplyPoint', 'busbar:BulkSupplyPoint',
     'busbar:PrimarySubstation', 'busbar:Transformer', 'busbar:Node',
-    'busbar:Circuit', 'busbar:TypicalVoltages',
+    'busbar:Circuit', 'busbar:TypicalVoltages', 'grid:substation-types',
   ] },
   { id: 'projects', title: 'Projects & connections', color: '#8b8760', seeds: [
     'busbar:Project', 'busbar:DistributionProject', 'busbar:TransmissionProject',
-    'busbar:REPDProject', 'grid:project-types', 'id:cusc', 'id:ena-ecr',
+    'busbar:REPDProject', 'grid:project-types', 'grid:project-attributes', 'id:cusc', 'id:ena-ecr',
   ] },
   { id: 'capacity', title: 'Capacity & observations', color: '#66878b', seeds: [
     'busbar:CapacityAssessment', 'busbar:DemandForecast', 'busbar:FlowObservation',

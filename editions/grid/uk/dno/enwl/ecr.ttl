@@ -22,6 +22,7 @@
     dcat:inSeries <https://busbar.example/id/grid/uk/dno/enwl/series/ecr> .
 
 <https://busbar.example/id/grid/uk/dno/enwl/editions/ecr/2026-10-20/csv> a dcat:Distribution ;
+    dct:conformsTo <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1> ;
     dct:identifier "objects/sha256/80c56d1b4c600095ea80ff735ee83abfb132e144713d11d0b89bfc9b34c12e97.csv" ;
     spdx:checksum [ a spdx:Checksum ;
             spdx:algorithm spdx:checksumAlgorithm_sha256 ;
