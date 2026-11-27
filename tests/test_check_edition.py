@@ -2,8 +2,8 @@ import unittest
 
 from busbar import check_edition
 from busbar.capture_catalogue import load_declarations
-from rdflib import URIRef
-from rdflib.namespace import DCTERMS
+from rdflib import Literal, URIRef
+from rdflib.namespace import DCTERMS, SH
 
 SCHEMA = URIRef("https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1")
 
@@ -79,6 +79,25 @@ class CheckEditionTests(unittest.TestCase):
             "easting": {"problems": {"below 0": 1}, "samples": ["-2.2"]},
             "northing": {"problems": {"above 1300000": 1}, "samples": ["1400000"]},
         })
+
+    def test_allowed_numbers_are_compared_by_value(self):
+        report = self.run_check(*(self.row({"connection_status": "Connected", "voltage": value})
+                                  for value in ("11", "11.0", "33.00", "0.4150", "6.6")))
+        self.assertEqual(report["columns"], {})
+        report = self.run_check(self.row({"connection_status": "Connected", "voltage": "11.5"}))
+        self.assertEqual(report["columns"]["voltage"]["problems"], {"not an allowed value": 1})
+
+    def test_file_that_is_not_utf8_or_empty_gets_a_report(self):
+        for content in ("\xe9;\n".encode("latin-1"), b""):
+            report = check_edition.check(self.schema, content)
+            self.assertFalse(report["conforms"])
+            self.assertIn("error", report)
+
+    def test_range_on_a_text_column_is_rejected(self):
+        graph, _ = load_declarations()
+        graph.add((URIRef(f"{SCHEMA}/columns/postcode"), SH.minInclusive, Literal(0)))
+        with self.assertRaisesRegex(ValueError, "numeric column"):
+            check_edition.load_schema(graph, SCHEMA)
 
     def test_renamed_column_stops_the_check(self):
         header = self.header()

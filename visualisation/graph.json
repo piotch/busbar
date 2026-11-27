@@ -13148,6 +13148,21 @@
       ]
     },
     {
+      "id": "https://busbar.example/publishing#fileSchema",
+      "short": "pub:fileSchema",
+      "label": "file schema",
+      "layer": "publishing",
+      "types": [
+        "owl:ObjectProperty"
+      ],
+      "kind": "property",
+      "detail": false,
+      "description": "A declared file layout the series' edition files are checked against. A file is only recorded as conforming to a schema of its own series.",
+      "sources": [
+        "vocabulary/publishing.ttl"
+      ]
+    },
+    {
       "id": "https://busbar.example/publishing#iriRepairCount",
       "short": "pub:iriRepairCount",
       "label": "iriRepairCount",
@@ -20321,6 +20336,14 @@
       "source": "https://busbar.example/id/grid/uk/dno/enwl/series/ecr",
       "target": "https://busbar.example/grid#DistributionProject1MWAndAbove",
       "predicate": "dcat:theme",
+      "sources": [
+        "definitions/grid/uk/dno/enwl/series.ttl"
+      ]
+    },
+    {
+      "source": "https://busbar.example/id/grid/uk/dno/enwl/series/ecr",
+      "target": "https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1",
+      "predicate": "pub:fileSchema",
       "sources": [
         "definitions/grid/uk/dno/enwl/series.ttl"
       ]
@@ -35632,6 +35655,14 @@
       ]
     },
     {
+      "source": "https://busbar.example/publishing#fileSchema",
+      "target": "http://www.w3.org/ns/dcat#DatasetSeries",
+      "predicate": "rdfs:domain",
+      "sources": [
+        "vocabulary/publishing.ttl"
+      ]
+    },
+    {
       "source": "https://busbar.example/publishing#iriRepairCount",
       "target": "https://busbar.example/publishing#CatalogSnapshot",
       "predicate": "rdfs:domain",
@@ -35820,7 +35851,7 @@
     },
     {
       "path": "vocabulary/publishing.ttl",
-      "sha256": "1042ced5bbf9875aeafe98f4d367daf2a980bf46d36c21fed8980fe1339e3c20"
+      "sha256": "72ad8beacf6ff85711bab7804686eac3e3711b79edecf8a0da0e8222689a2b7b"
     },
     {
       "path": "definitions/grid/catalogues/busbar.ttl",
@@ -35844,7 +35875,7 @@
     },
     {
       "path": "definitions/grid/uk/dno/enwl/series.ttl",
-      "sha256": "36b48c8256da35810ca44a06776142d97bf9a2e3d7248e6fb4478f850ce15484"
+      "sha256": "6e509fe5be360bd40a7dc6024701f998d603a143817816abc4caa96c979641bf"
     },
     {
       "path": "definitions/grid/uk/dno/nged/catalogue.ttl",

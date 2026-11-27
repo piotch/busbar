@@ -52,9 +52,14 @@ def strptime_format(pattern):
     return re.sub("|".join(DATE_FIELDS), lambda match: DATE_FIELDS[match.group()], pattern)
 
 
-def allowed_values(graph, column):
+def allowed_values(graph, column, base):
+    """Numbers are compared by value (11 and 11.0 are the same voltage), text by normalised form."""
     values = graph.value(column, SH["in"])
-    return {normalise(str(value)) for value in Collection(graph, values)} if values is not None else None
+    if values is None:
+        return None
+    if base in NUMBERS:
+        return {Decimal(str(value)) for value in Collection(graph, values)}
+    return {normalise(str(value)) for value in Collection(graph, values)}
 
 
 def bound(graph, column, predicate):
@@ -94,15 +99,18 @@ def load_schema(graph, schema):
             pattern = strptime_format(pattern or DEFAULT_DATE_FORMATS[base])
         elif base != "string" and base not in NUMBERS:
             raise ValueError(f"Unsupported datatype {base} on {column}")
+        minimum, maximum = bound(graph, column, SH.minInclusive), bound(graph, column, SH.maxInclusive)
+        if base not in NUMBERS and (minimum is not None or maximum is not None):
+            raise ValueError(f"A range is only allowed on a numeric column, not on {column}")
         columns.append({
             "name": column_name(graph, column),
             "titles": {normalise(str(title)) for title in graph.objects(column, CSVW.titles)},
             "base": base,
             "format": pattern,
             "required": bool(graph.value(column, CSVW.required)),
-            "allowed": allowed_values(graph, column),
-            "minimum": bound(graph, column, SH.minInclusive),
-            "maximum": bound(graph, column, SH.maxInclusive),
+            "allowed": allowed_values(graph, column, base),
+            "minimum": minimum,
+            "maximum": maximum,
         })
     return {
         "schema": str(schema),
@@ -136,10 +144,21 @@ def locate_columns(schema, header):
     return positions, problems
 
 
+def is_allowed(column, value):
+    if column["allowed"] is None:
+        return True
+    key = Decimal(value) if column["base"] in NUMBERS else normalise(value)
+    return key in column["allowed"]
+
+
 def check(schema, content):
-    rows = list(csv.reader(io.StringIO(content.decode("utf-8-sig"), newline=""), delimiter=";"))
+    try:
+        text = content.decode("utf-8-sig")
+    except UnicodeDecodeError as exc:
+        return {"schema": schema["schema"], "error": f"The file is not UTF-8 text ({exc})", "conforms": False}
+    rows = list(csv.reader(io.StringIO(text, newline=""), delimiter=";"))
     if not rows:
-        raise ValueError("The CSV is empty")
+        return {"schema": schema["schema"], "error": "The file is empty", "conforms": False}
     header, records = rows[0], [row for row in rows[1:] if row]
     positions, header_problems = locate_columns(schema, header)
     report = {"schema": schema["schema"], "rows": len(records), "header": header_problems}
@@ -163,7 +182,7 @@ def check(schema, content):
             if not valid_value(column, value):
                 counts[f"not a {column['base']}" + (f" ({column['format']})" if column["format"] else "")] += 1
                 samples[value] += 1
-            elif column["allowed"] is not None and normalise(value) not in column["allowed"]:
+            elif not is_allowed(column, value):
                 counts["not an allowed value"] += 1
                 samples[value] += 1
             elif column["minimum"] is not None and Decimal(value) < column["minimum"]:

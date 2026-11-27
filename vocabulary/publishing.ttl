@@ -93,6 +93,12 @@ pub:tracksSourceDataset a owl:ObjectProperty ;
     rdfs:label "tracks source dataset"@en ;
     rdfs:comment "The publisher's catalogue entry that a curated series follows; not an identity statement."@en .
 
+pub:fileSchema a owl:ObjectProperty ;
+    rdfs:domain dcat:DatasetSeries ;
+    rdfs:range <http://www.w3.org/ns/csvw#Schema> ;
+    rdfs:label "file schema"@en ;
+    rdfs:comment "A declared file layout the series' edition files are checked against. A file is only recorded as conforming to a schema of its own series."@en .
+
 pub:apiKeyVariable a owl:DatatypeProperty ;
     rdfs:domain pub:Portal ;
     rdfs:range xsd:string ;

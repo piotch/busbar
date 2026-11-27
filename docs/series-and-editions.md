@@ -110,9 +110,17 @@ ignoring case and repeated spaces in titles, null markers and values. It only
 reads, prints a JSON report and exits with 1 if the file does not conform; what
 to do then is the pipeline's decision.
 
-At every run, `capture-series` checks each stored edition file against every
-declared schema. It records `dct:conformsTo <schema version>` on each file that
-conforms, in `editions/`.
+A series names the schemas its files are checked against with `pub:fileSchema`
+in its declaration. At every run, `capture-series` checks each stored edition
+file of the series against those schemas only, and records
+`dct:conformsTo <schema version>` on each file that conforms, in `editions/`.
+Another publisher's file can share the same column titles; it is never checked
+against this series' schemas. A schema or check that fails is reported as
+`conformance_error` in the observation and leaves the recorded statements as
+they were; it never stops a new edition from being archived.
+
+Allowed numeric values are compared by value, so `11.0` matches `11`. A file
+that is empty or not UTF-8 gets a report with `conforms: false` and an `error`.
 
 ## Querying
 

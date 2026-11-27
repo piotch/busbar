@@ -25,7 +25,7 @@ from rdflib import BNode, Graph, Literal, Namespace, RDF, URIRef
 from rdflib.namespace import DCTERMS, FOAF, PROV, XSD
 
 from .capture_catalogue import DCAT, MAX_BYTES, PUB, git_revision, load_declarations, store_artifact, write_observation
-from .check_edition import CSVW, check, load_schema
+from .check_edition import check, load_schema
 
 SPDX = Namespace("http://spdx.org/rdf/terms#")
 CSV_MEDIA_TYPE = URIRef("https://www.iana.org/assignments/media-types/text/csv")
@@ -205,23 +205,33 @@ def add_edition(graph, series, title, distribution, modified, digest, size, rela
     return edition
 
 
-def record_conformance(recorded, graph, output):
-    """State which declared file layouts each stored edition file follows.
+def record_conformance(recorded, graph, series, output):
+    """State which of its series' file layouts each stored edition file follows.
 
-    Every stored file is checked again against every declared schema, so the
-    statements follow the schemas as they are now. A file missing from the local
-    store keeps what was recorded about it.
+    A file is only checked against the schemas its series declares
+    (pub:fileSchema): another publisher's file can share the column titles, but
+    it does not follow this publisher's layout. Every stored file is checked
+    again, so the statements follow the schemas as they are now. A file missing
+    from the local store keeps what was recorded about it.
+
+    Everything is checked before anything is changed: if a schema or a check
+    fails, the error propagates and the recorded statements stay as they were.
     """
-    schemas = [load_schema(graph, schema) for schema in sorted(graph.subjects(RDF.type, CSVW.Schema))]
-    for file in sorted(recorded.subjects(DCTERMS.identifier, None)):
-        stored = output / str(recorded.value(file, DCTERMS.identifier))
-        if not stored.is_file():
+    schemas = [load_schema(graph, schema) for schema in sorted(graph.objects(series, PUB.fileSchema))]
+    files = {file for edition in recorded.subjects(DCAT.inSeries, series)
+             for file in recorded.objects(edition, DCAT.distribution)}
+    statements = {}
+    for file in sorted(files):
+        identifier = recorded.value(file, DCTERMS.identifier)
+        stored = output / str(identifier) if identifier is not None else None
+        if stored is None or not stored.is_file():
             continue
         content = stored.read_bytes()
+        statements[file] = [URIRef(schema["schema"]) for schema in schemas if check(schema, content)["conforms"]]
+    for file, conforming in statements.items():
         recorded.remove((file, DCTERMS.conformsTo, None))
-        for schema in schemas:
-            if check(schema, content)["conforms"]:
-                recorded.add((file, DCTERMS.conformsTo, URIRef(schema["schema"])))
+        for schema in conforming:
+            recorded.add((file, DCTERMS.conformsTo, schema))
 
 
 PREFIXES = (("dcat", DCAT), ("dct", DCTERMS), ("prov", PROV), ("spdx", SPDX), ("xsd", XSD))
@@ -326,7 +336,11 @@ def capture(graph, hashes, series, output, editions, env_file):
                 edition = add_edition(recorded, series, str(title), parameters["distribution"], modified,
                                       digest, len(content), relative, retrieved_at)
                 record.update({"new_edition": True, "edition": str(edition)})
-        record_conformance(recorded, graph, output)
+        # A schema or check that fails must never stop an edition from being archived.
+        try:
+            record_conformance(recorded, graph, series, output)
+        except Exception as exc:
+            record["conformance_error"] = f"{type(exc).__name__}: {exc}"
         if set(recorded) != unchanged:
             write_editions(recorded, path)
         record["status"] = "success"

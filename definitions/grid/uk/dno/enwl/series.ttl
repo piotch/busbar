@@ -6,4 +6,5 @@
 <https://busbar.example/id/grid/uk/dno/enwl/series/ecr>
     a dcat:DatasetSeries ;
     pub:tracksSourceDataset <https://electricitynorthwest.opendatasoft.com/explore/dataset/enwl-embedded-capacity-register-2-1mw-and-above/> ;
+    pub:fileSchema <https://busbar.example/id/grid/uk/dno/enwl/schemas/ecr/v1> ;
     dcat:theme grid:DistributionProject1MWAndAbove .
